@@ -1,0 +1,1928 @@
+---
+title: ""
+output: 
+  html_document:
+    number_sections: FALSE
+    self_contained: TRUE
+    code_folding: none
+    toc: FALSE
+    toc_float: FALSE
+    css: !expr here::here("www", "web_report_trust.css")
+editor_options:
+  chunk_output_type: console
+---
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+</style>
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather" />
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.jpg"), dpi = 500)
+```
+
+<center><h1>Prototype Fund Tracking Dashboard</h1></center> 
+
+```{r, echo = FALSE}
+cur_date <- Sys.Date()
+```
+
+<center>**Last Updated:** `r cur_date`</center> 
+
+<br>
+
+Federal pandemic-response packages have provided an unprecedented amount of aid to state and local governments, including $800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decisionmakers to ensure that federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
+
+This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts. The dashboard primarily tracks **appropriations**, or how much funding the the federal government has committed to provide to local juristictions. For a few select programs, the dashboard also explores **spending**, or how much of the appropriated federal funding the administering jurisdiction has spent.
+
+The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions]().
+
+This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported with a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/). 
+
+<br>
+
+<p>
+  <a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
+    Click For Glossary of Terms
+  </a>
+</p>
+<div class="collapse" id="collapseExample1">
+  <div class="card card-body">
+
+  *This glossary provides the definition of key terms as used in the Dashboard.* 
+  
+  * **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 11, 2021. 
+  * **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities. 
+  * **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.  
+  * **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.  
+  * **Community Investment:** programs that address a community’s collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
+  * **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people. 
+  * **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds. 
+  * **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the Covid-19 pandemic. 
+  * **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments. 
+  * **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities. 
+  * **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities. 
+  * **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments. 
+  * **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program. 
+  * **General Fiscal Support:** flexible funds available for broad Covid-19 economic recovery efforts.
+  * **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
+  * **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.  
+  * **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services. 
+  * **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
+  * **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
+  * **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations. 
+  * **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state. 
+  * **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways. 
+  * **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food. 
+  * **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives. 
+ * **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.  
+
+  </div>
+</div>
+
+$$\\[0.125in]$$
+
+```{r setup, echo = FALSE, include=FALSE}
+
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(fig.height = 4)
+knitr::opts_chunk$set(fig.width = 6)
+
+library(tidyverse)
+library(readxl)
+library(here)
+library(janitor)
+library(DT)
+library(urbnthemes)
+library(extrafont)
+library(treemapify)
+library(aws.s3)
+library(dotenv)
+library(treemap)
+#library(d3treeR)
+#library(packcircles)
+library(plotly)
+library(lubridate)
+library(sf)
+library(tidycensus)
+library(gridExtra)
+library(patchwork)
+library(zip)
+
+set_urbn_defaults(style = "print", base_size = 12)
+
+pc_font_path <- "C:/Users/astern/AppData/Local/Microsoft/Windows/Fonts/"
+mac_font_path <- "~/Library/Fonts"
+
+font_import(paths = pc_font_path,
+            pattern = "Merriweather",
+            prompt = FALSE
+)
+
+data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx")) %>%
+  janitor::clean_names() %>%
+  rename("legislation" = "funding_source_e_g_arpa_cares_etc",
+         "allocation" = "amount_allocated") %>%
+  mutate(is_expired = if_else(expiration > cur_date, 0, 1),
+         is_expired = if_else(is.na(is_expired), 0, is_expired),
+         amount_exact = if_else(amount_exact == "Yes", 1, 0),
+         expiration = if_else(is.na(expiration), "Available Until Expended", as.character(expiration)),
+         current_as_of = ymd(current_as_of),
+         topic = if_else(topic == "All", "State/Local Discretionary Funding", topic),
+         subtopic = str_to_title(if_else(topic == "All", "State/Local Discretionary Funding", subtopic)),
+         source = if_else(!is.na(source), 
+                          str_glue('<a href = "{source_url}">{source}</a>'),
+                          NA_character_)) %>%
+  #filter out ARPA flexible funds because captured elsewhere
+  filter(!(legislation == "ARPA" & topic == "State/Local Discretionary Funding"), !legislation == "IIJA", !is.na(topic))  
+```
+
+
+```{r, include=FALSE}
+total_appropriated_amt_b <- sum(data$allocation, na.rm = TRUE)
+
+il_state_allocation <- data %>% 
+  filter(geography == "Illinois") %>%
+  pull(allocation) %>%
+  sum(na.rm = TRUE) 
+il_state_allocation_b <- round(il_state_allocation / 1000000000, 2)
+
+chicago_allocation <- data %>% 
+  filter(geography == "Chicago") %>%
+  pull(allocation) %>%
+  sum(na.rm = TRUE) 
+chicago_allocation_b <- round(chicago_allocation / 1000000000, 2)
+
+cook_county_allocation <- data %>% 
+  filter(geography == "Cook County") %>%
+  pull(allocation) %>%
+  sum(na.rm = TRUE) 
+cook_county_allocation_b <- round(cook_county_allocation / 1000000000, 2)
+
+data_exp <- data %>%
+  filter(!is.na(allocation)) %>%
+  group_by(geography, is_expired) %>%
+  summarize(total_allocation = sum(allocation))
+
+cook_county_exp <- data_exp %>%
+  filter(geography == "Cook County", is_expired == 1) %>%
+  pull(total_allocation)
+
+cook_county_exp_b <- round(cook_county_exp / 1000000000, 2)
+
+cook_county_unexp <- data_exp %>%
+  filter(geography == "Cook County", is_expired == 0) %>%
+  pull(total_allocation)
+cook_county_unexp_b <- round(cook_county_unexp / 1000000000, 2)
+
+chicago_exp <- data_exp %>%
+  filter(geography == "Chicago", is_expired == 1) %>%
+  pull(total_allocation)
+chicago_exp_b <- round(chicago_exp / 1000000000, 2)
+
+chicago_unexp <- data_exp %>%
+  filter(geography == "Chicago", is_expired == 0) %>%
+  pull(total_allocation)
+chicago_unexp_b <- round(chicago_unexp / 1000000000, 2)
+
+il_exp <- data_exp %>%
+  filter(geography == "Illinois", is_expired == 1) %>%
+  pull(total_allocation)
+il_exp_b <- round(il_exp / 1000000000, 2)
+
+il_unexp <- data_exp %>%
+  filter(geography == "Illinois", is_expired == 0) %>%
+  pull(total_allocation)
+il_unexp_b <- round(il_unexp / 1000000000, 2)
+
+
+```
+
+# Summary of Federal Recovery Funding Included in Dashboard
+
+```{r, echo=FALSE}
+# tribble(
+#   ~"Jurisdiction", ~"Total Appropriated (billions)", ~"Percent Spent", ~"Total Remaining (billions)",
+#   "City of Chicago", chicago_allocation_b, str_glue("{chicago_pct_spent * 100}%"),  chicago_remaining,
+#   "Cook County", cook_county_allocation_b, str_glue("{cook_county_pct_spent * 100}%"), cook_county_remaining,
+#   "Illinois State", il_state_allocation_b, str_glue("{il_pct_spent * 100}%"), il_remaining
+# ) %>% DT::datatable(options = list(dom = 't'), rownames = FALSE)
+
+tribble(
+  ~"Jurisdiction", ~"Total Appropriations in Dashboard (billions)", ~"Total Expired in Dashboard (billions)", ~"Total Un-Expired in Dashboard (billions)", 
+  "City of Chicago", chicago_allocation_b, chicago_exp_b,  chicago_unexp_b,
+  "Cook County", cook_county_allocation_b, cook_county_exp_b, cook_county_unexp_b,
+  "Illinois State", il_state_allocation_b, il_exp_b, il_unexp_b
+) %>% DT::datatable(options = list(dom = 't'), rownames = FALSE) %>%
+        formatCurrency(c(2, 3, 4), currency = "$",  interval = 3, mark = ",")
+
+```
+
+$$\\[0.125in]$$
+
+```{r, include=FALSE}
+
+plot_funds_by_geo_topic <- function(data, fill_var){
+  
+  data <- data %>%
+    mutate(topic = str_replace(topic, " ", "\n"),
+           allocation = allocation / 1000000)
+  
+  topic_levels <- data %>%
+   group_by(topic) %>% 
+   summarise(total_allocation = sum(allocation, na.rm = TRUE)) %>%
+   arrange(total_allocation) %>% 
+   pull(topic) %>% 
+   unique()
+ 
+ if (fill_var == "legislation"){
+   fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000")
+   fill_breaks <- c("ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA")
+   title_var <- "Funding Source"
+ } else {
+   fill_breaks <- data %>%
+     pull(subtopic) %>%
+     unique()
+   
+   fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000", 
+                    "#387ECF", "#FDBB30")[1:length(fill_breaks)]
+   
+   title_var <- "Subtopic"
+ }
+  
+  allocations_by_topic_var <- data %>% 
+    select(legislation, program, topic, subtopic, allocation) %>%
+    mutate(topic = factor(topic, levels = topic_levels)) %>% 
+    ggplot() +
+    geom_col(mapping = aes_string(x = "topic", y = "allocation", fill = fill_var)) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.01)), 
+                     labels = scales::dollar) +
+    scale_fill_manual(values = fill_values,
+                      breaks = fill_breaks)+
+    labs(#title = str_glue("Funding Allocation by Topic and {title_var}"),
+         x = "Topic", y = "Total Allocation (millions)") +
+    coord_flip() +
+    theme(text = element_text(family = "Merriweather",
+                              face = "plain",
+                                 colour = "#000000",
+                                 size = 8.5,
+                                 hjust = 0.5,
+                                 vjust = 0.5,
+                                 angle = 0,
+                                 lineheight = 0.9,
+                                 margin = ggplot2::margin(),
+                                 debug = FALSE))
+  
+
+  return(allocations_by_topic_var)
+}
+
+```
+
+# Federal Recovery Funding by Jurisdiction and Topic {.tabset .tabset-pills}
+
+## Chicago 
+
+```{r, fig.width = 11.5, fig.height = 6}
+
+data_filter <- data %>%
+  filter(geography == "Chicago", !is.na(allocation)) %>% 
+  select(legislation, program, topic, subtopic, allocation)
+
+
+plot_funds_by_geo_topic(data_filter, "legislation")
+
+```
+
+**Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Chicago, shown by their planned spending topics and subtopics according to the [Chicago Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
+
+## Cook County 
+
+```{r, fig.width = 11.5, fig.height = 6}
+
+data_filter <- data %>%
+  filter(geography == "Cook County", !is.na(allocation)) %>% 
+  select(legislation, program, topic, subtopic, allocation)
+
+
+plot_funds_by_geo_topic(data_filter, "legislation")
+
+```
+
+**Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Cook County, shown by their planned spending topics and subtopics according to the [Cook County ARPA Spending Plan](https://www.cookcountyil.gov/sites/g/files/ywwepo161/files/documents/2021-12/ARPA%20At%20A%20Glance.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
+
+## Illinois 
+
+```{r, fig.width = 11.5, fig.height = 6}
+
+data_filter <- data %>%
+  filter(geography == "Illinois", !is.na(allocation)) %>% 
+  select(legislation, program, topic, subtopic, allocation)
+
+
+plot_funds_by_geo_topic(data_filter, "legislation")
+
+```
+
+**Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Cook County, shown by their planned spending topics and subtopics according to the [Illinois ARPA Spending Plan](https://www2.illinois.gov/sites/budget/Documents/Budget%20Book/FY2022-Budget-Book/FY22_Enacted_ARPA_Summary_6.21.21.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
+
+$$\\[0.125in]$$
+
+```{r, include=FALSE}
+
+plot_funds_by_geo <- function(data, fill_var){
+  
+   if (fill_var == "legislation"){
+     fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000")
+     fill_breaks <- c("ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA")
+     title_var <- "Funding Source"
+   } else {
+     fill_breaks <- data %>%
+       pull(subtopic) %>%
+       unique()
+   
+     fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000", 
+                    "#387ECF", "#FDBB30")[1:length(fill_breaks)]
+     
+     title_var <- "Subtopic"
+ }
+  
+  allocations_by_geo <- data %>% 
+    mutate(topic = str_replace(topic, " ", "\n")) %>%
+    select(legislation, subtopic, program, allocation, geography) %>%
+    filter(allocation > 0) %>%
+    ggplot() +
+    geom_col(mapping = aes_string(x = "geography", y = "allocation", fill = fill_var)) +
+    scale_y_continuous(expand = expand_scale(mult = c(0, 0.002)), 
+                     labels = scales::dollar) +
+    scale_fill_manual(values = fill_values,
+                      breaks = fill_breaks) +
+    labs(#title = str_glue("Funding Allocation by {title_var} to Chicago, Cook County, and Illinois"),
+         x = "", y = "Total Allocation") +
+    theme(text = element_text(family = "Merriweather"),
+          legend.text = element_text(size = 10))
+
+  return(allocations_by_geo)
+}
+
+filter_to_policy_area <- function(data_all, policy_area) {
+  data_filter <- data_all %>%
+  filter(topic == policy_area |
+           topic == "All" ) 
+  
+  return(data_filter)
+}
+
+format_write_data_download <- function(data_filter, geo_format, policy_name){
+  bucket_name <- Sys.getenv("s3_bucket")
+  rename_data <- data_filter %>%
+    select(geography, legislation, program, agency, summary_description, 
+           program_description, subtopic,
+           allocation, current_as_of, source, expiration, is_expired, amount_exact) %>%
+    mutate(expiration = as.Date(expiration, format = "%Y-%m-%d"),
+           allocation = round(allocation/1000000, 2)) %>%
+    rename(
+      "Geography" = "geography",
+      "Funding Source" = "legislation", 
+      "Program" = "program", 
+      "Agency" = "agency",
+      "Description" = "summary_description",
+      "Detail Description" = "program_description",
+      "Policy Subtopic" = "subtopic",
+      "Allocation (millions)" = "allocation", 
+      "Expiration" = "expiration", 
+      #"% Spent" = "percent_spent",
+      "Current As Of" = "current_as_of",
+      "Source" = "source"
+      )
+  
+  download_data <- rename_data %>%
+    mutate(Source = as.character(Source),
+      source_url = str_extract(Source, '(?<=<a href = \")(.*)(?=">)'),
+           source_name = str_extract(Source, "(?<=>)(.*)(?=</a>)")) %>%
+    select(-Source)
+  
+  write_csv(download_data, 
+            here("data/dashboard_downloads", 
+                 str_glue("{policy_name}_{geo_format}.csv")))
+  
+   zip::zip(zipfile = here("data/dashboard_downloads", 
+                          str_glue("{policy_name}_{geo_format}.zip")),
+      
+           files = c(str_glue("data/dashboard_downloads/{policy_name}_{geo_format}.csv"),
+                     "docs/data_dictionary.csv")
+  )
+  
+  put_object(file = here("data/dashboard_downloads", str_glue("{policy_name}_{geo_format}.zip")),
+             bucket = bucket_name,
+             object = str_glue("{policy_name}_{geo_format}.zip"))
+  
+  return(rename_data)
+}
+
+
+create_table_by_geo <- function(data_filter, geo, policy_name) {
+  
+  geo_format <- str_replace_all(str_to_lower(geo), " ", "_")
+  
+  rename_data <- format_write_data_download(data_filter, geo_format, policy_name)
+  
+  if (geo != "Total") {
+    rename_data <- rename_data %>%
+      filter(Geography == geo) %>%
+      select(-Geography) 
+    table_by_geo <- rename_data %>%
+      DT::datatable(
+        caption = htmltools::tags$caption(
+          style= 'caption-side: bottom; text-align: left; font-style: italic',
+    'Indicates that allocation amount is approximate. See FAQ for details.'), 
+        options = list(
+          autoWidth = FALSE,
+          columnDefs = list(
+            list(targets = 11, visible = FALSE),
+            list(targets = 10, visible = FALSE),
+            list(targets = 5, visible = FALSE),
+            list(targets = 4, visible = FALSE),
+            list(targets = 3, width = '600px'))),
+        rownames = FALSE,
+        escape = FALSE) %>%
+      formatStyle('Expiration', 'is_expired',
+                  backgroundColor = styleEqual(c(1), c('#CFD3D4'))) %>%
+      formatStyle('Allocation (millions)', 'amount_exact',
+                  fontStyle = styleEqual(c(1, 0), c('normal', 'italic'))) %>%
+      formatCurrency("Allocation (millions)", currency = "$",  interval = 3, mark = ",")
+    }else{
+      table_by_geo <- rename_data %>%
+        DT::datatable(
+          caption = htmltools::tags$caption(
+          style= 'caption-side: bottom; text-align: left; font-style: italic',
+    'Indicates that allocation is approximate. See FAQ for details.'),
+          options = list(
+            autoWidth = FALSE,
+            columnDefs = list(list(targets = 11, visible = FALSE),
+                              list(targets = 12, visible = FALSE), 
+                              list(targets = 6, visible = FALSE),
+                              list(targets = 5, visible = FALSE),
+                              list(targets = 4, width = '600px'))),
+          rownames = FALSE,
+          escape = FALSE) %>%
+        formatStyle('Allocation (millions)', 'amount_exact',
+                  fontStyle = styleEqual(c(1, 0), c('normal', 'italic'))) %>%
+        formatStyle(
+          'Expiration', 'is_expired',
+          backgroundColor = styleEqual(c(1), c('#CFD3D4'))
+        ) %>%
+        formatCurrency("Allocation (millions)", currency = "$",  interval = 3, mark = ",")
+    }
+  
+  return(table_by_geo)
+}
+
+create_treemap_by_geo <- function(data_filter, geo){
+  data_filter <- data_filter %>%
+    filter(allocation > 0, geography == geo) %>%
+    mutate(al_formatted =if_else(amount_exact == 1, 
+                                  paste0("$", 
+                                formatC(allocation, 
+                                        big.mark = ",", 
+                                        format = 'f', 
+                                        digits = 0)),
+                                paste0("$", 
+                                formatC(allocation, 
+                                        big.mark = ",", 
+                                        format = 'f', 
+                                        digits = 0),
+                                "*"))) 
+    if (nrow(data_filter) > 0){
+      treemap_by_geo <- data_filter %>%
+        ggplot(aes(area = allocation, 
+                   fill = legislation, 
+                   label = paste(program, "\n", al_formatted))) +
+        geom_treemap(color = "white", size = 2) +
+        geom_treemap_text(
+          aes(color = legislation), 
+                          place = "center", 
+                          grow = TRUE, 
+                          reflow = TRUE) +
+        scale_color_manual(values = c("white", "black", "white", "white"),
+                           breaks = c("ARPA", 
+                                     "ARPA State and Local Fiscal Recovery Funds", 
+                                     "CARES", "CRRSAA")) +
+        scale_fill_manual(values = c("#47c3d3", "#C1D82F", "#6C5893", "#000000"),
+                          breaks = c("ARPA", 
+                                     "ARPA State and Local Fiscal Recovery Funds", 
+                                     "CARES", "CRRSAA")) +
+        labs(title = "Programs by Proportion of Total Policy Area Allocations") +
+        theme(text = element_text(family = "Merriweather"))
+      
+      if (mean(data_filter$amount_exact, na.rm = TRUE) < 1){
+        treemap_by_geo <- treemap_by_geo +
+          labs(caption = "*Indicates allocation amount is approximate. See FAQ for details.") +
+          theme(plot.caption.position = "plot",
+                plot.caption = element_text(hjust = 0))
+      }
+      
+      return(treemap_by_geo)
+    } else {
+      return("There are no programs with known allocations in this policy area.")
+    }
+}
+```
+
+# Explore Funding by Policy Area: {.tabset .tabset-dropdown}
+
+## Community Investment {.tabset}
+
+```{r}
+data_filter <- filter_to_policy_area(data, "Community Investment")
+```
+
+### Funding Summary {.tabset .tabset-pills}
+
+#### By Funding Source
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "legislation")
+``` 
+
+#### By Subtopic
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "subtopic")
+``` 
+
+
+### Explore the specific programs: {.tabset .tabset-pills}
+
+#### Chicago {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Chicago")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_chicago.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Chicago", "community_investment")
+```
+
+
+
+#### Cook County {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Cook County")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
+```
+
+*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
+```
+
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_cook_county.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Cook County", "community_investment")
+```
+
+
+#### Illinois {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Illinois")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
+```
+
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_illinois.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Illinois", "community_investment")
+```
+
+
+
+#### Total
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_total.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Total", "community_investment")
+```
+
+
+
+## Community Safety {.tabset}
+
+```{r}
+data_filter <- filter_to_policy_area(data, "Community Safety")
+```
+### Funding Summary {.tabset .tabset-pills}
+
+#### By Funding Source
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "legislation")
+``` 
+
+#### By Subtopic
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "subtopic")
+``` 
+
+
+### Explore the specific programs: {.tabset .tabset-pills}
+
+#### Chicago {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Chicago")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_chicago.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Chicago", "community_safety")
+```
+
+
+#### Cook County {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Cook County")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
+```
+
+*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_cook_county.zip)
+```{r}
+create_table_by_geo(data_filter, "Cook County", "community_safety")
+```
+
+#### Illinois {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Illinois")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_illinois.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Illinois","community_safety")
+```
+
+
+#### Total
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_total.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Total", "community_safety")
+```
+
+
+## Household Investment {.tabset}
+
+```{r}
+data_filter <- filter_to_policy_area(data, "Household Investment")
+```
+
+### Funding Summary {.tabset .tabset-pills}
+
+#### By Funding Source
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "legislation")
+``` 
+
+#### By Subtopic
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "subtopic")
+```
+
+### Explore the specific programs: {.tabset .tabset-pills}
+
+#### Chicago {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Chicago")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_chicago.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Chicago", "household_investment")
+```
+
+#### Cook County {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Cook County")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
+```
+
+*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_cook_county.zip)
+```{r}
+create_table_by_geo(data_filter, "Cook County", "household_investment")
+```
+
+
+#### Illinois {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Illinois")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
+```
+
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_illinois.zip)
+
+```{r, fig.width = 10, fig.height = 6}
+create_table_by_geo(data_filter, "Illinois", "household_investment")
+```
+
+
+
+#### Total
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_total.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Total", "household_investment")
+```
+
+
+
+## Housing {.tabset}
+
+```{r}
+data_filter <- filter_to_policy_area(data, "Housing")
+```
+### Funding Summary {.tabset .tabset-pills}
+
+#### By Funding Source
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "legislation")
+``` 
+
+
+#### By Subtopic
+
+```{r, fig.width = 10, fig.height = 6}
+
+plot_funds_by_geo(data_filter, "subtopic")
+``` 
+
+### Explore the specific programs: {.tabset .tabset-pills}
+
+#### Chicago {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Chicago")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_chicago.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Chicago", "housing")
+```
+
+
+
+#### Cook County {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Cook County")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
+```
+
+*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_cook_county.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Cook County", "housing")
+```
+
+
+#### Illinois {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Illinois")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_illinois.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Illinois", "housing")
+```
+
+
+#### Total
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_total.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Total", "housing")
+
+```
+
+## Workforce Development {.tabset}
+
+```{r}
+
+data_filter <- filter_to_policy_area(data, "Workforce Development")
+```
+
+### Funding Summary {.tabset .tabset-pills}
+
+#### By Funding Source
+
+```{r, fig.width = 10, fig.height = 6}
+plot_funds_by_geo(data_filter, "legislation")
+``` 
+
+#### By Subtopic
+
+```{r, fig.width = 10, fig.height = 6}
+plot_funds_by_geo(data_filter, "subtopic")
+``` 
+
+
+### Explore the specific programs: {.tabset .tabset-pills}
+
+#### Chicago {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Chicago")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_chicago.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Chicago", "workforce_development")
+```
+
+
+
+#### Cook County {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Cook County")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
+```
+
+*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_cook_county.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Cook County", "workforce_development")
+```
+
+#### Illinois {.tabset}
+
+##### Programs Chart {.color-tabs .tabset .tabset-pills}
+
+###### All
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter, "Illinois")
+```
+
+
+###### ARPA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
+```
+
+###### ARPA State and Local Fiscal Recovery Funds
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
+```
+
+###### CARES
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
+```
+
+###### CRRSAA
+
+*For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
+```
+
+##### Programs Description
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_illinois.zip)
+```{r}
+create_table_by_geo(data_filter, "Illinois", "workforce_development")
+```
+
+
+#### Total
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_total.zip)
+```{r}
+create_table_by_geo(data_filter, "Total", "workforce_development")
+```
+
+## State/Local Discretionary Funding {.tabset}
+
+```{r}
+
+data_filter <- filter_to_policy_area(data, "State/Local Discretionary Funding")
+```
+
+### Funding Summary 
+
+```{r, fig.width = 10, fig.height = 6}
+plot_funds_by_geo(data_filter, "legislation")
+``` 
+
+### Explore the specific programs: 
+
+
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/state_local_discretionary_total.zip)
+
+```{r}
+create_table_by_geo(data_filter, "Total", "state_local_discretionary")
+```
+
+
+```{r, warning=FALSE, message=FALSE,results='hide', echo=FALSE, fig.width = 4.5, fig.height = 5.5}
+funds <- read_xlsx(here("data", "Fund Layers Sample.xlsx")) %>%
+  janitor::clean_names() %>%
+  rename(program_amount = amount_6,
+         grant_amount = amount_11) %>%
+  mutate(zipcode = as.character(zipcode))
+
+total_funding <- sum(funds$grant_amount, na.rm = TRUE)
+
+total_program <- funds %>% slice_head() %>% pull(program_amount)
+
+pct_allocated <- round((total_funding/total_program)*100, 2)
+
+funds_chicago <- funds %>% filter(municipality == "CHICAGO")
+
+total_chicago <- sum(funds_chicago$grant_amount, na.rm = TRUE)
+
+pct_allocated_to_chicago <- round((total_chicago / total_funding)*100, 2)
+
+chicago_pop_zip <- read_csv(here("data", "Chicago_Population_Counts.csv")) %>%
+  janitor::clean_names() %>%
+  filter(year == 2019)
+
+# il_pop_place <- get_acs(geography = "place", 
+#                         variables = c("black" = "B02001_003", 
+#                                        "white" = "B02001_002", 
+#                                        "total_pop" = "B01003_001",
+#                                       "total_hh" = "DP04_0001", 
+#                                        "hispanic" = "B03003_003", 
+#                                        "asian" = "B02001_005", 
+#                                       "total_pop_pov_status" = "S1701_C01_001",
+#                                       "pop_pov" = "S1701_C02_001"),
+#                         year = 2019, 
+#                         state= "IL", 
+#                         #geometry = TRUE,
+#                         format = "wide",
+#                         progress = FALSE)
+
+
+chicago_zip <- st_read(here("data", "Boundaries - ZIP Codes.geojson"))
+
+chicago_zip_totals <- funds_chicago %>%
+  group_by(zipcode) %>%
+  summarise(total_funds = sum(grant_amount)) %>%
+  left_join(chicago_pop_zip, by = c("zipcode" = "geography")) %>%
+  mutate(funds_per_capita = total_funds/population_total)
+
+chicago_zip_totals <- chicago_zip %>%
+  left_join(chicago_zip_totals, by = c("zip" = "zipcode")) 
+
+#https://udsmapper.org/zip-code-to-zcta-crosswalk/
+zip_zcta <- read_xlsx(here("data", "ZiptoZcta_Crosswalk_2021.xlsx")) %>%
+  select(ZIP_CODE, ZCTA)
+
+chicago_zip_totals <- chicago_zip_totals %>%
+  left_join(zip_zcta, by = c("zip" = "ZIP_CODE"))
+
+acs_zcta <- get_acs(geography = "zcta", 
+                        variables = c("total_pop_pov_status" = "S1701_C01_001",
+                                      "pop_pov" = "S1701_C02_001"),
+                        year = 2019, 
+                        output = "wide",
+                        progress = FALSE,
+                    cache_table = TRUE) %>%
+  mutate(prop_pov = pop_povE/total_pop_pov_statusE) %>%
+  select(GEOID, prop_pov, pop_povE, total_pop_pov_statusE) 
+
+chicago_zip_totals <- chicago_zip_totals %>%
+  left_join(acs_zcta, by = c("ZCTA" = "GEOID")) %>%
+  # zip 60666 is O'Hare Airport and has 0 population. It is part of ZCTA 60018
+  # along with three other zip codes which have non-zero population. The prop_pov
+  # for ZCTA 60018 is non-NA but should be NA for just 60666. Note that some other 
+  # ZCTAs correspond to multiple zip codes in the cross walk, but these represent
+  # zero-pop single addresses and are not in the chicago data
+  mutate(prop_pov = if_else(zip == "60666", NA_real_, prop_pov))
+
+
+chicago_summary <- chicago_zip_totals %>%
+  st_drop_geometry() %>%
+  summarise(
+    prop_latinx = paste0(round((sum(population_latinx, na.rm = TRUE)/sum(population_total, na.rm = TRUE))*100,
+                               2), "%"),
+    prop_asian = paste0(round((sum(population_asian_non_latinx, na.rm = TRUE)/sum(population_total, 
+                                                                                  na.rm = TRUE))*100, 2), 
+                        "%"),
+    prop_black = paste0(round((sum(population_black_non_latinx, na.rm = TRUE)/sum(population_total, 
+                                                                                  na.rm = TRUE))*100, 2), 
+                        "%"),
+    prop_white = paste0(round((sum(population_white_non_latinx, na.rm = TRUE)/sum(population_total, 
+                                                                                  na.rm = TRUE))*100, 2),
+                        "%"),
+    prop_pov = paste0(round((sum(pop_povE, na.rm = TRUE)/sum(total_pop_pov_statusE, 
+                                                             na.rm = TRUE))*100, 2),
+                      "%"),
+    avg_funds = paste0("$", round(mean(total_funds, na.rm = TRUE), 2)),
+    avg_funds_per_capita = paste0("$", round(mean(funds_per_capita, na.rm = TRUE), 2)))%>%
+  pivot_longer(cols = everything(), 
+               names_to = "dem_group", 
+               values_to = "value") %>%
+  mutate(dem_group = case_when(dem_group == "prop_latinx" ~ "% Latinx",
+                               dem_group == "prop_asian" ~ "% Asian",
+                               dem_group == "prop_black" ~ "% Black",
+                               dem_group == "prop_white" ~ "% White",
+                               dem_group == "prop_pov" ~ "% Under Poverty Level",
+                               dem_group == "avg_funds" ~ "Average Zip Code Funding",
+                               dem_group == "avg_funds_per_capita" ~ "Average Zip Code Per Capita Funding")) %>%
+  arrange(dem_group) %>%
+  DT::datatable(width = '300px',
+    colnames = rep("", 2), 
+                rownames = FALSE,
+                options = list(dom = 't', 
+                               autoWidth = TRUE,
+                               ordering = FALSE, 
+                               columnDefs = list(list(width = '150px', targets = c(0)), 
+                                                 list(width = '75px', targets = c(1)))),
+                caption = "Chicago Citywide Characteristics")
+```
+
+$$\\[0.125in]$$
+```{r, echo = FALSE}
+make_sum_table <- function(grant_program,
+                           jurisdiction, 
+                           total_program,
+                           total_cook,
+                           total_chicago,
+                           last_updated){
+  
+  total_cook_ex_chi <- total_cook - total_chicago
+  
+  tribble(
+  ~"Program", ~"Jurisdiction", ~"Total Allocated", ~"Total Funds to Cook County (Excluding Chicago)", ~"Total Funds to Chicago", ~"Current As Of",
+  grant_program, jurisdiction, paste0("$",
+             formatC(
+               total_program,
+               big.mark = ",",
+               format = 'f',
+               digits = 0
+             )), paste0("$",
+             formatC(
+               total_cook_ex_chi,
+               big.mark = ",",
+               format = 'f',
+               digits = 0
+             )),  paste0("$",
+             formatC(
+               total_chicago,
+               big.mark = ",",
+               format = 'f',
+               digits = 0
+             )), last_updated
+) %>% DT::datatable(options = list(dom = 't'), rownames = FALSE)
+}
+
+```
+
+# Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
+
+This dashboard features a selection of federally-funded recovery programs for which detailed information on program spending is available. A program not being in this list does not indicate that the program funds haven't been spent. We intend to add additional programs to this section over time as data becomes available. 
+
+## Illinois Back to Business Grant Program
+
+```{r}
+
+
+make_sum_table("Back to Business Grant Program",
+              "Illinois", 
+              total_program,
+              total_funding,
+              total_chicago,
+              "2022-04-01")
+
+```
+
+### Funding Per Capita by Zip Code
+
+```{r}
+library(leaflet)
+library(scales)
+
+
+make_leaflet <- function(chicago_zip_totals, fpc_breaks){
+  chicago_map_data <- chicago_zip_totals %>%
+  mutate(fpc_bin = factor(cut(funds_per_capita, breaks = fpc_breaks)),
+         prop_latinx = paste0(round((population_latinx/population_total)*100, 2), "%"),
+         prop_asian = paste0(round((population_asian_non_latinx/population_total)*100, 2), "%"),
+         prop_black = paste0(round((population_black_non_latinx/population_total)*100, 2), "%"),
+         prop_white = paste0(round((population_white_non_latinx/population_total)*100, 2), "%"),
+         prop_pov = paste0(round(prop_pov*100, 2), "%"),
+         funds_per_capita = paste0("$", round(funds_per_capita, 2)),
+         pop_total_fm = number(population_total, big.mark = ","),
+         funds_total_fm = paste0("$", number(total_funds, big.mark = ",")),
+         fpc_bin_label = str_replace(fpc_bin, ",", " - $"),
+         fpc_bin_label = str_replace(fpc_bin_label, "\\(", "$"),
+         fpc_bin_label = str_replace(fpc_bin_label, "]", ""),
+         fpc_bin_label = factor(fpc_bin_label)) 
+
+pal <- colorFactor(palette = c("#a5dee6","#47c3d3","#306074","#000000"),
+                   domain = chicago_map_data$fpc_bin_label)
+
+labels <- sprintf(
+  '<strong> Zip Code %s</strong><br/><strong>Total Population:</strong> %s<br/><strong>Total Funding:</strong> %s<br/><strong>Funding Per Capita:</strong> %s<br/><strong>Pct Asian:</strong> %s<br/><strong>Pct Black:</strong> %s<br/><strong>Pct Latinx:</strong> %s<br/><strong>Pct White:</strong> %s<br/><strong>Pct Under Poverty Level:</strong> %s<br/>',
+  chicago_map_data$zip, chicago_map_data$pop_total_fm, chicago_map_data$funds_total_fm, chicago_map_data$funds_per_capita, chicago_map_data$prop_asian, chicago_map_data$prop_black, chicago_map_data$prop_latinx, chicago_map_data$prop_white, chicago_map_data$prop_pov) %>% lapply(htmltools::HTML)
+  
+m <- leaflet(chicago_map_data) %>%
+  setView(-87.626, 41.869, zoom = 10) %>%
+  addTiles() %>%
+  addPolygons(
+    fillColor = ~pal(fpc_bin_label),
+    weight = 2,
+    opacity = 0.75,
+    color = "white",
+    fillOpacity = 0.75,
+    highlightOptions = highlightOptions(
+      weight = 5,
+      color = "#000000",
+      fillOpacity = 0.75,
+      bringToFront = TRUE),
+     label = labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "12px",
+    direction = "auto")
+  ) %>%
+  addLegend("topright", pal = pal, values = ~fpc_bin_label,
+    title = "Funding Per Capita",
+    opacity = 1
+  )
+
+m
+}
+
+chi_map <- make_leaflet(chicago_zip_totals, fpc_breaks = c(0, 10, 25, 50, 650))
+
+library(htmltools)
+
+leaflet_grid <- tagList(list(
+    tags$div(
+      style = 'width:550px;display:block;float:left;margin-right:35px',
+      chi_map
+    ),
+    tags$div(
+      style = 'width:320px;display:block;float:left;',
+      chicago_summary
+    )
+  ))
+
+leaflet_grid
+  
+```
+
+## Chicago Emergency Rental Assistance Program 
+
+
+```{r}
+era_data <- read_excel(here("data", "Chicago_ERAP_Approved_HHs_Q4 21.xlsx"),
+                   skip = 2,
+                   sheet = "ZIP Summary") %>%
+  janitor::clean_names() %>%
+  mutate(zip = substr(zip, 1, 5)) %>%
+  group_by(zip) %>%
+  summarise(across(everything(), ~sum(.x, na.rm = TRUE))) %>%
+  ungroup() %>%
+  rename(total_funds = total_approved_funds)
+
+# zip code 36695 is mobile alabama
+# zip code 60673 has zero population, not included in zip map - seems to be a specific office building
+# zip code 60805 is evergreen park, IL (in cook county but not in chicago)
+
+chicago_zip_totals <- era_data %>%
+  left_join(chicago_pop_zip, by = c("zip" = "geography")) %>%
+  mutate(funds_per_capita = total_funds/population_total) 
+
+chicago_zip_totals <- chicago_zip %>%
+  left_join(chicago_zip_totals, by = "zip")
+
+chicago_zip_totals <- chicago_zip_totals %>%
+  left_join(zip_zcta, by = c("zip" = "ZIP_CODE"))
+
+chicago_zip_totals <- chicago_zip_totals %>%
+  left_join(acs_zcta, by = c("ZCTA" = "GEOID"))
+
+chicago_summary <- chicago_zip_totals %>%
+  st_drop_geometry() %>%
+  summarise(
+    prop_latinx = paste0(round((sum(population_latinx, na.rm = TRUE)/sum(population_total, na.rm = TRUE))*100,
+                               2), "%"),
+    prop_asian = paste0(round((sum(population_asian_non_latinx, na.rm = TRUE)/sum(population_total, 
+                                                                                  na.rm = TRUE))*100, 2), 
+                        "%"),
+    prop_black = paste0(round((sum(population_black_non_latinx, na.rm = TRUE)/sum(population_total, 
+                                                                                  na.rm = TRUE))*100, 2), 
+                        "%"),
+    prop_white = paste0(round((sum(population_white_non_latinx, na.rm = TRUE)/sum(population_total, 
+                                                                                  na.rm = TRUE))*100, 2),
+                        "%"),
+    prop_pov = paste0(round((sum(pop_povE, na.rm = TRUE)/sum(total_pop_pov_statusE, 
+                                                             na.rm = TRUE))*100, 2),
+                      "%"),
+    avg_funds = paste0("$", formatC(round(mean(total_funds, na.rm = TRUE), 2), 
+                                    format = "d", 
+                                    big.mark = ",")),
+    avg_funds_per_capita = paste0("$", round(mean(funds_per_capita, na.rm = TRUE), 2)))%>%
+  pivot_longer(cols = everything(), 
+               names_to = "dem_group", 
+               values_to = "value") %>%
+  mutate(dem_group = case_when(dem_group == "prop_latinx" ~ "% Latinx",
+                               dem_group == "prop_asian" ~ "% Asian",
+                               dem_group == "prop_black" ~ "% Black",
+                               dem_group == "prop_white" ~ "% White",
+                               dem_group == "prop_pov" ~ "% Under Poverty Level",
+                               dem_group == "avg_funds" ~ "Average Zip Code Funding",
+                               dem_group == "avg_funds_per_capita" ~ "Average Zip Code Per Capita Funding")) %>%
+  arrange(dem_group) %>%
+  DT::datatable(width = '300px',
+    colnames = rep("", 2), 
+                rownames = FALSE,
+                options = list(dom = 't', 
+                               autoWidth = TRUE,
+                               ordering = FALSE, 
+                               columnDefs = list(list(width = '150px', targets = c(0)), 
+                                                 list(width = '75px', targets = c(1)))),
+                caption = "Chicago Citywide Characteristics")
+
+```
+
+```{r}
+
+# Assuming this is Emergency Rental Housing Assistance from Chicago Flexible ARPA Funds
+total_program <- data %>% 
+  filter(program == "Emergency Rental Housing Assistance",
+         geography == "Chicago") %>%
+  pull(allocation)
+
+# currently filtering out observations outside of Cook County
+total_cook <- era_data %>% 
+  filter(!zip %in% c("36695")) %>%
+  summarise(total_funds = sum(total_funds, na.rm = TRUE)) %>%
+  pull(total_funds)
+
+# currently filtering out observations outside of Chicago
+total_chicago <- era_data %>% 
+  filter(!zip %in% c("36695", "60805")) %>%
+  summarise(total_funds = sum(total_funds, na.rm = TRUE)) %>%
+  pull(total_funds)
+  
+make_sum_table("Emergency Rental Assistance Program",
+              "Chicago", 
+              total_program,
+              total_cook,
+              total_chicago,
+              "2021-12-31")
+```
+
+### Funding Per Capita by Zipcode
+
+```{r}
+
+chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
+
+leaflet_grid <- tagList(list(
+    tags$div(
+      style = 'width:550px;display:block;float:left;margin-right:35px',
+      chi_map
+    ),
+    tags$div(
+      style = 'width:320px;display:block;float:left;',
+      chicago_summary
+    )
+  ))
+
+leaflet_grid
+```
+
+[Download all the data used in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
+
+```{r}
+
+data_out <- format_write_data_download(data, "total", "all_programs")
+
+```

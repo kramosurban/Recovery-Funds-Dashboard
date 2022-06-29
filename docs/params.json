@@ -1,0 +1,25 @@
+{
+    "limit": 10,
+    "filters": {
+        "def_codes": ["L", "M", "N", "O", "P", "U", "V"],
+        "program_numbers": ["93.600", "32.009"],
+        "recipient_locations": [{
+            "country": "USA",
+            "city": "Chicago"
+        }]
+    },
+    "fields": [
+        "Award ID",
+        "Recipient Name",
+        "Start Date",
+        "End Date",
+        "Award Amount",
+        "Awarding Agency",
+        "Awarding Sub Agency",
+        "Contract Award Type",
+        "Award Type",
+        "Funding Agency",
+        "Funding Sub Agency"
+    ]
+
+}

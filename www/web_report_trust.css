@@ -1,0 +1,174 @@
+.container-fluid {
+  font-family: 'Merriweather', serif;
+}
+
+/* make titles blue */
+h1 {
+  color: #47C3D3;
+}
+
+.nav> .nav-tabs > .tablist {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.navbar {
+  display: inline-table;
+  background-color: #47C3D3;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.navbar-default .navbar-brand {
+  color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #FFFFFF;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+  color: #47C3D3;
+  background-color: #FFFFFF;
+}
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #47C3D3 !important;
+  border-radius: 8px !important;
+}
+
+.btn-outline-primary, .btn-outline-primary:hover, .btn-outline-primary:active, .btn-outline-primary:visited  {
+  background-color: #47C3D3 !important;
+  border-radius: 8px !important;
+}
+
+.color-tabs>.nav-pills>li:nth-of-type(1)>a{
+  color: black;
+  border-radius: 8px !important;
+  
+}
+
+.color-tabs > .nav-pills>li:nth-of-type(1)>a:hover, .color-tabs > .nav-pills>li:nth-of-type(1)>a:focus, .color-tabs > .nav-pills>li:nth-of-type(1).active>a, .color-tabs > .nav-pills>li:nth-of-type(1).active>a:hover, .color-tabs > .nav-pills>li:nth-of-type(1).active>a:focus{
+     color: white;
+     background-color: #CFD4D8;
+    
+}
+
+.color-tabs>.nav-pills>li:nth-of-type(2)>a{
+  color: #47c3d3;
+  border-radius: 8px !important;
+  
+}
+
+.color-tabs > .nav-pills>li:nth-of-type(2)>a:hover, .color-tabs > .nav-pills>li:nth-of-type(2)>a:focus, .color-tabs > .nav-pills>li:nth-of-type(2).active>a, .color-tabs > .nav-pills>li:nth-of-type(2).active>a:hover, .color-tabs > .nav-pills>li:nth-of-type(2).active>a:focus{
+     color: white;
+     background-color: #47c3d3
+    
+}
+
+.color-tabs>.nav-pills>li:nth-of-type(3)>a{
+  color: #006595;
+  border-radius: 8px !important;
+  
+}
+
+.color-tabs > .nav-pills>li:nth-of-type(3)>a:hover, .color-tabs > .nav-pills>li:nth-of-type(3)>a:focus, .color-tabs > .nav-pills>li:nth-of-type(3).active>a, .color-tabs > .nav-pills>li:nth-of-type(3).active>a:hover, .color-tabs > .nav-pills>li:nth-of-type(3).active>a:focus{
+     color: white;
+     background-color: #006595
+    
+}
+
+.color-tabs>.nav-pills>li:nth-of-type(4)>a{
+  color: #6C5893;
+  border-radius: 8px !important;
+  
+}
+
+.color-tabs > .nav-pills>li:nth-of-type(4)>a:hover, .color-tabs > .nav-pills>li:nth-of-type(4)>a:focus, .color-tabs > .nav-pills>li:nth-of-type(4).active>a, .color-tabs > .nav-pills>li:nth-of-type(4).active>a:hover, .color-tabs > .nav-pills>li:nth-of-type(4).active>a:focus{
+     color: white;
+     background-color: #6C5893
+    
+}
+
+.color-tabs>.nav-pills>li:nth-of-type(5)>a{
+  color: #6D6E71;
+  border-radius: 8px !important;
+  
+}
+
+.color-tabs > .nav-pills>li:nth-of-type(5)>a:hover, .color-tabs > .nav-pills>li:nth-of-type(5)>a:focus, .color-tabs > .nav-pills>li:nth-of-type(5).active>a, .color-tabs > .nav-pills>li:nth-of-type(5).active>a:hover, .color-tabs > .nav-pills>li:nth-of-type(5).active>a:focus{
+     color: white;
+     background-color: #6D6E71
+    
+}
+
+/* Global Formats */
+.main-container {
+  font-family:'Merriweather', serif;
+}
+
+/* Hyper-links */
+.a {
+  color: #47C3D3;
+}
+
+/* Header image formatting */
+#header {
+  padding-top: 12px;
+}
+
+/* Legend Formatting */
+.list-group-item.active {
+  background-color: #47C3D3;
+  border-color: #47C3D3;
+}
+
+.list-group-item.active:hover {
+  background-color: #000000;
+  border-color: #000000;
+}
+
+.tocify {
+  border-radius: 0;
+}
+
+/* Button Formatting */
+.btn {
+  border-radius: 0;
+}
+
+/*pills formatting */
+.nav-pills>li.active>a {
+	background-color: #47C3D3;
+}
+
+.nav-pills>li.active>a:focus {
+	background-color: #47C3D3;
+}
+
+
+.nav>li>a:focus {
+	background-color: #cae6ec;
+}
+
+.nav>li>a:hover {
+	background-color: #cae6ec;
+}
+
+a:focus {
+	color: #47C3D3;
+}
+
+a:hover {
+	color: #47C3D3;
+}
+
+a[role=tab] {
+	color: #568792
+}
+
