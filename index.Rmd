@@ -22,7 +22,7 @@ editor_options:
 knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.jpg"), dpi = 500)
 ```
 
-<center><h1>Prototype Fund Tracking Dashboard</h1></center> 
+<center><h1>Recovery Funds Dashboard</h1></center> 
 
 ```{r, echo = FALSE}
 cur_date <- Sys.Date()
@@ -36,7 +36,7 @@ Federal pandemic-response packages have provided an unprecedented amount of aid 
 
 This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts. The dashboard primarily tracks **appropriations**, or how much funding the the federal government has committed to provide to local juristictions. For a few select programs, the dashboard also explores **spending**, or how much of the appropriated federal funding the administering jurisdiction has spent.
 
-The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions]().
+The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
 
 This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported with a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/). 
 
@@ -81,7 +81,8 @@ This project is a collaboration between [The Chicago Community Trust](https://ww
   </div>
 </div>
 
-$$\\[0.125in]$$
+<br>
+<br>
 
 ```{r setup, echo = FALSE, include=FALSE}
 
@@ -222,7 +223,8 @@ tribble(
 
 ```
 
-$$\\[0.125in]$$
+<br>
+<br>
 
 ```{r, include=FALSE}
 
@@ -330,7 +332,8 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 **Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Cook County, shown by their planned spending topics and subtopics according to the [Illinois ARPA Spending Plan](https://www2.illinois.gov/sites/budget/Documents/Budget%20Book/FY2022-Budget-Book/FY22_Enacted_ARPA_Summary_6.21.21.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
 
-$$\\[0.125in]$$
+<br>
+<br>
 
 ```{r, include=FALSE}
 
@@ -1640,7 +1643,9 @@ chicago_summary <- chicago_zip_totals %>%
     prop_pov = paste0(round((sum(pop_povE, na.rm = TRUE)/sum(total_pop_pov_statusE, 
                                                              na.rm = TRUE))*100, 2),
                       "%"),
-    avg_funds = paste0("$", round(mean(total_funds, na.rm = TRUE), 2)),
+    avg_funds = paste0("$", formatC(round(mean(total_funds, na.rm = TRUE), 2), 
+                                    format = "d", 
+                                    big.mark = ",")),
     avg_funds_per_capita = paste0("$", round(mean(funds_per_capita, na.rm = TRUE), 2)))%>%
   pivot_longer(cols = everything(), 
                names_to = "dem_group", 
@@ -1664,7 +1669,9 @@ chicago_summary <- chicago_zip_totals %>%
                 caption = "Chicago Citywide Characteristics")
 ```
 
-$$\\[0.125in]$$
+<br>
+<br>
+
 ```{r, echo = FALSE}
 make_sum_table <- function(grant_program,
                            jurisdiction, 

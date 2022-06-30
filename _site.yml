@@ -1,0 +1,16 @@
+name: Recovery Funds Dashboard
+navbar:
+  title: Recovery Funds Dashboard
+  left:
+  - text: Home
+    href: index.html
+  - text: FAQ
+    href: faq.html
+  - text: Glossary
+    href: glossary.html
+output:
+  html_document:
+    output_dir: '.'
+    css: !expr here::here("www", "web_report_trust.css")
+    self_contained: TRUE
+output_dir: '.'

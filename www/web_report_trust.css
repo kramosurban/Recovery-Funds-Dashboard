@@ -5,6 +5,12 @@
 /* make titles blue */
 h1 {
   color: #47C3D3;
+  margin: 0 0 .5em;
+}
+
+/* paragraph styles */ 
+p {
+  margin: 0 0 8px 0;
 }
 
 .nav> .nav-tabs > .tablist {
@@ -72,14 +78,14 @@ h1 {
 }
 
 .color-tabs>.nav-pills>li:nth-of-type(3)>a{
-  color: #006595;
+  color: #C1D82F;
   border-radius: 8px !important;
   
 }
 
 .color-tabs > .nav-pills>li:nth-of-type(3)>a:hover, .color-tabs > .nav-pills>li:nth-of-type(3)>a:focus, .color-tabs > .nav-pills>li:nth-of-type(3).active>a, .color-tabs > .nav-pills>li:nth-of-type(3).active>a:hover, .color-tabs > .nav-pills>li:nth-of-type(3).active>a:focus{
      color: white;
-     background-color: #006595
+     background-color: #C1D82F
     
 }
 
@@ -106,6 +112,7 @@ h1 {
      background-color: #6D6E71
     
 }
+
 
 /* Global Formats */
 .main-container {
@@ -172,3 +179,38 @@ a[role=tab] {
 	color: #568792
 }
 
+@media print{
+    /* remove elements */
+    #TOC, #toc, #header-pinned{
+        display: none;
+    }
+    .nav-tabs{
+        display: none;
+    }
+    .exclude{
+        display: none;
+    }
+    .contentBlock.title{
+        padding-top: 0px;
+    }
+    .expandContainer{
+        height: fit-content !important;
+        height: -moz-fit-content;
+    }
+    .expandFull{
+        display: block !important;
+    }
+  @page {
+    size: 210mm 297mm; /* portrait 
+    /* you can also specify margins here: */
+    margin: 15mm;   
+   /*margin-right: 45mm;  for compatibility with both A4 and Letter */
+  }
+  /* page breaks */
+  .printbreak { 
+    page-break-before: always;
+  }
+  .avoidpagebreak {
+    break-inside: avoid-page;
+  }
+}
