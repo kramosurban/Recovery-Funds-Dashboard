@@ -41,49 +41,7 @@ The inclusive recovery funds we track represent a subset of COVID-19 assistance 
 
 This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported with a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/). 
 
-<br>
-
-<p>
-  <a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
-    Click For Glossary of Terms
-  </a>
-</p>
-<div class="collapse" id="collapseExample1">
-  <div class="card card-body">
-
-  *This glossary provides the definition of key terms as used in the Dashboard.* 
-  
-  * **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 11, 2021. 
-  * **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities. 
-  * **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.  
-  * **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.  
-  * **Community Investment:** programs that address a community’s collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
-  * **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people. 
-  * **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds. 
-  * **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the Covid-19 pandemic. 
-  * **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments. 
-  * **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities. 
-  * **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities. 
-  * **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments. 
-  * **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program. 
-  * **General Fiscal Support:** flexible funds available for broad Covid-19 economic recovery efforts.
-  * **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
-  * **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.  
-  * **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services. 
-  * **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
-  * **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
-  * **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations. 
-  * **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state. 
-  * **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways. 
-  * **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food. 
-  * **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives. 
- * **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.  
-
-  </div>
-</div>
-
-<br>
-<br>
+---
 
 ```{r setup, echo = FALSE, include=FALSE}
 
@@ -538,6 +496,14 @@ create_treemap_by_geo <- function(data_filter, geo){
 ```
 
 # Explore Funding by Policy Area 
+
+The dashboard explores the funding by five different policy areas (community investment, community safety, household investment, housing, and workforce development) as well as uncategorized state/local discretionary funding. [Download data on all of the programs included in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
+
+```{r}
+
+data_out <- format_write_data_download(data, "total", "all_programs")
+
+```
 
 ## Community Investment {.tabset}
 
@@ -1709,9 +1675,16 @@ make_sum_table <- function(grant_program,
 
 ```
 
+<br>
+<br>
+
+
 # Explore Spending for Selected Programs
 
 This dashboard features a selection of federally-funded recovery programs for which detailed information on program spending is available. A program not being in this list does not indicate that the program funds haven't been spent. We intend to add additional programs to this section over time as data becomes available. 
+
+<br>
+<br>
 
 ## Illinois Back to Business Grant Program
 
@@ -1811,7 +1784,7 @@ chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
 
 leaflet_grid <- tagList(list(
     tags$div(
-      style = 'width:500px;display:block;float:left;margin-right:35px',
+      style = 'width:510px;display:block;float:left;margin-right:35px',
       chi_map
     ),
     tags$div(
@@ -1937,7 +1910,7 @@ chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
 
 leaflet_grid <- tagList(list(
     tags$div(
-      style = 'width:500px;display:block;float:left;margin-right:35px',
+      style = 'width:510px;display:block;float:left;margin-right:35px',
       chi_map
     ),
     tags$div(
@@ -1947,13 +1920,4 @@ leaflet_grid <- tagList(list(
   ))
 
 leaflet_grid
-```
-
-
-[Download all the data used in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
-
-```{r}
-
-data_out <- format_write_data_download(data, "total", "all_programs")
-
 ```
