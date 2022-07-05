@@ -1804,43 +1804,25 @@ library(htmltools)
   
 ```
 
-:::::: {.cols data-latex=""}
-
-::: {.col data-latex="{0.3\textwidth}"}
 
 ```{r}
 
 chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
 
-# leaflet_grid <- tagList(list(
-#     tags$div(
-#       style = 'width:550px;display:block;float:left;margin-right:35px',
-#       chi_map
-#     ),
-#     tags$div(
-#       style = 'width:320px;display:block;float:left;',
-#       chicago_summary
-#     )
-#   ))
-# 
-# leaflet_grid
-chi_map
-```
-:::
+leaflet_grid <- tagList(list(
+    tags$div(
+      style = 'width:500px;display:block;float:left;margin-right:35px',
+      chi_map
+    ),
+    tags$div(
+      style = 'width:210px;display:block;float:left;',
+      chicago_summary
+    )
+  ))
 
-::: {.col data-latex="{0.025\textwidth}"}
-\ 
-<!-- an empty Div (with a white space), serving as
-a column separator -->
-:::
-
-::: {.col data-latex="{0.15\textwidth}"}
-```{r}
-chicago_summary
+leaflet_grid
 
 ```
-:::
-::::::
 
 
 ## Chicago Emergency Rental Assistance Program 
@@ -1948,37 +1930,25 @@ make_sum_table("Emergency Rental Assistance Program",
 
 **Funding Per Capita by Zipcode**
 
-:::::: {.cols data-latex=""}
-
-::: {.col data-latex="{0.3\textwidth}"}
 
 ```{r}
 
 chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
 
-# leaflet_grid <- tagList(list(
-#     tags$div(
-#       style = 'width:550px;display:block;float:left;margin-right:35px',
-#       chi_map
-#     ),
-#     tags$div(
-#       style = 'width:320px;display:block;float:left;',
-#       chicago_summary
-#     )
-#   ))
-# 
-# leaflet_grid
-chi_map
-```
-:::
+leaflet_grid <- tagList(list(
+    tags$div(
+      style = 'width:500px;display:block;float:left;margin-right:35px',
+      chi_map
+    ),
+    tags$div(
+      style = 'width:210px;display:block;float:left;',
+      chicago_summary
+    )
+  ))
 
-::: {.col data-latex="{0.1\textwidth}"}
-```{r}
-chicago_summary
-
+leaflet_grid
 ```
-:::
-::::::
+
 
 [Download all the data used in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
 
