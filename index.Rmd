@@ -5,8 +5,9 @@ output:
     number_sections: FALSE
     self_contained: TRUE
     code_folding: none
-    toc: FALSE
-    toc_float: FALSE
+    toc: TRUE
+    toc_float: TRUE
+    toc_level: 2
     css: !expr here::here("www", "web_report_trust.css")
 editor_options:
   chunk_output_type: console
@@ -536,7 +537,7 @@ create_treemap_by_geo <- function(data_filter, geo){
 }
 ```
 
-# Explore Funding by Policy Area: {.tabset .tabset-dropdown}
+# Explore Funding by Policy Area 
 
 ## Community Investment {.tabset}
 
@@ -1156,7 +1157,7 @@ plot_funds_by_geo(data_filter, "legislation")
 plot_funds_by_geo(data_filter, "subtopic")
 ``` 
 
-### Explore the specific programs: {.tabset .tabset-pills}
+### Explore the specific programs {.tabset .tabset-pills}
 
 #### Chicago {.tabset}
 
@@ -1708,7 +1709,7 @@ make_sum_table <- function(grant_program,
 
 ```
 
-# Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
+# Explore Spending for Selected Programs
 
 This dashboard features a selection of federally-funded recovery programs for which detailed information on program spending is available. A program not being in this list does not indicate that the program funds haven't been spent. We intend to add additional programs to this section over time as data becomes available. 
 
@@ -1726,7 +1727,7 @@ make_sum_table("Back to Business Grant Program",
 
 ```
 
-### Funding Per Capita by Zip Code
+**Funding Per Capita by Zip Code**
 
 ```{r}
 library(leaflet)
@@ -1788,20 +1789,59 @@ chi_map <- make_leaflet(chicago_zip_totals, fpc_breaks = c(0, 10, 25, 50, 650))
 
 library(htmltools)
 
-leaflet_grid <- tagList(list(
-    tags$div(
-      style = 'width:550px;display:block;float:left;margin-right:35px',
-      chi_map
-    ),
-    tags$div(
-      style = 'width:320px;display:block;float:left;',
-      chicago_summary
-    )
-  ))
-
-leaflet_grid
+# leaflet_grid <- tagList(list(
+#     tags$div(
+#       style = 'width:550px;display:block;float:left;margin-right:35px',
+#       chi_map
+#     ),
+#     tags$div(
+#       style = 'width:320px;display:block;float:left;',
+#       chicago_summary
+#     )
+#   ))
+# 
+# leaflet_grid
   
 ```
+
+:::::: {.cols data-latex=""}
+
+::: {.col data-latex="{0.3\textwidth}"}
+
+```{r}
+
+chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
+
+# leaflet_grid <- tagList(list(
+#     tags$div(
+#       style = 'width:550px;display:block;float:left;margin-right:35px',
+#       chi_map
+#     ),
+#     tags$div(
+#       style = 'width:320px;display:block;float:left;',
+#       chicago_summary
+#     )
+#   ))
+# 
+# leaflet_grid
+chi_map
+```
+:::
+
+::: {.col data-latex="{0.025\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.col data-latex="{0.15\textwidth}"}
+```{r}
+chicago_summary
+
+```
+:::
+::::::
+
 
 ## Chicago Emergency Rental Assistance Program 
 
@@ -1906,25 +1946,39 @@ make_sum_table("Emergency Rental Assistance Program",
               "2021-12-31")
 ```
 
-### Funding Per Capita by Zipcode
+**Funding Per Capita by Zipcode**
+
+:::::: {.cols data-latex=""}
+
+::: {.col data-latex="{0.3\textwidth}"}
 
 ```{r}
 
 chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
 
-leaflet_grid <- tagList(list(
-    tags$div(
-      style = 'width:550px;display:block;float:left;margin-right:35px',
-      chi_map
-    ),
-    tags$div(
-      style = 'width:320px;display:block;float:left;',
-      chicago_summary
-    )
-  ))
-
-leaflet_grid
+# leaflet_grid <- tagList(list(
+#     tags$div(
+#       style = 'width:550px;display:block;float:left;margin-right:35px',
+#       chi_map
+#     ),
+#     tags$div(
+#       style = 'width:320px;display:block;float:left;',
+#       chicago_summary
+#     )
+#   ))
+# 
+# leaflet_grid
+chi_map
 ```
+:::
+
+::: {.col data-latex="{0.1\textwidth}"}
+```{r}
+chicago_summary
+
+```
+:::
+::::::
 
 [Download all the data used in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
 
