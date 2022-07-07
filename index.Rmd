@@ -258,15 +258,23 @@ plot_funds_by_geo_topic <- function(data, fill_var){
   
   allocations_by_topic_var <- data %>% 
     select(legislation, program, topic, subtopic, allocation) %>%
-    mutate(topic = factor(topic, levels = topic_levels)) %>% 
+    group_by(legislation, topic, !!{fill_var}) %>%
+    summarise(allocation = sum(allocation, na.rm = TRUE)) %>%
+    mutate(topic = factor(topic, levels = topic_levels),
+           allocation_str = scales::dollar(allocation),
+           label_height = cumsum(allocation)) %>% 
     ggplot() +
-    geom_col(mapping = aes_string(x = "topic", y = "allocation", fill = fill_var)) +
+    geom_col(mapping = aes_string(x = "topic", 
+                                  y = "allocation", 
+                                  fill = fill_var,
+                                  text = "allocation_str")) +
     scale_y_continuous(expand = expansion(mult = c(0, 0.01)), 
                      labels = scales::dollar) +
     scale_fill_manual(values = fill_values,
                       breaks = fill_breaks)+
-    labs(#title = str_glue("Funding Allocation by Topic and {title_var}"),
-         x = "Topic", y = "Total Allocation (millions)") +
+    labs(x = "Topic", 
+         y = "Total Allocation (millions)",
+         caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). For more detail, see the FAQ.") +
     coord_flip() +
     theme(text = element_text(family = "Merriweather",
                               face = "plain",
@@ -277,9 +285,12 @@ plot_funds_by_geo_topic <- function(data, fill_var){
                                  angle = 0,
                                  lineheight = 0.9,
                                  margin = ggplot2::margin(),
-                                 debug = FALSE))
+                                 debug = FALSE),
+          plot.caption.position = "plot",
+          plot.caption = element_text(hjust = 0))
   
-
+# maybe groupby and sum first? play with legend?
+  #return(plotly::ggplotly(allocations_by_topic_var, tooltip = "text"))
   return(allocations_by_topic_var)
 }
 
