@@ -34,7 +34,7 @@ cur_date <- Sys.Date()
 
 Federal pandemic-response packages have provided an unprecedented amount of aid to state and local governments, including $800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decisionmakers to ensure that federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
 
-This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts. The dashboard primarily tracks **appropriations**, or how much funding the the federal government has committed to provide to local juristictions. For a few select programs, the dashboard also explores **spending**, or how much of the appropriated federal funding the administering jurisdiction has spent.
+This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts. The dashboard primarily tracks **appropriations**, or how much funding the the federal government has committed to provide to local jurisdictions. For a few select programs, the dashboard also explores **spending**, or how much of the appropriated federal funding the administering jurisdiction has spent.
 
 The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
 
@@ -200,26 +200,33 @@ il_unexp <- data_exp %>%
   pull(total_allocation)
 il_unexp_b <- round(il_unexp / 1000000000, 2)
 
+pct_il_unexp_b <- il_unexp_b/il_state_allocation_b
+pct_chicago_unexp_b <- chicago_unexp_b/chicago_allocation_b
+pct_cook_county_unexp_b <- cook_county_unexp_b/cook_county_allocation_b
+
 
 ```
 
 # Summary of Federal Recovery Funding Included in Dashboard
 
 ```{r, echo=FALSE}
-# tribble(
-#   ~"Jurisdiction", ~"Total Appropriated (billions)", ~"Percent Spent", ~"Total Remaining (billions)",
-#   "City of Chicago", chicago_allocation_b, str_glue("{chicago_pct_spent * 100}%"),  chicago_remaining,
-#   "Cook County", cook_county_allocation_b, str_glue("{cook_county_pct_spent * 100}%"), cook_county_remaining,
-#   "Illinois State", il_state_allocation_b, str_glue("{il_pct_spent * 100}%"), il_remaining
-# ) %>% DT::datatable(options = list(dom = 't'), rownames = FALSE)
 
 tribble(
-  ~"Jurisdiction", ~"Total Appropriations in Dashboard (billions)", ~"Total Expired in Dashboard (billions)", ~"Total Un-Expired in Dashboard (billions)", 
-  "City of Chicago", chicago_allocation_b, chicago_exp_b,  chicago_unexp_b,
-  "Cook County", cook_county_allocation_b, cook_county_exp_b, cook_county_unexp_b,
-  "Illinois State", il_state_allocation_b, il_exp_b, il_unexp_b
-) %>% DT::datatable(options = list(dom = 't'), rownames = FALSE) %>%
-        formatCurrency(c(2, 3, 4), currency = "$",  interval = 3, mark = ",")
+  ~"Jurisdiction", ~"Total Appropriations in Dashboard (billions)",  ~"Percent of Appropriations in Dashboard that are Un-Expired (billions)", 
+  "City of Chicago", chicago_allocation_b, pct_chicago_unexp_b,
+  "Cook County", cook_county_allocation_b, pct_cook_county_unexp_b,
+  "Illinois State", il_state_allocation_b, pct_il_unexp_b
+) %>% DT::datatable(
+  caption = htmltools::tags$caption(
+    style= 'caption-side: bottom; text-align: left',
+    'Un-expired funds are not past the date at which funds are no longer available for expenditure. Expiration dates vary by program.'),
+  options = list(dom = 't'), 
+  rownames = FALSE) %>%
+  formatCurrency(c(2), 
+                 currency = "$",  
+                 interval = 3, 
+                 mark = ",") %>%
+  formatPercentage(c(3))
 
 ```
 
@@ -375,10 +382,13 @@ plot_funds_by_geo <- function(data, fill_var){
                      labels = scales::dollar) +
     scale_fill_manual(values = fill_values,
                       breaks = fill_breaks) +
-    labs(#title = str_glue("Funding Allocation by {title_var} to Chicago, Cook County, and Illinois"),
-         x = "", y = "Total Allocation") +
+    labs(x = "", 
+         y = "Total Allocation",
+         caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). For more detail, see the FAQ.") +
     theme(text = element_text(family = "Merriweather"),
-          legend.text = element_text(size = 10))
+          legend.text = element_text(size = 10),
+          plot.caption.position = "plot",
+          plot.caption = element_text(hjust = 0))
 
   return(allocations_by_geo)
 }
@@ -530,8 +540,11 @@ create_treemap_by_geo <- function(data_filter, geo){
                           breaks = c("ARPA", 
                                      "ARPA State and Local Fiscal Recovery Funds", 
                                      "CARES", "CRRSAA")) +
-        labs(title = "Programs by Proportion of Total Policy Area Allocations") +
-        theme(text = element_text(family = "Merriweather"))
+        labs(title = "Programs by Proportion of Total Policy Area Allocations",
+             caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts when viewing all programs. For more detail, see the FAQ.") +
+        theme(text = element_text(family = "Merriweather"),
+              plot.caption.position = "plot",
+              plot.caption = element_text(hjust = 0))
       
       if (mean(data_filter$amount_exact, na.rm = TRUE) < 1){
         treemap_by_geo <- treemap_by_geo +
@@ -1669,14 +1682,14 @@ chicago_summary <- chicago_zip_totals %>%
                                dem_group == "avg_funds" ~ "Average Zip Code Funding",
                                dem_group == "avg_funds_per_capita" ~ "Average Zip Code Per Capita Funding")) %>%
   arrange(dem_group) %>%
-  DT::datatable(width = '300px',
+  DT::datatable(width = '250px',
     colnames = rep("", 2), 
                 rownames = FALSE,
                 options = list(dom = 't', 
                                autoWidth = TRUE,
                                ordering = FALSE, 
-                               columnDefs = list(list(width = '150px', targets = c(0)), 
-                                                 list(width = '75px', targets = c(1)))),
+                               columnDefs = list(list(width = '190px', targets = c(0)), 
+                                                 list(width = '60px', targets = c(1)))),
                 caption = "Chicago Citywide Characteristics")
 ```
 
@@ -1801,11 +1814,11 @@ library(htmltools)
 
 leaflet_grid <- tagList(list(
     tags$div(
-      style = 'width:550px;display:block;float:left;margin-right:35px',
+      style = 'width:630px;display:block;float:left;margin-right:30px',
       chi_map
     ),
     tags$div(
-      style = 'width:320px;display:block;float:left;',
+      style = 'width:250px;display:block;float:left;',
       chicago_summary
     )
   ))
@@ -1877,14 +1890,14 @@ chicago_summary <- chicago_zip_totals %>%
                                dem_group == "avg_funds" ~ "Average Zip Code Funding",
                                dem_group == "avg_funds_per_capita" ~ "Average Zip Code Per Capita Funding")) %>%
   arrange(dem_group) %>%
-  DT::datatable(width = '300px',
+  DT::datatable(width = '250px',
     colnames = rep("", 2), 
                 rownames = FALSE,
                 options = list(dom = 't', 
                                autoWidth = TRUE,
                                ordering = FALSE, 
-                               columnDefs = list(list(width = '150px', targets = c(0)), 
-                                                 list(width = '75px', targets = c(1)))),
+                               columnDefs = list(list(width = '190px', targets = c(0)), 
+                                                 list(width = '60px', targets = c(1)))),
                 caption = "Chicago Citywide Characteristics")
 
 ```
@@ -1925,11 +1938,11 @@ chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
 
 leaflet_grid <- tagList(list(
     tags$div(
-      style = 'width:550px;display:block;float:left;margin-right:35px',
+      style = 'width:630px;display:block;float:left;margin-right:30px',
       chi_map
     ),
     tags$div(
-      style = 'width:320px;display:block;float:left;',
+      style = 'width:250px;display:block;float:left;',
       chicago_summary
     )
   ))
