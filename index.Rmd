@@ -124,10 +124,13 @@ font_import(paths = pc_font_path,
             prompt = FALSE
 )
 
+# Read in main program tracker
 data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx")) %>%
   janitor::clean_names() %>%
   rename("legislation" = "funding_source_e_g_arpa_cares_etc",
          "allocation" = "amount_allocated") %>%
+  # create variable to indicate if program is expired, if expiration is NA, treat as not expired
+  # because this indicates available until expended
   mutate(is_expired = if_else(expiration > cur_date, 0, 1),
          is_expired = if_else(is.na(is_expired), 0, is_expired),
          amount_exact = if_else(amount_exact == "Yes", 1, 0),
@@ -144,6 +147,7 @@ data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx")) %>%
 
 
 ```{r, include=FALSE}
+# calculate totals appropriated and percent of appropriations that are unexpired by jurisdiction
 total_appropriated_amt_b <- sum(data$allocation, na.rm = TRUE)
 
 il_state_allocation <- data %>% 
@@ -356,6 +360,8 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 ```{r, include=FALSE}
 
 plot_funds_by_geo <- function(data, fill_var){
+  # Function that plots the total amount of funds received by jurisdiction 
+  # as a stacked bar chart where the fill colors of the bar are determined by fill_var
   
    if (fill_var == "legislation"){
      fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000")
@@ -394,6 +400,8 @@ plot_funds_by_geo <- function(data, fill_var){
 }
 
 filter_to_policy_area <- function(data_all, policy_area) {
+  # function that filters dataset to the specified policy area
+  
   data_filter <- data_all %>%
   filter(topic == policy_area |
            topic == "All" ) 
@@ -402,6 +410,8 @@ filter_to_policy_area <- function(data_all, policy_area) {
 }
 
 format_write_data_download <- function(data_filter, geo_format, policy_name){
+  # function that formats the data to be written to s3 for data download
+  
   bucket_name <- Sys.getenv("s3_bucket")
   rename_data <- data_filter %>%
     select(geography, legislation, program, agency, summary_description, 
@@ -450,6 +460,7 @@ format_write_data_download <- function(data_filter, geo_format, policy_name){
 
 
 create_table_by_geo <- function(data_filter, geo, policy_name) {
+  # function that creates detailed program table by jurisdiction
   
   geo_format <- str_replace_all(str_to_lower(geo), " ", "_")
   
@@ -507,6 +518,8 @@ create_table_by_geo <- function(data_filter, geo, policy_name) {
 }
 
 create_treemap_by_geo <- function(data_filter, geo){
+  # function that creates treemap by jurisdiction
+  
   data_filter <- data_filter %>%
     filter(allocation > 0, geography == geo) %>%
     mutate(al_formatted =if_else(amount_exact == 1, 
