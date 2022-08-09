@@ -104,8 +104,6 @@ library(treemapify)
 library(aws.s3)
 library(dotenv)
 library(treemap)
-#library(d3treeR)
-#library(packcircles)
 library(plotly)
 library(lubridate)
 library(sf)
@@ -113,6 +111,8 @@ library(tidycensus)
 library(gridExtra)
 library(patchwork)
 library(zip)
+library(leaflet)
+library(scales)
 
 set_urbn_defaults(style = "print", base_size = 12)
 
@@ -136,8 +136,12 @@ data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx")) %>%
          amount_exact = if_else(amount_exact == "Yes", 1, 0),
          expiration = if_else(is.na(expiration), "Available Until Expended", as.character(expiration)),
          current_as_of = ymd(current_as_of),
-         topic = if_else(topic == "All", "State/Local Discretionary Funding", topic),
-         subtopic = str_to_title(if_else(topic == "All", "State/Local Discretionary Funding", subtopic)),
+         topic = if_else(new_topic == "All", 
+                         "State/Local Discretionary Funding", 
+                         new_topic),
+         subtopic = str_to_title(if_else(new_topic == "All", 
+                                         "State/Local Discretionary Funding", 
+                                         new_subtopic)),
          source = if_else(!is.na(source), 
                           str_glue('<a href = "{source_url}">{source}</a>'),
                           NA_character_)) %>%
@@ -394,7 +398,12 @@ plot_funds_by_geo <- function(data, fill_var){
     theme(text = element_text(family = "Merriweather"),
           legend.text = element_text(size = 10),
           plot.caption.position = "plot",
-          plot.caption = element_text(hjust = 0))
+          plot.caption = element_text(hjust = 0, size = 8.5))
+  
+  if (nrow(unique(data[fill_var])) > 4){
+    allocations_by_geo <- allocations_by_geo +
+      guides(fill=guide_legend(nrow=2,byrow=TRUE))
+  }
 
   return(allocations_by_geo)
 }
@@ -770,7 +779,7 @@ create_table_by_geo(data_filter, "Illinois", "community_investment")
 
 #### Total
 
-[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_total.zip)
+[Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_total.zip)=
 
 ```{r}
 create_table_by_geo(data_filter, "Total", "community_investment")
@@ -1683,18 +1692,29 @@ chicago_summary <- chicago_zip_totals %>%
     avg_funds = paste0("$", formatC(round(mean(total_funds, na.rm = TRUE), 2), 
                                     format = "d", 
                                     big.mark = ",")),
-    avg_funds_per_capita = paste0("$", round(mean(funds_per_capita, na.rm = TRUE), 2)))%>%
+    avg_funds_per_capita = paste0("$", round(mean(funds_per_capita, na.rm = TRUE), 2)),
+    avg_total_pop = number(round(mean(population_total, na.rm = TRUE), 0), big_mark = ",")) %>%
   pivot_longer(cols = everything(), 
                names_to = "dem_group", 
                values_to = "value") %>%
-  mutate(dem_group = case_when(dem_group == "prop_latinx" ~ "% Latinx",
+  mutate(row_order = case_when(dem_group == "prop_latinx" ~ 3,
+                               dem_group == "prop_asian" ~ 1,
+                               dem_group == "prop_black" ~ 2,
+                               dem_group == "prop_white" ~ 4,
+                               dem_group == "prop_pov" ~ 5,
+                               dem_group == "avg_funds" ~ 7,
+                               dem_group == "avg_funds_per_capita" ~ 8,
+                               dem_group == "avg_total_pop" ~ 6),
+         dem_group = case_when(dem_group == "prop_latinx" ~ "% Latinx",
                                dem_group == "prop_asian" ~ "% Asian",
                                dem_group == "prop_black" ~ "% Black",
                                dem_group == "prop_white" ~ "% White",
                                dem_group == "prop_pov" ~ "% Under Poverty Level",
                                dem_group == "avg_funds" ~ "Average Zip Code Funding",
-                               dem_group == "avg_funds_per_capita" ~ "Average Zip Code Per Capita Funding")) %>%
-  arrange(dem_group) %>%
+                               dem_group == "avg_funds_per_capita" ~ "Average Zip Code Per Capita Funding",
+                               dem_group == "avg_total_pop" ~ "Average Zip Code Population")) %>%
+  arrange(row_order) %>%
+  select(-row_order) %>%
   DT::datatable(width = '250px',
     colnames = rep("", 2), 
                 rownames = FALSE,
@@ -1703,7 +1723,8 @@ chicago_summary <- chicago_zip_totals %>%
                                ordering = FALSE, 
                                columnDefs = list(list(width = '190px', targets = c(0)), 
                                                  list(width = '60px', targets = c(1)))),
-                caption = "Chicago Citywide Characteristics")
+                caption = "Chicago Citywide Characteristics") %>%
+   DT::formatStyle(columns = c(1, 2), fontSize = '9pt')
 ```
 
 <br>
@@ -1766,9 +1787,6 @@ make_sum_table("Back to Business Grant Program",
 ### Funding Per Capita by Zip Code
 
 ```{r}
-library(leaflet)
-library(scales)
-
 
 make_leaflet <- function(chicago_zip_totals, fpc_breaks){
   chicago_map_data <- chicago_zip_totals %>%
@@ -1790,8 +1808,17 @@ pal <- colorFactor(palette = c("#a5dee6","#47c3d3","#306074","#000000"),
                    domain = chicago_map_data$fpc_bin_label)
 
 labels <- sprintf(
-  '<strong> Zip Code %s</strong><br/><strong>Total Population:</strong> %s<br/><strong>Total Funding:</strong> %s<br/><strong>Funding Per Capita:</strong> %s<br/><strong>Pct Asian:</strong> %s<br/><strong>Pct Black:</strong> %s<br/><strong>Pct Latinx:</strong> %s<br/><strong>Pct White:</strong> %s<br/><strong>Pct Under Poverty Level:</strong> %s<br/>',
-  chicago_map_data$zip, chicago_map_data$pop_total_fm, chicago_map_data$funds_total_fm, chicago_map_data$funds_per_capita, chicago_map_data$prop_asian, chicago_map_data$prop_black, chicago_map_data$prop_latinx, chicago_map_data$prop_white, chicago_map_data$prop_pov) %>% lapply(htmltools::HTML)
+  '<strong> Zip Code %s</strong><br/><strong>Pct Asian:</strong> %s<br/><strong>Pct Black:</strong> %s<br/><strong>Pct Latinx:</strong> %s<br/><strong>Pct White:</strong> %s<br/><strong>Pct Under Poverty Level:</strong> %s<br/><strong>Total Population:</strong> %s<br/><strong>Total Funding:</strong> %s<br/><strong>Funding Per Capita:</strong> %s<br/>',
+  chicago_map_data$zip, 
+  chicago_map_data$prop_asian, 
+  chicago_map_data$prop_black,
+  chicago_map_data$prop_latinx, 
+  chicago_map_data$prop_white, 
+  chicago_map_data$prop_pov,
+  chicago_map_data$pop_total_fm, 
+  chicago_map_data$funds_total_fm, 
+  chicago_map_data$funds_per_capita) %>% 
+  lapply(htmltools::HTML)
   
 m <- leaflet(chicago_map_data) %>%
   setView(-87.626, 41.869, zoom = 10) %>%
