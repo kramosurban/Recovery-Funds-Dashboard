@@ -10,79 +10,92 @@ output:
     css: !expr here::here("www", "web_report_trust.css")
 editor_options:
   chunk_output_type: console
+  markdown: 
+    wrap: 72
 ---
 
+```{=html}
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
 </style>
-
+```
 <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather" />
 
 ```{r, echo=FALSE, fig.align='center'}
 knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.jpg"), dpi = 500)
 ```
 
-<center><h1>Recovery Funds Dashboard</h1></center> 
+<center>
+
+<h1>
+
+Recovery Funds Dashboard
+
+</h1>
+
+</center>
 
 ```{r, echo = FALSE}
 cur_date <- Sys.Date()
 ```
 
-<center>**Last Updated:** `r cur_date`</center> 
+<center>
+
+**Last Updated:** `r cur_date`
+
+</center>
 
 <br>
 
-Federal pandemic-response packages have provided an unprecedented amount of aid to state and local governments, including $800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decisionmakers to ensure that federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
+Federal pandemic-response packages have provided an unprecedented amount of aid to state and local governments, including \$800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decisionmakers to ensure that federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
 
-This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts. The dashboard primarily tracks **appropriations**, or how much funding the the federal government has committed to provide to local jurisdictions. For a few select programs, the dashboard also explores **spending**, or how much of the appropriated federal funding the administering jurisdiction has spent.
+This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts that align with key priorities of the Chicago Community Trust, reflected in the "policy area" dropdown menu. The dashboard primarily tracks appropriations, or how much funding the the federal government has committed to provide to local jurisdictions. For a few select programs where information is available, the dashboard also explores spending by zip code.
 
-The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
+**The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government.** The dashboard only reflects funds flowing directly from the federal government to the state of Illinois, Cook County, and the City of Chicago, and does not include funds provided from the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms. Information on program allocations will be added as new data become available. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
 
-This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported with a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/). 
+This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported with a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/).
 
 <br>
 
 <p>
-  <a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1">
-    Click For Glossary of Terms
-  </a>
+
+<a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a>
+
 </p>
-<div class="collapse" id="collapseExample1">
-  <div class="card card-body">
 
-  *This glossary provides the definition of key terms as used in the Dashboard.* 
-  
-  * **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 11, 2021. 
-  * **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities. 
-  * **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.  
-  * **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.  
-  * **Community Investment:** programs that address a community’s collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
-  * **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people. 
-  * **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds. 
-  * **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the Covid-19 pandemic. 
-  * **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments. 
-  * **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities. 
-  * **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities. 
-  * **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments. 
-  * **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program. 
-  * **General Fiscal Support:** flexible funds available for broad Covid-19 economic recovery efforts.
-  * **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
-  * **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.  
-  * **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services. 
-  * **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
-  * **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
-  * **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations. 
-  * **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state. 
-  * **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways. 
-  * **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food. 
-  * **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives. 
- * **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.  
+::: {#collapseExample1 .collapse}
+::: {.card .card-body}
+*This glossary provides the definition of key terms as used in the Dashboard.*
 
-  </div>
-</div>
+-   **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 11, 2021.
+-   **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities.
+-   **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.\
+-   **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.\
+-   **Community Investment:** programs that address a community's collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
+-   **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people.
+-   **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds.
+-   **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the Covid-19 pandemic.
+-   **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments.
+-   **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities.
+-   **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities.
+-   **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments.
+-   **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program.
+-   **General Fiscal Support:** flexible funds available for broad Covid-19 economic recovery efforts.
+-   **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
+-   **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.\
+-   **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services.
+-   **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
+-   **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
+-   **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations.
+-   **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state.
+-   **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways.
+-   **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food.
+-   **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives.
+-   **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.
+:::
+:::
 
-<br>
-<br>
+<br> <br>
 
 ```{r setup, echo = FALSE, include=FALSE}
 
@@ -124,8 +137,45 @@ font_import(paths = pc_font_path,
             prompt = FALSE
 )
 
+# Define total federal allocations for Chicago, Cook County, Illinois
+
+il_total_fed_allocation <- read_excel(here("data", "cook_county_il_total_fed_appropriations.xlsx"),
+                       sheet = "Illinois_Aug26",
+                       skip = 5) %>%
+  janitor::clean_names() %>%
+  filter(legislation_program == "Grand Total") %>%
+  pull(sum_of_dollars_obligated)
+
+il_total_fed_allocation_b <- round(il_total_fed_allocation / 1000000000, 2)
+
+cook_county_total_fed_allocation<- read_excel(here("data", "cook_county_il_total_fed_appropriations.xlsx"),
+                       sheet = "Cook County_Aug26",
+                       skip = 5)  %>%
+  janitor::clean_names() %>%
+  filter(legislation_program == "Total including other amounts:") %>%
+  # pull just funds appropriated directly to government of cook county
+  pull(sum_of_dollars_obligated_2)
+
+
+cook_county_total_fed_allocation_b <- round(cook_county_total_fed_allocation / 1000000000, 2)
+
+chicago_total_fed_allocation <- read_excel(here("data", "chicago_total_fed_appropriations.xlsx"),
+                                           sheet = "Sheet1",
+                                           skip = 3) %>%
+  janitor::clean_names() %>%
+  filter(row_labels == "Grand Total") %>%
+    select(-c("board_of_education_of_city_of_chicago", "chicago_housing_authority", "grand_total", "row_labels")) %>%
+  pivot_longer(cols = everything(), names_to = "recipient", values_to = "total") %>%
+  summarise(grand_total = sum(total)) %>%
+  pull(grand_total)
+
+chicago_total_fed_allocation_b <- round(chicago_total_fed_allocation / 1000000000, 2)
+total_fed_updated_date <- "2022-08-26"
+
+
 # Read in main program tracker
-data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx")) %>%
+data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"), 
+                   sheet = "Programs") %>%
   janitor::clean_names() %>%
   rename("legislation" = "funding_source_e_g_arpa_cares_etc",
          "allocation" = "amount_allocated") %>%
@@ -146,9 +196,12 @@ data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx")) %>%
                           str_glue('<a href = "{source_url}">{source}</a>'),
                           NA_character_)) %>%
   #filter out ARPA flexible funds because captured elsewhere
-  filter(!(legislation == "ARPA" & topic == "State/Local Discretionary Funding"), !legislation == "IIJA", !is.na(topic))  
+  filter(!(legislation == "ARPA" & topic == "State/Local Discretionary Funding"),
+         !legislation == "IIJA", 
+         !is.na(topic)) %>%
+  #filter out FTA grants because go to transit agencies
+  filter(program != "Federal Transit Administration (FTA) Grants")
 ```
-
 
 ```{r, include=FALSE}
 # calculate totals appropriated and percent of appropriations that are unexpired by jurisdiction
@@ -215,22 +268,22 @@ pct_cook_county_unexp_b <- cook_county_unexp_b/cook_county_allocation_b
 
 ```
 
-# Summary of Federal Recovery Funding Included in Dashboard
+# Summary of Federal COVID-19 Recovery Funding
 
 ```{r, echo=FALSE}
 
 tribble(
-  ~"Jurisdiction", ~"Total Appropriations in Dashboard (billions)",  ~"Percent of Appropriations in Dashboard that are Un-Expired (billions)", 
-  "City of Chicago", chicago_allocation_b, pct_chicago_unexp_b,
-  "Cook County", cook_county_allocation_b, pct_cook_county_unexp_b,
-  "Illinois State", il_state_allocation_b, pct_il_unexp_b
+  ~"Jurisdiction", ~"Total Appropriations in Dashboard (billions)",  ~"Percent of Appropriations in Dashboard that are Un-Expired (billions)", ~"Total Appropriations (billions)",
+  "City of Chicago", chicago_allocation_b, pct_chicago_unexp_b, chicago_total_fed_allocation_b,
+  "Cook County", cook_county_allocation_b, pct_cook_county_unexp_b, cook_county_total_fed_allocation_b,
+  "Illinois State", il_state_allocation_b, pct_il_unexp_b, il_total_fed_allocation_b
 ) %>% DT::datatable(
   caption = htmltools::tags$caption(
     style= 'caption-side: bottom; text-align: left',
-    'Un-expired funds are not past the date at which funds are no longer available for expenditure. Expiration dates vary by program.'),
+    'The total appropriations in the dashboard represent the subset of the total appropriations that are included in this dashboard. Un-expired funds are not past the date at which funds are no longer available for expenditure. Expiration dates vary by program. See the Frequently Asked Questions for more detail.'),
   options = list(dom = 't'), 
   rownames = FALSE) %>%
-  formatCurrency(c(2), 
+  formatCurrency(c(2,4), 
                  currency = "$",  
                  interval = 3, 
                  mark = ",") %>%
@@ -238,8 +291,7 @@ tribble(
 
 ```
 
-<br>
-<br>
+<br> <br>
 
 ```{r, include=FALSE}
 
@@ -313,7 +365,7 @@ plot_funds_by_geo_topic <- function(data, fill_var){
 
 # Federal Recovery Funding by Jurisdiction and Topic {.tabset .tabset-pills}
 
-## Chicago 
+## Chicago
 
 ```{r, fig.width = 11.5, fig.height = 6}
 
@@ -328,7 +380,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 **Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Chicago, shown by their planned spending topics and subtopics according to the [Chicago Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
 
-## Cook County 
+## Cook County
 
 ```{r, fig.width = 11.5, fig.height = 6}
 
@@ -343,7 +395,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 **Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Cook County, shown by their planned spending topics and subtopics according to the [Cook County ARPA Spending Plan](https://www.cookcountyil.gov/sites/g/files/ywwepo161/files/documents/2021-12/ARPA%20At%20A%20Glance.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
 
-## Illinois 
+## Illinois
 
 ```{r, fig.width = 11.5, fig.height = 6}
 
@@ -358,8 +410,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 **Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Cook County, shown by their planned spending topics and subtopics according to the [Illinois ARPA Spending Plan](https://www2.illinois.gov/sites/budget/Documents/Budget%20Book/FY2022-Budget-Book/FY22_Enacted_ARPA_Summary_6.21.21.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
 
-<br>
-<br>
+<br> <br>
 
 ```{r, include=FALSE}
 
@@ -597,15 +648,14 @@ data_filter <- filter_to_policy_area(data, "Community Investment")
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "legislation")
-``` 
+```
 
 #### By Subtopic
 
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "subtopic")
-``` 
-
+```
 
 ### Explore the specific programs: {.tabset .tabset-pills}
 
@@ -620,7 +670,6 @@ plot_funds_by_geo(data_filter, "subtopic")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
-
 
 ###### ARPA
 
@@ -662,8 +711,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 create_table_by_geo(data_filter, "Chicago", "community_investment")
 ```
 
-
-
 #### Cook County {.tabset}
 
 ##### Programs Chart {.color-tabs .tabset .tabset-pills}
@@ -675,7 +722,6 @@ create_table_by_geo(data_filter, "Chicago", "community_investment")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
-
 
 ###### ARPA
 
@@ -693,7 +739,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
-*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+\*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
 
 ###### CARES
 
@@ -711,7 +757,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook Coun
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
 ```
 
-
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_cook_county.zip)
@@ -719,7 +764,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook Cou
 ```{r}
 create_table_by_geo(data_filter, "Cook County", "community_investment")
 ```
-
 
 #### Illinois {.tabset}
 
@@ -732,7 +776,6 @@ create_table_by_geo(data_filter, "Cook County", "community_investment")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
-
 
 ###### ARPA
 
@@ -766,7 +809,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
-
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_illinois.zip)
@@ -774,8 +816,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois
 ```{r}
 create_table_by_geo(data_filter, "Illinois", "community_investment")
 ```
-
-
 
 #### Total
 
@@ -785,13 +825,12 @@ create_table_by_geo(data_filter, "Illinois", "community_investment")
 create_table_by_geo(data_filter, "Total", "community_investment")
 ```
 
-
-
 ## Community Safety {.tabset}
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Community Safety")
 ```
+
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
@@ -799,15 +838,14 @@ data_filter <- filter_to_policy_area(data, "Community Safety")
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "legislation")
-``` 
+```
 
 #### By Subtopic
 
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "subtopic")
-``` 
-
+```
 
 ### Explore the specific programs: {.tabset .tabset-pills}
 
@@ -822,7 +860,6 @@ plot_funds_by_geo(data_filter, "subtopic")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
-
 
 ###### ARPA
 
@@ -864,7 +901,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 create_table_by_geo(data_filter, "Chicago", "community_safety")
 ```
 
-
 #### Cook County {.tabset}
 
 ##### Programs Chart {.color-tabs .tabset .tabset-pills}
@@ -876,7 +912,6 @@ create_table_by_geo(data_filter, "Chicago", "community_safety")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
-
 
 ###### ARPA
 
@@ -894,7 +929,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
-*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+\*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
 
 ###### CARES
 
@@ -915,6 +950,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook Cou
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_cook_county.zip)
+
 ```{r}
 create_table_by_geo(data_filter, "Cook County", "community_safety")
 ```
@@ -930,7 +966,6 @@ create_table_by_geo(data_filter, "Cook County", "community_safety")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
-
 
 ###### ARPA
 
@@ -972,7 +1007,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois
 create_table_by_geo(data_filter, "Illinois","community_safety")
 ```
 
-
 #### Total
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_total.zip)
@@ -980,7 +1014,6 @@ create_table_by_geo(data_filter, "Illinois","community_safety")
 ```{r}
 create_table_by_geo(data_filter, "Total", "community_safety")
 ```
-
 
 ## Household Investment {.tabset}
 
@@ -995,7 +1028,7 @@ data_filter <- filter_to_policy_area(data, "Household Investment")
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "legislation")
-``` 
+```
 
 #### By Subtopic
 
@@ -1017,7 +1050,6 @@ plot_funds_by_geo(data_filter, "subtopic")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
-
 
 ###### ARPA
 
@@ -1071,7 +1103,6 @@ create_table_by_geo(data_filter, "Chicago", "household_investment")
 create_treemap_by_geo(data_filter, "Cook County")
 ```
 
-
 ###### ARPA
 
 *For specific program details, see Programs Description tab*
@@ -1088,7 +1119,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
-*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+\*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
 
 ###### CARES
 
@@ -1109,10 +1140,10 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook Cou
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_cook_county.zip)
+
 ```{r}
 create_table_by_geo(data_filter, "Cook County", "household_investment")
 ```
-
 
 #### Illinois {.tabset}
 
@@ -1125,7 +1156,6 @@ create_table_by_geo(data_filter, "Cook County", "household_investment")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
-
 
 ###### ARPA
 
@@ -1159,7 +1189,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
-
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_illinois.zip)
@@ -1167,8 +1196,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois
 ```{r, fig.width = 10, fig.height = 6}
 create_table_by_geo(data_filter, "Illinois", "household_investment")
 ```
-
-
 
 #### Total
 
@@ -1178,13 +1205,12 @@ create_table_by_geo(data_filter, "Illinois", "household_investment")
 create_table_by_geo(data_filter, "Total", "household_investment")
 ```
 
-
-
 ## Housing {.tabset}
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Housing")
 ```
+
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
@@ -1192,15 +1218,14 @@ data_filter <- filter_to_policy_area(data, "Housing")
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "legislation")
-``` 
-
+```
 
 #### By Subtopic
 
 ```{r, fig.width = 10, fig.height = 6}
 
 plot_funds_by_geo(data_filter, "subtopic")
-``` 
+```
 
 ### Explore the specific programs: {.tabset .tabset-pills}
 
@@ -1215,7 +1240,6 @@ plot_funds_by_geo(data_filter, "subtopic")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
-
 
 ###### ARPA
 
@@ -1257,8 +1281,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 create_table_by_geo(data_filter, "Chicago", "housing")
 ```
 
-
-
 #### Cook County {.tabset}
 
 ##### Programs Chart {.color-tabs .tabset .tabset-pills}
@@ -1270,7 +1292,6 @@ create_table_by_geo(data_filter, "Chicago", "housing")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
-
 
 ###### ARPA
 
@@ -1288,7 +1309,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
-*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+\*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
 
 ###### CARES
 
@@ -1314,7 +1335,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook Cou
 create_table_by_geo(data_filter, "Cook County", "housing")
 ```
 
-
 #### Illinois {.tabset}
 
 ##### Programs Chart {.color-tabs .tabset .tabset-pills}
@@ -1326,7 +1346,6 @@ create_table_by_geo(data_filter, "Cook County", "housing")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
-
 
 ###### ARPA
 
@@ -1368,7 +1387,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois
 create_table_by_geo(data_filter, "Illinois", "housing")
 ```
 
-
 #### Total
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_total.zip)
@@ -1391,14 +1409,13 @@ data_filter <- filter_to_policy_area(data, "Workforce Development")
 
 ```{r, fig.width = 10, fig.height = 6}
 plot_funds_by_geo(data_filter, "legislation")
-``` 
+```
 
 #### By Subtopic
 
 ```{r, fig.width = 10, fig.height = 6}
 plot_funds_by_geo(data_filter, "subtopic")
-``` 
-
+```
 
 ### Explore the specific programs: {.tabset .tabset-pills}
 
@@ -1413,7 +1430,6 @@ plot_funds_by_geo(data_filter, "subtopic")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
-
 
 ###### ARPA
 
@@ -1455,8 +1471,6 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 create_table_by_geo(data_filter, "Chicago", "workforce_development")
 ```
 
-
-
 #### Cook County {.tabset}
 
 ##### Programs Chart {.color-tabs .tabset .tabset-pills}
@@ -1468,7 +1482,6 @@ create_table_by_geo(data_filter, "Chicago", "workforce_development")
 ```{r, fig.width = 10, fig.height = 6}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
-
 
 ###### ARPA
 
@@ -1486,7 +1499,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
-*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
+\*Indicates programs for which exact allocation is unknown. Allocation is estimated by dividing topic area allocations published by Cook County by number of programs in topic area.
 
 ###### CARES
 
@@ -1524,7 +1537,6 @@ create_table_by_geo(data_filter, "Cook County", "workforce_development")
 create_treemap_by_geo(data_filter, "Illinois")
 ```
 
-
 ###### ARPA
 
 *For specific program details, see Programs Description tab*
@@ -1560,14 +1572,15 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_illinois.zip)
+
 ```{r}
 create_table_by_geo(data_filter, "Illinois", "workforce_development")
 ```
 
-
 #### Total
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_total.zip)
+
 ```{r}
 create_table_by_geo(data_filter, "Total", "workforce_development")
 ```
@@ -1579,21 +1592,19 @@ create_table_by_geo(data_filter, "Total", "workforce_development")
 data_filter <- filter_to_policy_area(data, "State/Local Discretionary Funding")
 ```
 
-### Funding Summary 
+### Funding Summary
 
 ```{r, fig.width = 10, fig.height = 6}
 plot_funds_by_geo(data_filter, "legislation")
-``` 
+```
 
-### Explore the specific programs: 
-
+### Explore the specific programs:
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/state_local_discretionary_total.zip)
 
 ```{r}
 create_table_by_geo(data_filter, "Total", "state_local_discretionary")
 ```
-
 
 ```{r, warning=FALSE, message=FALSE,results='hide', echo=FALSE, fig.width = 4.5, fig.height = 5.5}
 funds <- read_xlsx(here("data", "Fund Layers Sample.xlsx")) %>%
@@ -1727,8 +1738,7 @@ chicago_summary <- chicago_zip_totals %>%
    DT::formatStyle(columns = c(1, 2), fontSize = '9pt')
 ```
 
-<br>
-<br>
+<br> <br>
 
 ```{r, echo = FALSE}
 make_sum_table <- function(grant_program,
@@ -1768,7 +1778,7 @@ make_sum_table <- function(grant_program,
 
 # Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
 
-This dashboard features a selection of federally-funded recovery programs for which detailed information on program spending is available. A program not being in this list does not indicate that the program funds haven't been spent. We intend to add additional programs to this section over time as data becomes available. 
+This dashboard features a selection of federally-funded recovery programs for which detailed information on program spending is available. A program not being in this list does not indicate that the program funds haven't been spent. We intend to add additional programs to this section over time as data becomes available.
 
 ## Illinois Back to Business Grant Program
 
@@ -1785,6 +1795,8 @@ make_sum_table("Back to Business Grant Program",
 ```
 
 ### Funding Per Capita by Zip Code
+
+<font size = "2">Hover your cursor over a zipcode on the map below to see data for that zipcode</font>
 
 ```{r}
 
@@ -1867,8 +1879,7 @@ leaflet_grid
   
 ```
 
-## Chicago Emergency Rental Assistance Program 
-
+## Chicago Emergency Rental Assistance Program
 
 ```{r}
 era_data <- read_excel(here("data", "Chicago_ERAP_Approved_HHs_Q4 21.xlsx"),
@@ -1971,6 +1982,8 @@ make_sum_table("Emergency Rental Assistance Program",
 ```
 
 ### Funding Per Capita by Zipcode
+
+<font size = "2">Hover your cursor over a zipcode on the map below to see data for that zipcode</font>
 
 ```{r}
 
