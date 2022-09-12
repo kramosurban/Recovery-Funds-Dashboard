@@ -614,16 +614,16 @@ create_treemap_by_geo <- function(data_filter, geo){
                                      "ARPA State and Local Fiscal Recovery Funds", 
                                      "CARES", "CRRSAA")) +
         labs(title = "Programs by Proportion of Total Policy Area Allocations",
-             caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts when viewing all programs. For more detail, see the FAQ.") +
+             caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts\n when viewing all programs. For more detail, see the FAQ.") +
         theme(text = element_text(family = "Merriweather"),
               plot.caption.position = "plot",
-              plot.caption = element_text(hjust = 0))
+              plot.caption = element_text(hjust = 0, size = 8.5))
       
       if (mean(data_filter$amount_exact, na.rm = TRUE) < 1){
         treemap_by_geo <- treemap_by_geo +
-          labs(caption = "*Indicates allocation amount is approximate. See FAQ for details.") +
+          labs(caption = "*Indicates allocation amount is approximate. This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief,\nand Economic Security Act (CARES),and the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA).Text may not appear for some\nprojects with smaller allocation amounts when viewing all programs. For more detail, see the FAQ.") +
           theme(plot.caption.position = "plot",
-                plot.caption = element_text(hjust = 0))
+                plot.caption = element_text(hjust = 0, size = 8.5))
       }
       
       return(treemap_by_geo)
