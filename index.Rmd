@@ -201,6 +201,8 @@ data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"),
          !is.na(topic)) %>%
   #filter out FTA grants because go to transit agencies
   filter(program != "Federal Transit Administration (FTA) Grants")
+
+write_csv(data, here("data/intermediate_data", "clean_data_dashboard.csv"))
 ```
 
 ```{r, include=FALSE}
@@ -1629,22 +1631,6 @@ chicago_pop_zip <- read_csv(here("data", "Chicago_Population_Counts.csv")) %>%
   janitor::clean_names() %>%
   filter(year == 2019)
 
-# il_pop_place <- get_acs(geography = "place", 
-#                         variables = c("black" = "B02001_003", 
-#                                        "white" = "B02001_002", 
-#                                        "total_pop" = "B01003_001",
-#                                       "total_hh" = "DP04_0001", 
-#                                        "hispanic" = "B03003_003", 
-#                                        "asian" = "B02001_005", 
-#                                       "total_pop_pov_status" = "S1701_C01_001",
-#                                       "pop_pov" = "S1701_C02_001"),
-#                         year = 2019, 
-#                         state= "IL", 
-#                         #geometry = TRUE,
-#                         format = "wide",
-#                         progress = FALSE)
-
-
 chicago_zip <- st_read(here("data", "Boundaries - ZIP Codes.geojson"))
 
 chicago_zip_totals <- funds_chicago %>%
@@ -1673,6 +1659,18 @@ acs_zcta <- get_acs(geography = "zcta",
   mutate(prop_pov = pop_povE/total_pop_pov_statusE) %>%
   select(GEOID, prop_pov, pop_povE, total_pop_pov_statusE) 
 
+# 17 business licenses have missing zip code and others have invalid zip
+# e.g. starts with a letter or "00000"
+# we assume a unique business is a unique combination of account_number 
+# generally corresponding to a company (e.g Walgreens) and site_number, 
+# corresponding to a specific branch or location
+chicago_bl <- read_csv(here("data", "Business_Licenses_Current_Active.csv")) %>%
+  janitor::clean_names() %>%
+  count(zip_code, account_number, site_number) %>%
+  group_by(zip_code) %>%
+  summarize(num_bus = sum(n))
+
+
 chicago_zip_totals <- chicago_zip_totals %>%
   left_join(acs_zcta, by = c("ZCTA" = "GEOID")) %>%
   # zip 60666 is O'Hare Airport and has 0 population. It is part of ZCTA 60018
@@ -1680,31 +1678,45 @@ chicago_zip_totals <- chicago_zip_totals %>%
   # for ZCTA 60018 is non-NA but should be NA for just 60666. Note that some other 
   # ZCTAs correspond to multiple zip codes in the cross walk, but these represent
   # zero-pop single addresses and are not in the chicago data
-  mutate(prop_pov = if_else(zip == "60666", NA_real_, prop_pov))
+  mutate(prop_pov = if_else(zip == "60666", NA_real_, prop_pov)) %>%
+  left_join(chicago_bl, by = c("zip" = "zip_code"))
 
 
 chicago_summary <- chicago_zip_totals %>%
   st_drop_geometry() %>%
   summarise(
-    prop_latinx = paste0(round((sum(population_latinx, na.rm = TRUE)/sum(population_total, na.rm = TRUE))*100,
-                               2), "%"),
-    prop_asian = paste0(round((sum(population_asian_non_latinx, na.rm = TRUE)/sum(population_total, 
-                                                                                  na.rm = TRUE))*100, 2), 
-                        "%"),
-    prop_black = paste0(round((sum(population_black_non_latinx, na.rm = TRUE)/sum(population_total, 
-                                                                                  na.rm = TRUE))*100, 2), 
-                        "%"),
-    prop_white = paste0(round((sum(population_white_non_latinx, na.rm = TRUE)/sum(population_total, 
-                                                                                  na.rm = TRUE))*100, 2),
-                        "%"),
-    prop_pov = paste0(round((sum(pop_povE, na.rm = TRUE)/sum(total_pop_pov_statusE, 
-                                                             na.rm = TRUE))*100, 2),
-                      "%"),
-    avg_funds = paste0("$", formatC(round(mean(total_funds, na.rm = TRUE), 2), 
-                                    format = "d", 
-                                    big.mark = ",")),
-    avg_funds_per_capita = paste0("$", round(mean(funds_per_capita, na.rm = TRUE), 2)),
-    avg_total_pop = number(round(mean(population_total, na.rm = TRUE), 0), big_mark = ",")) %>%
+    prop_latinx = paste0(
+      round((sum(population_latinx, 
+             na.rm = TRUE)/sum(population_total,
+                               na.rm = TRUE))*100, 2), "%"),
+    prop_asian = paste0(
+      round((sum(population_asian_non_latinx, 
+                 na.rm = TRUE)/sum(population_total, 
+                                   na.rm = TRUE))*100, 2), "%"),
+    prop_black = paste0(
+      round((sum(population_black_non_latinx, 
+                 na.rm = TRUE)/sum(population_total,
+                                   na.rm = TRUE))*100, 2), "%"),
+    prop_white = paste0(
+      round((sum(population_white_non_latinx, 
+                 na.rm = TRUE)/sum(population_total, 
+                                   na.rm = TRUE))*100, 2), "%"),
+    prop_pov = paste0(
+      round((sum(pop_povE, 
+                 na.rm = TRUE)/sum(total_pop_pov_statusE,
+                                   na.rm = TRUE))*100, 2), "%"),
+    avg_funds = paste0("$", formatC(
+      round(mean(total_funds, na.rm = TRUE), 2),
+      format = "d", 
+      big.mark = ",")),
+    avg_funds_per_capita = paste0("$",
+                                  round(
+                                    mean(funds_per_capita, na.rm = TRUE), 2)
+                                  ),
+    avg_total_pop = number(
+      round(
+        mean(population_total, na.rm = TRUE), 0),
+      big_mark = ",")) %>%
   pivot_longer(cols = everything(), 
                names_to = "dem_group", 
                values_to = "value") %>%
