@@ -627,6 +627,8 @@ create_treemap_by_geo <- function(data_filter, geo){
 }
 ```
 
+<br> <br>
+
 # Explore Funding by Policy Area: {.tabset .tabset-dropdown}
 
 ## Community Investment {.tabset}
@@ -1780,6 +1782,8 @@ make_sum_table <- function(grant_program,
 
 ```
 
+<br> <br>
+
 # Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
 
 This dashboard features a selection of federally-funded recovery programs for which detailed information on program spending is available. A program not being in this list does not indicate that the program funds haven't been spent. We intend to add additional programs to this section over time as data becomes available.
@@ -1959,9 +1963,9 @@ chicago_summary <- chicago_zip_totals %>%
 
 ```{r}
 
-# Assuming this is Emergency Rental Housing Assistance from Chicago Flexible ARPA Funds
+# Assuming this is Emergency Rental Housing Assistance (ERA2) from Chicago Flexible ARPA Funds
 total_program <- data %>% 
-  filter(program == "Emergency Rental Housing Assistance",
+  filter(program == "Emergency Rental Housing Assistance (ERA2)",
          geography == "Chicago") %>%
   pull(allocation)
 
