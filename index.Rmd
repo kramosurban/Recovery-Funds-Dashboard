@@ -27,23 +27,19 @@ knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.
 
 <center>
 
-<h1>
-
-Recovery Funds Dashboard
-
-</h1>
+<h1>DRAFT Recovery Funds Dashboard</h1>
 
 </center>
+
+<center>**This is a draft product and is subject to frequent changes. The dashboard and any data within it should not be cited or distributed.**</center>
+
+<br>
 
 ```{r, echo = FALSE}
 cur_date <- Sys.Date()
 ```
 
-<center>
-
-**Last Updated:** `r cur_date`
-
-</center>
+<center>**Last Updated:** `r cur_date`</center>
 
 <br>
 
@@ -51,17 +47,13 @@ Federal pandemic-response packages have provided an unprecedented amount of aid 
 
 This dashboard aims to track a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts that align with key priorities of the Chicago Community Trust, reflected in the "policy area" dropdown menu. The dashboard primarily tracks appropriations, or how much funding the the federal government has committed to provide to local jurisdictions. For a few select programs where information is available, the dashboard also explores spending by zip code.
 
-**The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government.** The dashboard only reflects funds flowing directly from the federal government to the state of Illinois, Cook County, and the City of Chicago, and does not include funds provided from the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms. Information on program allocations will be added as new data become available. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
+**The inclusive recovery funds we track represent a subset of Covid-19 assistance provided by the federal government.** The dashboard only reflects funds flowing directly from the federal government to the state of Illinois, Cook County, and the City of Chicago, and does not include funds provided from the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms. Information on program allocations will be added as new data become available. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
 
 This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported with a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/).
 
 <br>
 
-<p>
-
-<a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a>
-
-</p>
+<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a></p>
 
 ::: {#collapseExample1 .collapse}
 ::: {.card .card-body}
@@ -270,7 +262,7 @@ pct_cook_county_unexp_b <- cook_county_unexp_b/cook_county_allocation_b
 
 ```
 
-# Summary of Federal COVID-19 Recovery Funding
+# Summary of Federal Covid-19 Recovery Funding
 
 ```{r, echo=FALSE}
 
