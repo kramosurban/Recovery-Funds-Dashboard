@@ -1802,15 +1802,38 @@ make_sum_table("Back to Business Grant Program",
 
 ```
 
-### Funding Per Capita by Zip Code
+### Funding by Zip Code
 
-<font size = "2">Hover your cursor over a zipcode on the map below to see data for that zipcode</font>
+<font size = "2">Hover your cursor over a zip code on the map below to see data for that zip code</font>
 
 ```{r}
 
-make_leaflet <- function(chicago_zip_totals, fpc_breaks){
+make_col_break_levels <- function(col_bin){
+  col_bin_label <- str_replace(col_bin, ",", " - $")
+  col_bin_label <- str_replace(col_bin_label, "\\(", "$")
+  col_bin_label <- str_replace(col_bin_label, "]", "")
+  
+  return(col_bin_label)
+}
+
+make_labels <- function(levels){
+  num_levels <- number(levels, big.mark = ",")
+  labs <- vector(mode = "character", length = length(levels) - 1)
+  for (i in 1:(length(levels) - 1)) {
+    labs[i] <- str_glue("${num_levels[i]} - ${num_levels[i + 1]}")
+  }
+  return(labs)
+}
+
+
+make_leaflet <- function(chicago_zip_totals, col_breaks){
+  labs <- make_labels(col_breaks)
+  
   chicago_map_data <- chicago_zip_totals %>%
-  mutate(fpc_bin = factor(cut(funds_per_capita, breaks = fpc_breaks)),
+    mutate(
+      col_bin = factor(cut(total_funds, 
+                           breaks = col_breaks,
+                           labels = labs)),
          prop_latinx = paste0(round((population_latinx/population_total)*100, 2), "%"),
          prop_asian = paste0(round((population_asian_non_latinx/population_total)*100, 2), "%"),
          prop_black = paste0(round((population_black_non_latinx/population_total)*100, 2), "%"),
@@ -1818,14 +1841,15 @@ make_leaflet <- function(chicago_zip_totals, fpc_breaks){
          prop_pov = paste0(round(prop_pov*100, 2), "%"),
          funds_per_capita = paste0("$", round(funds_per_capita, 2)),
          pop_total_fm = number(population_total, big.mark = ","),
-         funds_total_fm = paste0("$", number(total_funds, big.mark = ",")),
-         fpc_bin_label = str_replace(fpc_bin, ",", " - $"),
-         fpc_bin_label = str_replace(fpc_bin_label, "\\(", "$"),
-         fpc_bin_label = str_replace(fpc_bin_label, "]", ""),
-         fpc_bin_label = factor(fpc_bin_label)) 
+         funds_total_fm = paste0("$", number(total_funds, big.mark = ",")))
+  
+  # col_levels <- make_col_break_levels(levels(col_bin))
+  # chicago_map_data <- chicago_map_data %>%
+  #   mutate(col_bin_label = factor(col_bin_label,levels = col_levels)) 
+         
 
 pal <- colorFactor(palette = c("#a5dee6","#47c3d3","#306074","#000000"),
-                   domain = chicago_map_data$fpc_bin_label)
+                   domain = chicago_map_data$col_bin)
 
 labels <- sprintf(
   '<strong> Zip Code %s</strong><br/><strong>Pct Asian:</strong> %s<br/><strong>Pct Black:</strong> %s<br/><strong>Pct Latinx:</strong> %s<br/><strong>Pct White:</strong> %s<br/><strong>Pct Under Poverty Level:</strong> %s<br/><strong>Total Population:</strong> %s<br/><strong>Total Funding:</strong> %s<br/><strong>Funding Per Capita:</strong> %s<br/>',
@@ -1844,7 +1868,7 @@ m <- leaflet(chicago_map_data) %>%
   setView(-87.626, 41.869, zoom = 10) %>%
   addTiles() %>%
   addPolygons(
-    fillColor = ~pal(fpc_bin_label),
+    fillColor = ~pal(col_bin),
     weight = 2,
     opacity = 0.75,
     color = "white",
@@ -1860,15 +1884,18 @@ m <- leaflet(chicago_map_data) %>%
     textsize = "12px",
     direction = "auto")
   ) %>%
-  addLegend("topright", pal = pal, values = ~fpc_bin_label,
-    title = "Funding Per Capita",
+  addLegend("topright", pal = pal, values = ~col_bin,
+    title = "Total Funding by Zip Code",
     opacity = 1
   )
 
 m
 }
 
-chi_map <- make_leaflet(chicago_zip_totals, fpc_breaks = c(0, 10, 25, 50, 650))
+fpc_breaks <- c(0, 10, 25, 50, 650)
+tf_breaks <- c(0, 500000, 1000000, 1500000, 6000000)
+
+chi_map <- make_leaflet(chicago_zip_totals, tf_breaks)
 
 library(htmltools)
 
@@ -1989,13 +2016,13 @@ make_sum_table("Emergency Rental Assistance Program",
               "2021-12-31")
 ```
 
-### Funding Per Capita by Zipcode
+### Funding by Zip Code
 
-<font size = "2">Hover your cursor over a zipcode on the map below to see data for that zipcode</font>
+<font size = "2">Hover your cursor over a zip code on the map below to see data for that zip code</font>
 
 ```{r}
 
-chi_map <- make_leaflet(chicago_zip_totals, c(0, 10, 25, 50, 100))
+chi_map <- make_leaflet(chicago_zip_totals, c(0, 500000, 1500000, 2500000, 4500000))
 
 leaflet_grid <- tagList(list(
     tags$div(
