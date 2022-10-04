@@ -334,7 +334,7 @@ plot_funds_by_geo_topic <- function(data, fill_var){
 
 ## Chicago
 
-```{r, fig.width = 11.5, fig.height = 6}
+```{r, fig.width = 11.5, fig.height = 6, fig.alt= "Bar chart of federal recovery allocations by legislation and policy topic for Chicago showing largest allocation to community investment programs."}
 
 data_filter <- data %>%
   filter(geography == "Chicago", !is.na(allocation)) %>% 
@@ -349,7 +349,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 ## Cook County
 
-```{r, fig.width = 11.5, fig.height = 6}
+```{r, fig.width = 11.5, fig.height = 6, fig.alt= "Bar chart of federal recovery allocations by legislation and policy topic for Cook County showing largest allocation to state and local discretionary funds, followed by housing programs."}
 
 data_filter <- data %>%
   filter(geography == "Cook County", !is.na(allocation)) %>% 
@@ -364,7 +364,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 ## Illinois
 
-```{r, fig.width = 11.5, fig.height = 6}
+```{r, fig.width = 11.5, fig.height = 6, fig.alt= "Bar chart of federal recovery allocations by legislation and policy topic for Illinois showing largest allocation to state and local discretionary funds, followed by housing programs."}
 
 data_filter <- data %>%
   filter(geography == "Illinois", !is.na(allocation)) %>% 
@@ -630,14 +630,14 @@ data_all_filter <- filter_to_policy_area(data_all, "Community Investment")
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing community investment allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing community investment allocations by jurisdiction and the following subtopics: small business, community development, infrastructure, transportation."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -834,14 +834,14 @@ data_all_filter <- filter_to_policy_area(data_all, "Community Safety")
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing community safety allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing community safety allocations by jurisdiction and the following subtopics: alternative emergency response, victim supports, returning/justice involved residents, violence prevention/reduction, and criminal justice reform."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -1039,14 +1039,14 @@ data_all_filter <- filter_to_policy_area(data_all, "Household Investment")
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing household investment allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing household investment allocations by jurisdiction and the following subtopics: household supportive services, targeted economic assistance, utility assistance, direct cash assistance."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -1243,14 +1243,14 @@ data_all_filter <- filter_to_policy_area(data_all, "Housing")
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing housing allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, , fig.alt = "Bar chart showing housing allocations by jurisdiction and the following subtopics: affordable housing, homeowner's assistance, renter's assistance, homelessness support/prevention."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -1450,13 +1450,13 @@ data_all_filter <- filter_to_policy_area(data_all,
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing workforce development allocations by jurisdiction and funding source."}
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing workforce development allocations by jurisdiction and the following subtopics: employment opportunities, workforce sustainability, job training, workforce supportive services."}
 plot_funds_by_geo(data_filter, "subtopic")
 ```
 
@@ -1650,7 +1650,7 @@ data_filter <- filter_to_policy_area(data, "State/Local Discretionary Funding")
 
 ### Funding Summary
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing state and local discetionary funding allocations by jurisdiction and funding source where a more specific use is not known."}
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
@@ -1841,14 +1841,6 @@ make_sum_table <- function(grant_program,
 }
 
 ```
-
-\
-
-\
-
-\
-
-\
 
 # Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
 
