@@ -43,51 +43,11 @@ cur_date <- Sys.Date()
 
 <br>
 
-Federal pandemic-response packages have provided unprecedented aid to state and local governments, including \$800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decision-makers to ensure federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
+Federal COVID-19 pandemic-response packages have provided unprecedented aid to state and local governments, including \$800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decision-makers to ensure federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
 
-This dashboard tracks a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts that align with key priorities of The Chicago Community Trust: community investment, community safety, household investment, housing, and workforce development, which are all vital to narrowing the Chicago region’s racial and ethnic wealth gap. The dashboard primarily tracks appropriations, or how much funding the federal government has committed to provide local jurisdictions. For a few select programs where information is available, the dashboard also explores spending by zip code.
+**This dashboard tracks a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois** that can be used for inclusive recovery efforts that align with key priorities of The Chicago Community Trust: community investment, community safety, household investment, housing, and workforce development, which are all vital to narrowing the Chicago region's racial and ethnic wealth gap. The dashboard primarily tracks appropriations, or how much funding the federal government has committed to provide local jurisdictions. For a few select programs where information is available, the dashboard also explores spending by zip code.
 
-We will add more program allocation and spending information as new data become available. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
-
-**The inclusive recovery funds we track represent a subset of Covid-19 assistance provided by the federal government.** The dashboard only reflects funds flowing directly from the federal government to the State of Illinois, Cook County, and the City of Chicago. It does not include funds provided by the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms. 
-
-This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported by a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/).
-
-<br>
-
-<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a></p>
-
-::: {#collapseExample1 .collapse}
-::: {.card .card-body}
-*This glossary provides the definition of key terms as used in the Dashboard.*
-
--   **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 11, 2021.
--   **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities.
--   **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.\
--   **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.\
--   **Community Investment:** programs that address a community's collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
--   **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people.
--   **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds.
--   **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the Covid-19 pandemic.
--   **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments.
--   **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities.
--   **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities.
--   **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments.
--   **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program.
--   **General Fiscal Support:** flexible funds available for broad Covid-19 economic recovery efforts.
--   **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
--   **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.\
--   **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services.
--   **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
--   **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
--   **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations.
--   **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state.
--   **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways.
--   **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food.
--   **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives.
--   **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.
-:::
-:::
+We will add more program allocation and spending information as new data become available. For more information, including the **glossary and frequently asked questions**, see [About the Dashboard] below.
 
 <br> <br>
 
@@ -168,27 +128,34 @@ total_fed_updated_date <- "2022-08-26"
 
 
 # Read in main program tracker
-data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"), 
-                   sheet = "Programs") %>%
+#data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"), 
+#                   sheet = "Programs") %>%
+data_all <- read_csv(here("data", "cct_dashboard_data.csv")) %>%
   janitor::clean_names() %>%
-  rename("legislation" = "funding_source_e_g_arpa_cares_etc",
-         "allocation" = "amount_allocated") %>%
   # create variable to indicate if program is expired, if expiration is NA, treat as not expired
   # because this indicates available until expended
-  mutate(is_expired = if_else(expiration > cur_date, 0, 1),
-         is_expired = if_else(is.na(is_expired), 0, is_expired),
-         amount_exact = if_else(amount_exact == "Yes", 1, 0),
-         expiration = if_else(is.na(expiration), "Available Until Expended", as.character(expiration)),
-         current_as_of = ymd(current_as_of),
-         topic = if_else(new_topic == "All", 
-                         "State/Local Discretionary Funding", 
-                         new_topic),
-         subtopic = str_to_title(if_else(new_topic == "All", 
-                                         "State/Local Discretionary Funding", 
-                                         new_subtopic)),
-         source = if_else(!is.na(source), 
-                          str_glue('<a href = "{source_url}">{source}</a>'),
-                          NA_character_)) %>%
+  mutate(
+    expiration = if_else(
+      expiration == "Available Until Expended",
+      NA_Date_,
+      mdy(expiration)
+    ),
+    allocation = parse_number(allocation),
+    is_expired = if_else(expiration > cur_date, 0, 1),
+    is_expired = if_else(is.na(is_expired), 0, is_expired),
+    expiration = if_else(is.na(expiration), 
+                         "Available Until Expended", 
+                         as.character(expiration)),
+    current_as_of = mdy(current_as_of),
+    topic = if_else(new_topic == "All", 
+                    "State/Local Discretionary Funding", 
+                    new_topic),
+    subtopic = str_to_title(if_else(new_topic == "All", 
+                                    "State/Local Discretionary Funding", 
+                                    new_subtopic)),
+    source = if_else(!is.na(source), 
+                     str_glue('<a href = "{source_url}">{source}</a>'),
+                     NA_character_)) %>%
   #filter out ARPA flexible funds because captured elsewhere
   filter(!(legislation == "ARPA" & topic == "State/Local Discretionary Funding"),
          !legislation == "IIJA", 
@@ -196,7 +163,11 @@ data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"),
   #filter out FTA grants because go to transit agencies
   filter(program != "Federal Transit Administration (FTA) Grants")
 
-write_csv(data, here("data/intermediate_data", "clean_data_dashboard.csv"))
+# filter out Chicago General Obligation Bond to use in most dashboard elements
+data <- data_all %>% 
+  filter(legislation != "Chicago General Obligation Bond")
+
+write_csv(data_all, here("data/intermediate_data", "clean_data_dashboard.csv"))
 ```
 
 ```{r, include=FALSE}
@@ -264,7 +235,7 @@ pct_cook_county_unexp_b <- cook_county_unexp_b/cook_county_allocation_b
 
 ```
 
-# Summary of Federal Covid-19 Recovery Funding
+# Summary of Federal COVID-19 Recovery Funding
 
 ```{r, echo=FALSE}
 
@@ -601,14 +572,22 @@ create_treemap_by_geo <- function(data_filter, geo){
                           place = "center", 
                           grow = TRUE, 
                           reflow = TRUE) +
-        scale_color_manual(values = c("white", "black", "white", "white"),
+        scale_color_manual(values = c("white", "black", "white", "white", "white"),
                            breaks = c("ARPA", 
                                      "ARPA State and Local Fiscal Recovery Funds", 
-                                     "CARES", "CRRSAA")) +
-        scale_fill_manual(values = c("#47c3d3", "#C1D82F", "#6C5893", "#000000"),
+                                     "CARES", 
+                                     "CRRSAA",
+                                     "Chicago General Obligation Bond")) +
+        scale_fill_manual(values = c("#47c3d3", 
+                                     "#C1D82F", 
+                                     "#6C5893", 
+                                     "#000000",
+                                     "#4765BD"),
                           breaks = c("ARPA", 
                                      "ARPA State and Local Fiscal Recovery Funds", 
-                                     "CARES", "CRRSAA")) +
+                                     "CARES", 
+                                     "CRRSAA",
+                                     "Chicago General Obligation Bond")) +
         labs(title = "Programs by Proportion of Total Policy Area Allocations",
              caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts\n when viewing all programs. For more detail, see the FAQ.") +
         theme(text = element_text(family = "Merriweather"),
@@ -622,6 +601,13 @@ create_treemap_by_geo <- function(data_filter, geo){
                 plot.caption = element_text(hjust = 0, size = 8.5))
       }
       
+      if ("Chicago General Obligation Bond" %in% data_filter$legislation){
+        treemap_by_geo <- treemap_by_geo +
+          labs(caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief,and Economic Security Act (CARES),\nthe Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA), and - for Chicago only - Chicago Recovery Plan programs funded through\nthe General Obligaion Bond issued by the City. Text may not appear for some projects with smaller allocation amounts when viewing all programs.\nFor more detail, see the FAQ.") +
+          theme(plot.caption.position = "plot",
+                plot.caption = element_text(hjust = 0, size = 8.5))
+      }
+      
       return(treemap_by_geo)
     } else {
       return("There are no programs with known allocations in this policy area.")
@@ -629,7 +615,7 @@ create_treemap_by_geo <- function(data_filter, geo){
 }
 ```
 
-<br> <br>
+\
 
 # Explore Funding by Policy Area: {.tabset .tabset-dropdown}
 
@@ -637,6 +623,7 @@ create_treemap_by_geo <- function(data_filter, geo){
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Community Investment")
+data_all_filter <- filter_to_policy_area(data_all, "Community Investment")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
@@ -701,12 +688,25 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
 ```
 
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
+```
+
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "community_investment")
+create_table_by_geo(data_all_filter, "Chicago", "community_investment")
 ```
 
 #### Cook County {.tabset}
@@ -827,6 +827,7 @@ create_table_by_geo(data_filter, "Total", "community_investment")
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Community Safety")
+data_all_filter <- filter_to_policy_area(data_all, "Community Safety")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
@@ -891,12 +892,25 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
 ```
 
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
+```
+
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "community_safety")
+create_table_by_geo(data_all_filter, "Chicago", "community_safety")
 ```
 
 #### Cook County {.tabset}
@@ -1017,6 +1031,8 @@ create_table_by_geo(data_filter, "Total", "community_safety")
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Household Investment")
+data_all_filter <- filter_to_policy_area(data_all, "Household Investment")
+
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
@@ -1081,12 +1097,25 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
 ```
 
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
+```
+
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "household_investment")
+create_table_by_geo(data_all_filter, "Chicago", "household_investment")
 ```
 
 #### Cook County {.tabset}
@@ -1207,6 +1236,7 @@ create_table_by_geo(data_filter, "Total", "household_investment")
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Housing")
+data_all_filter <- filter_to_policy_area(data_all, "Housing")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
@@ -1271,12 +1301,25 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
 ```
 
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
+```
+
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "housing")
+create_table_by_geo(data_all_filter, "Chicago", "housing")
 ```
 
 #### Cook County {.tabset}
@@ -1399,6 +1442,8 @@ create_table_by_geo(data_filter, "Total", "housing")
 ```{r}
 
 data_filter <- filter_to_policy_area(data, "Workforce Development")
+data_all_filter <- filter_to_policy_area(data_all, 
+                                         "Workforce Development")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
@@ -1461,12 +1506,25 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
 ```
 
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
+```
+
 ##### Programs Description
 
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "workforce_development")
+create_table_by_geo(data_all_filter, "Chicago", "workforce_development")
 ```
 
 #### Cook County {.tabset}
@@ -1784,7 +1842,13 @@ make_sum_table <- function(grant_program,
 
 ```
 
-<br> <br>
+\
+
+\
+
+\
+
+\
 
 # Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
 
@@ -2040,10 +2104,68 @@ leaflet_grid <- tagList(list(
 leaflet_grid
 ```
 
+# About the Dashboard
+
+The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. The dashboard only reflects funds flowing directly from the federal government to the State of Illinois, Cook County, and the City of Chicago that can be used for inclusive recovery efforts that align with key priorities of The Chicago Community Trust: community investment, community safety, household investment, housing, and workforce development, which are all vital to narrowing the Chicago region's racial and ethnic wealth gap. It does not include funds provided by the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms.
+
 [Download all the data used in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
 
 ```{r}
 
-data_out <- format_write_data_download(data, "total", "all_programs")
+data_out <- format_write_data_download(data_all, "total", "all_programs")
 
 ```
+
+This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported by a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/).
+
+For more information about the dashboard, please contact [Aimee Ramirez](mailto:aramirez@cct.org) (The Chicago Community Trust) and [Karolina Ramos](mailto:kramos@urban.org) (Urban Institute).
+
+<br>
+
+<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a></p>
+
+::: {#collapseExample1 .collapse}
+::: {.card .card-body}
+*This glossary provides the definition of key terms as used in the Dashboard.*
+
+-   **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the COVID-19 pandemic passed on March 11, 2021.
+-   **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities.
+-   **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.\
+-   **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.\
+-   **Community Investment:** programs that address a community's collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
+-   **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people.
+-   **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the COVID-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds.
+-   **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the COVID-19 pandemic.
+-   **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments.
+-   **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities.
+-   **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities.
+-   **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments.
+-   **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program.
+-   **General Fiscal Support:** flexible funds available for broad COVID-19 economic recovery efforts.
+-   **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
+-   **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.\
+-   **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services.
+-   **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
+-   **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
+-   **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations.
+-   **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state.
+-   **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways.
+-   **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food.
+-   **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives.
+-   **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.
+:::
+:::
+
+<br>
+
+<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2"> Click For Frequently Asked Questions </a></p>
+
+::: {#collapseExample2 .collapse}
+::: {.card .card-body}
+*This is a test question?* Yes, it is.
+:::
+:::
+
+<br>
+
+The code used to create this dashboard can be found on [GitHub](https://github.com/Chi-Trust/Recovery-Funds-Dashboard).
