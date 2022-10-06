@@ -27,11 +27,10 @@ knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.
 
 <center>
 
-<h1>DRAFT Recovery Funds Dashboard</h1>
+<h1>Federal Recovery Funds Dashboard</h1>
 
 </center>
 
-<center>**This is a draft product and is subject to frequent changes. The dashboard and any data within it should not be cited or distributed.**</center>
 
 <br>
 
@@ -43,51 +42,11 @@ cur_date <- Sys.Date()
 
 <br>
 
-Federal pandemic-response packages have provided unprecedented aid to state and local governments, including \$800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decision-makers to ensure federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
+Federal COVID-19 pandemic-response packages have provided unprecedented aid to state and local governments, including \$800 billion that can be used flexibly to promote an inclusive recovery. These resources create an unparalleled opportunity for advocates and local decision-makers to ensure federal funds reach communities that need them most, close equity gaps exacerbated by the pandemic, and address the root causes of inequities. To take advantage of this opportunity, local leaders need timely data and evidence to ensure funds are used effectively and equitably.
 
-This dashboard tracks a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois that can be used for inclusive recovery efforts that align with key priorities of The Chicago Community Trust: community investment, community safety, household investment, housing, and workforce development, which are all vital to narrowing the Chicago region’s racial and ethnic wealth gap. The dashboard primarily tracks appropriations, or how much funding the federal government has committed to provide local jurisdictions. For a few select programs where information is available, the dashboard also explores spending by zip code.
+**This dashboard tracks a subset of the federal recovery funds flowing into the City of Chicago, Cook County, and the State of Illinois** that can be used for inclusive recovery efforts that align with key priorities of The Chicago Community Trust: community investment, community safety, household investment, housing, and workforce development, which are all vital to narrowing the Chicago region's racial and ethnic wealth gap. The dashboard primarily tracks appropriations, or how much funding the federal government has committed to provide local jurisdictions. For a few select programs where information is available, the dashboard also explores spending by zip code.
 
-We will add more program allocation and spending information as new data become available. For more information on how we identified and tracked these funds, see our [Frequently Asked Questions](faq.html).
-
-**The inclusive recovery funds we track represent a subset of Covid-19 assistance provided by the federal government.** The dashboard only reflects funds flowing directly from the federal government to the State of Illinois, Cook County, and the City of Chicago. It does not include funds provided by the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms. 
-
-This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported by a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/).
-
-<br>
-
-<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a></p>
-
-::: {#collapseExample1 .collapse}
-::: {.card .card-body}
-*This glossary provides the definition of key terms as used in the Dashboard.*
-
--   **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 11, 2021.
--   **ARPA State and Local Fiscal Recovery Funds:** Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program included in ARPA (see definition of ARPA above), which directed \$350 billion of flexible funds to states, counties, tribal governments and localities.
--   **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program.\
--   **Broadband:** a means of connecting computers, tablets, smartphones, and other devices to high-speed internet. Broadband includes both wireless and wired technologies.\
--   **Community Investment:** programs that address a community's collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
--   **Community Safety:** programs which seek to promote public safety, enhance resources for area safety and crime response services, mitigate and prevent crime, and expand interventions for justice-involved young people.
--   **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a \$2.2 trillion economic stimulus bill addressing economic recovery from the Covid-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds.
--   **Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA):** \$54.3 billion in supplemental funds for education programs passed on March 19, 2021, including primary school and higher education institutions, in response to the Covid-19 pandemic.
--   **Direct Household Assistance:** programs that provide for basic needs, including food, housing, and health services, to promote general welfare. Direct household assistance can include direct cash payments.
--   **Economic Development:** programs promoting economic wellbeing, improved quality of life, and economic growth among people and communities.
--   **Emergency Rental Assistance (ERA 2):** funding to assist households that are unable to pay rent or utilities.
--   **Emergency Mortgage Assistance:** in Cook County, funds to support households who are behind on mortgage, insurance escrow, and residential real estate tax escrow payments.
--   **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program.
--   **General Fiscal Support:** flexible funds available for broad Covid-19 economic recovery efforts.
--   **Homelessness Assistance:** programs that support people experiencing homelessness transition into temporary and/or permanent housing, with additional wraparound supports to meet individual needs.
--   **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership.\
--   **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services.
--   **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
--   **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
--   **Small Business Assistance:** programs that support small businesses in maintaining and expanding operations.
--   **Spending (Percent Spent)/Expenditures:** the portion of appropriated funds which have been distributed by the city, county, or state.
--   **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways.
--   **Victim Supporting Fund:** Services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food.
--   **Wealth Building:** Efforts to give historically disinvested communities more accessible and sustainable pathways to build wealth and grow assets. Examples include programs that promote local and shared ownership of community assets, and pilot investments in shared-equity models, such as housing cooperatives.
--   **Workforce Development:** programs which provide training and education to equip individuals with necessary skills to gain and maintain employment. Programs can focus on workforce recovery, specialized services for justice-involved people re-entering society, and investments that support workforce revitalization in major job centers, such as downtown corridors.
-:::
-:::
+We will add more program allocation and spending information as new data become available. For more information, including the **glossary and frequently asked questions**, see [About the Dashboard] below.
 
 <br> <br>
 
@@ -168,27 +127,34 @@ total_fed_updated_date <- "2022-08-26"
 
 
 # Read in main program tracker
-data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"), 
-                   sheet = "Programs") %>%
+#data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"), 
+#                   sheet = "Programs") %>%
+data_all <- read_csv(here("data", "cct_dashboard_data.csv")) %>%
   janitor::clean_names() %>%
-  rename("legislation" = "funding_source_e_g_arpa_cares_etc",
-         "allocation" = "amount_allocated") %>%
   # create variable to indicate if program is expired, if expiration is NA, treat as not expired
   # because this indicates available until expended
-  mutate(is_expired = if_else(expiration > cur_date, 0, 1),
-         is_expired = if_else(is.na(is_expired), 0, is_expired),
-         amount_exact = if_else(amount_exact == "Yes", 1, 0),
-         expiration = if_else(is.na(expiration), "Available Until Expended", as.character(expiration)),
-         current_as_of = ymd(current_as_of),
-         topic = if_else(new_topic == "All", 
-                         "State/Local Discretionary Funding", 
-                         new_topic),
-         subtopic = str_to_title(if_else(new_topic == "All", 
-                                         "State/Local Discretionary Funding", 
-                                         new_subtopic)),
-         source = if_else(!is.na(source), 
-                          str_glue('<a href = "{source_url}">{source}</a>'),
-                          NA_character_)) %>%
+  mutate(
+    expiration = if_else(
+      expiration == "Available Until Expended",
+      NA_Date_,
+      mdy(expiration)
+    ),
+    allocation = parse_number(allocation),
+    is_expired = if_else(expiration > cur_date, 0, 1),
+    is_expired = if_else(is.na(is_expired), 0, is_expired),
+    expiration = if_else(is.na(expiration), 
+                         "Available Until Expended", 
+                         as.character(expiration)),
+    current_as_of = mdy(current_as_of),
+    topic = if_else(new_topic == "All", 
+                    "State/Local Discretionary Funding", 
+                    new_topic),
+    subtopic = str_to_title(if_else(new_topic == "All", 
+                                    "State/Local Discretionary Funding", 
+                                    new_subtopic)),
+    source = if_else(!is.na(source), 
+                     str_glue('<a href = "{source_url}">{source}</a>'),
+                     NA_character_)) %>%
   #filter out ARPA flexible funds because captured elsewhere
   filter(!(legislation == "ARPA" & topic == "State/Local Discretionary Funding"),
          !legislation == "IIJA", 
@@ -196,7 +162,11 @@ data <- read_excel(here("data", "CCT Dashboard - Program Tracker.xlsx"),
   #filter out FTA grants because go to transit agencies
   filter(program != "Federal Transit Administration (FTA) Grants")
 
-write_csv(data, here("data/intermediate_data", "clean_data_dashboard.csv"))
+# filter out Chicago General Obligation Bond to use in most dashboard elements
+data <- data_all %>% 
+  filter(legislation != "Chicago General Obligation Bond")
+
+write_csv(data_all, here("data/intermediate_data", "clean_data_dashboard.csv"))
 ```
 
 ```{r, include=FALSE}
@@ -264,7 +234,7 @@ pct_cook_county_unexp_b <- cook_county_unexp_b/cook_county_allocation_b
 
 ```
 
-# Summary of Federal Covid-19 Recovery Funding
+# Summary of Federal COVID-19 Recovery Funding
 
 ```{r, echo=FALSE}
 
@@ -363,7 +333,7 @@ plot_funds_by_geo_topic <- function(data, fill_var){
 
 ## Chicago
 
-```{r, fig.width = 11.5, fig.height = 6}
+```{r, fig.width = 11.5, fig.height = 6, fig.alt= "Bar chart of federal recovery allocations by legislation and policy topic for Chicago showing largest allocation to community investment programs."}
 
 data_filter <- data %>%
   filter(geography == "Chicago", !is.na(allocation)) %>% 
@@ -378,7 +348,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 ## Cook County
 
-```{r, fig.width = 11.5, fig.height = 6}
+```{r, fig.width = 11.5, fig.height = 6, fig.alt= "Bar chart of federal recovery allocations by legislation and policy topic for Cook County showing largest allocation to state and local discretionary funds, followed by housing programs."}
 
 data_filter <- data %>%
   filter(geography == "Cook County", !is.na(allocation)) %>% 
@@ -393,7 +363,7 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 ## Illinois
 
-```{r, fig.width = 11.5, fig.height = 6}
+```{r, fig.width = 11.5, fig.height = 6, fig.alt= "Bar chart of federal recovery allocations by legislation and policy topic for Illinois showing largest allocation to state and local discretionary funds, followed by housing programs."}
 
 data_filter <- data %>%
   filter(geography == "Illinois", !is.na(allocation)) %>% 
@@ -575,7 +545,6 @@ create_table_by_geo <- function(data_filter, geo, policy_name) {
 
 create_treemap_by_geo <- function(data_filter, geo){
   # function that creates treemap by jurisdiction
-  
   data_filter <- data_filter %>%
     filter(allocation > 0, geography == geo) %>%
     mutate(al_formatted =if_else(amount_exact == 1, 
@@ -601,16 +570,25 @@ create_treemap_by_geo <- function(data_filter, geo){
                           place = "center", 
                           grow = TRUE, 
                           reflow = TRUE) +
-        scale_color_manual(values = c("white", "black", "white", "white"),
+        scale_color_manual(values = c("white", "black", "white", "white", "white"),
                            breaks = c("ARPA", 
                                      "ARPA State and Local Fiscal Recovery Funds", 
-                                     "CARES", "CRRSAA")) +
-        scale_fill_manual(values = c("#47c3d3", "#C1D82F", "#6C5893", "#000000"),
+                                     "CARES", 
+                                     "CRRSAA",
+                                     "Chicago General Obligation Bond")) +
+        scale_fill_manual(values = c("#47c3d3", 
+                                     "#C1D82F", 
+                                     "#6C5893", 
+                                     "#000000",
+                                     "#4765BD"),
                           breaks = c("ARPA", 
                                      "ARPA State and Local Fiscal Recovery Funds", 
-                                     "CARES", "CRRSAA")) +
+                                     "CARES", 
+                                     "CRRSAA",
+                                     "Chicago General Obligation Bond")) +
         labs(title = "Programs by Proportion of Total Policy Area Allocations",
-             caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts\n when viewing all programs. For more detail, see the FAQ.") +
+             caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts\n when viewing all programs. For more detail, see the FAQ.",
+             alt = "test alt") +
         theme(text = element_text(family = "Merriweather"),
               plot.caption.position = "plot",
               plot.caption = element_text(hjust = 0, size = 8.5))
@@ -622,14 +600,63 @@ create_treemap_by_geo <- function(data_filter, geo){
                 plot.caption = element_text(hjust = 0, size = 8.5))
       }
       
+      if ("Chicago General Obligation Bond" %in% data_filter$legislation){
+        treemap_by_geo <- treemap_by_geo +
+          labs(caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief,and Economic Security Act (CARES),\nthe Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA), and - for Chicago only - Chicago Recovery Plan programs funded through\nthe General Obligaion Bond issued by the City. Text may not appear for some projects with smaller allocation amounts when viewing all programs.\nFor more detail, see the FAQ.") +
+          theme(plot.caption.position = "plot",
+                plot.caption = element_text(hjust = 0, size = 8.5))
+      }
+      
       return(treemap_by_geo)
     } else {
       return("There are no programs with known allocations in this policy area.")
     }
 }
+
+
+make_treemap_alt_text <- function(data_filter, geo, leg_name){
+  
+  data_filter <- data_filter %>%
+    filter(allocation > 0, geography == geo) 
+  
+  if (leg_name == "All") {
+    data_filter <- data_filter
+  } else if (length(leg_name) == 1) {
+    data_filter <- data_filter %>%
+      filter(legislation == leg_name)
+  } else {
+    data_filter <- data_filter %>%
+      filter(legislation %in% leg_name)
+  }
+  
+  if (nrow(data_filter) == 0){
+    return("There are no programs for the selected jurisdiction, funding source, and topic.")
+  }
+  
+  policy_area <- data_filter %>% slice_head(n = 1) %>% pull(topic)
+  max_program <- data_filter %>% filter(allocation == max(allocation))
+  high_program <- max_program %>% pull(program)
+  if (length(high_program) > 1) {
+    high_program <- paste0(high_program, collapse =" and ")
+  }
+  high_allocation <- max_program %>% slice_head(n = 1) %>% pull(allocation)
+  high_allocation <- number(high_allocation, big.mark = ",")
+  
+  if (length(leg_name) > 1) {
+    leg_text <- "ARPA State and Local Fiscal Recovery Funds and Chicago General Bond Obligation"
+  } else if (leg_name == "All") {
+    leg_text <- "ARPA, ARPA State and Local Fiscal Recovery Funds, CARES, and CRRSAA"
+  } else {
+    leg_text <- leg_name
+  }
+  
+  alt <- str_glue("Treemap showing {policy_area} projects in {geo} funded by {leg_text}. Each program is a rectangle with the size of the rectangle proportional to the allocation amount. The one or more programs with the highest allocation is {high_program} with ${high_allocation} allocated.")
+  
+  return(alt)
+}
 ```
 
-<br> <br>
+\
 
 # Explore Funding by Policy Area: {.tabset .tabset-dropdown}
 
@@ -637,20 +664,45 @@ create_treemap_by_geo <- function(data_filter, geo){
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Community Investment")
+data_all_filter <- filter_to_policy_area(data_all, "Community Investment")
+
+chicago_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Chicago")
+
+chic_rec_alt <- make_treemap_alt_text(data_all_filter, 
+                                      geo = "Chicago", 
+                                      leg_name =  c("Chicago General Obligation Bond", 
+                                                      "ARPA State and Local Fiscal Recovery Funds"))
+
+
+cook_county_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Cook County")
+
+
+il_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Illinois")
+
+
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing community investment allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing community investment allocations by jurisdiction and the following subtopics: small business, community development, infrastructure, transportation."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -665,7 +717,7 @@ plot_funds_by_geo(data_filter, "subtopic")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[1]]}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
 
@@ -673,7 +725,7 @@ create_treemap_by_geo(data_filter, "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 ```
 
@@ -681,7 +733,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
 ```
 
@@ -689,7 +741,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 ```
 
@@ -697,8 +749,21 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6, fig.alt = chic_rec_alt}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
 ```
 
 ##### Programs Description
@@ -706,7 +771,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_investment_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "community_investment")
+create_table_by_geo(data_all_filter, "Chicago", "community_investment")
 ```
 
 #### Cook County {.tabset}
@@ -717,7 +782,7 @@ create_table_by_geo(data_filter, "Chicago", "community_investment")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[1]]}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
 
@@ -725,7 +790,7 @@ create_treemap_by_geo(data_filter, "Cook County")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
 ```
 
@@ -733,7 +798,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
@@ -743,7 +808,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
 ```
 
@@ -751,7 +816,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook Coun
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
 ```
 
@@ -771,7 +836,7 @@ create_table_by_geo(data_filter, "Cook County", "community_investment")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[1]]}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
 
@@ -779,7 +844,7 @@ create_treemap_by_geo(data_filter, "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 ```
 
@@ -787,7 +852,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
 ```
 
@@ -795,7 +860,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
 ```
 
@@ -803,7 +868,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
@@ -827,20 +892,43 @@ create_table_by_geo(data_filter, "Total", "community_investment")
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Community Safety")
+data_all_filter <- filter_to_policy_area(data_all, "Community Safety")
+
+chicago_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Chicago")
+
+chic_rec_alt <- make_treemap_alt_text(data_all_filter, 
+                                      geo = "Chicago", 
+                                      leg_name =  c("Chicago General Obligation Bond", 
+                                                      "ARPA State and Local Fiscal Recovery Funds"))
+
+
+cook_county_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Cook County")
+
+
+il_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Illinois")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing community safety allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing community safety allocations by jurisdiction and the following subtopics: alternative emergency response, victim supports, returning/justice involved residents, violence prevention/reduction, and criminal justice reform."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -855,7 +943,7 @@ plot_funds_by_geo(data_filter, "subtopic")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[1]]}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
 
@@ -863,7 +951,7 @@ create_treemap_by_geo(data_filter, "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 ```
 
@@ -871,7 +959,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
 ```
 
@@ -879,7 +967,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 ```
 
@@ -887,8 +975,21 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6, fig.alt = chic_rec_alt}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
 ```
 
 ##### Programs Description
@@ -896,7 +997,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/community_safety_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "community_safety")
+create_table_by_geo(data_all_filter, "Chicago", "community_safety")
 ```
 
 #### Cook County {.tabset}
@@ -907,7 +1008,7 @@ create_table_by_geo(data_filter, "Chicago", "community_safety")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[1]]}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
 
@@ -915,7 +1016,7 @@ create_treemap_by_geo(data_filter, "Cook County")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
 ```
 
@@ -923,7 +1024,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
@@ -933,7 +1034,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
 ```
 
@@ -941,7 +1042,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook Coun
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
 ```
 
@@ -961,7 +1062,7 @@ create_table_by_geo(data_filter, "Cook County", "community_safety")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[1]]}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
 
@@ -969,7 +1070,7 @@ create_treemap_by_geo(data_filter, "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 ```
 
@@ -977,7 +1078,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
 ```
 
@@ -985,7 +1086,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
 ```
 
@@ -993,7 +1094,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
@@ -1017,20 +1118,44 @@ create_table_by_geo(data_filter, "Total", "community_safety")
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Household Investment")
+data_all_filter <- filter_to_policy_area(data_all, "Household Investment")
+
+chicago_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Chicago")
+
+chic_rec_alt <- make_treemap_alt_text(data_all_filter, 
+                                      geo = "Chicago", 
+                                      leg_name =  c("Chicago General Obligation Bond", 
+                                                      "ARPA State and Local Fiscal Recovery Funds"))
+
+
+cook_county_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Cook County")
+
+
+il_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Illinois")
+
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing household investment allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing household investment allocations by jurisdiction and the following subtopics: household supportive services, targeted economic assistance, utility assistance, direct cash assistance."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -1045,7 +1170,7 @@ plot_funds_by_geo(data_filter, "subtopic")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[1]]}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
 
@@ -1053,7 +1178,7 @@ create_treemap_by_geo(data_filter, "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 ```
 
@@ -1061,7 +1186,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
 ```
 
@@ -1069,7 +1194,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 ```
 
@@ -1077,8 +1202,21 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6, fig.alt = chic_rec_alt}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
 ```
 
 ##### Programs Description
@@ -1086,7 +1224,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/household_investment_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "household_investment")
+create_table_by_geo(data_all_filter, "Chicago", "household_investment")
 ```
 
 #### Cook County {.tabset}
@@ -1097,7 +1235,7 @@ create_table_by_geo(data_filter, "Chicago", "household_investment")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[1]]}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
 
@@ -1105,7 +1243,7 @@ create_treemap_by_geo(data_filter, "Cook County")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
 ```
 
@@ -1113,7 +1251,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
@@ -1123,7 +1261,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
 ```
 
@@ -1131,7 +1269,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook Coun
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
 ```
 
@@ -1151,7 +1289,7 @@ create_table_by_geo(data_filter, "Cook County", "household_investment")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[1]]}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
 
@@ -1159,7 +1297,7 @@ create_treemap_by_geo(data_filter, "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 ```
 
@@ -1167,7 +1305,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
 ```
 
@@ -1175,7 +1313,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
 ```
 
@@ -1183,7 +1321,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
@@ -1207,20 +1345,43 @@ create_table_by_geo(data_filter, "Total", "household_investment")
 
 ```{r}
 data_filter <- filter_to_policy_area(data, "Housing")
+data_all_filter <- filter_to_policy_area(data_all, "Housing")
+
+chicago_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Chicago")
+
+chic_rec_alt <- make_treemap_alt_text(data_all_filter, 
+                                      geo = "Chicago", 
+                                      leg_name =  c("Chicago General Obligation Bond", 
+                                                      "ARPA State and Local Fiscal Recovery Funds"))
+
+
+cook_county_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Cook County")
+
+
+il_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Illinois")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing housing allocations by jurisdiction and funding source."}
 
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, , fig.alt = "Bar chart showing housing allocations by jurisdiction and the following subtopics: affordable housing, homeowner's assistance, renter's assistance, homelessness support/prevention."}
 
 plot_funds_by_geo(data_filter, "subtopic")
 ```
@@ -1235,7 +1396,7 @@ plot_funds_by_geo(data_filter, "subtopic")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[1]]}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
 
@@ -1243,7 +1404,7 @@ create_treemap_by_geo(data_filter, "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 ```
 
@@ -1251,7 +1412,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
 ```
 
@@ -1259,7 +1420,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 ```
 
@@ -1267,8 +1428,21 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6, fig.alt= chic_rec_alt}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
 ```
 
 ##### Programs Description
@@ -1276,7 +1450,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/housing_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "housing")
+create_table_by_geo(data_all_filter, "Chicago", "housing")
 ```
 
 #### Cook County {.tabset}
@@ -1287,7 +1461,7 @@ create_table_by_geo(data_filter, "Chicago", "housing")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[1]]}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
 
@@ -1295,7 +1469,7 @@ create_treemap_by_geo(data_filter, "Cook County")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
 ```
 
@@ -1303,7 +1477,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
@@ -1313,7 +1487,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
 ```
 
@@ -1321,7 +1495,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook Coun
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
 ```
 
@@ -1341,7 +1515,7 @@ create_table_by_geo(data_filter, "Cook County", "housing")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[1]]}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
 
@@ -1349,7 +1523,7 @@ create_treemap_by_geo(data_filter, "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 ```
 
@@ -1357,7 +1531,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
 ```
 
@@ -1365,7 +1539,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
 ```
 
@@ -1373,7 +1547,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
@@ -1399,19 +1573,43 @@ create_table_by_geo(data_filter, "Total", "housing")
 ```{r}
 
 data_filter <- filter_to_policy_area(data, "Workforce Development")
+data_all_filter <- filter_to_policy_area(data_all, 
+                                         "Workforce Development")
+
+chicago_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Chicago")
+
+chic_rec_alt <- make_treemap_alt_text(data_all_filter, 
+                                      geo = "Chicago", 
+                                      leg_name =  c("Chicago General Obligation Bond", 
+                                                      "ARPA State and Local Fiscal Recovery Funds"))
+
+
+cook_county_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Cook County")
+
+
+il_alt <- map(c("All", "ARPA", "ARPA State and Local Fiscal Recovery Funds", "CARES", "CRRSAA"),
+                   make_treemap_alt_text, 
+                   data_filter = data_filter, 
+                   geo = "Illinois")
 ```
 
 ### Funding Summary {.tabset .tabset-pills}
 
 #### By Funding Source
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing workforce development allocations by jurisdiction and funding source."}
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
 #### By Subtopic
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = "Bar chart showing workforce development allocations by jurisdiction and the following subtopics: employment opportunities, workforce sustainability, job training, workforce supportive services."}
 plot_funds_by_geo(data_filter, "subtopic")
 ```
 
@@ -1425,7 +1623,7 @@ plot_funds_by_geo(data_filter, "subtopic")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[1]]}
 create_treemap_by_geo(data_filter, "Chicago")
 ```
 
@@ -1433,7 +1631,7 @@ create_treemap_by_geo(data_filter, "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 ```
 
@@ -1441,7 +1639,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Chicago")
 ```
 
@@ -1449,7 +1647,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 ```
 
@@ -1457,8 +1655,21 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Chicago")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = chicago_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago")
+```
+
+###### Chicago Recovery Plan
+
+The City of Chicago has issued a general obligation bond to fund some of the initiatives in its [Recovery Plan](https://www.chicago.gov/content/dam/city/depts/obm/supp_info/2022Budget/ChicagoRecoveryPlan.pdf). Chicago is the only jurisdiction in this dashboard that is explicitly blending local and federal dollars in its Recovery Plan. While the rest of the dashboard only tracks federal funds, we show the bond funding here to provide the full picture of Chicago's Recovery Plan. *For specific program details, see Programs Description tab*
+
+```{r, fig.width = 10, fig.height = 6, fig.alt = chic_rec_alt}
+
+create_treemap_by_geo(data_all_filter %>% 
+                        filter(legislation %in% 
+                                 c("Chicago General Obligation Bond",
+                                   "ARPA State and Local Fiscal Recovery Funds")),
+                      "Chicago")
 ```
 
 ##### Programs Description
@@ -1466,7 +1677,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Chicago"
 [Download the data (.zip)](https://federal-funds-equity.s3.amazonaws.com/workforce_development_chicago.zip)
 
 ```{r}
-create_table_by_geo(data_filter, "Chicago", "workforce_development")
+create_table_by_geo(data_all_filter, "Chicago", "workforce_development")
 ```
 
 #### Cook County {.tabset}
@@ -1477,7 +1688,7 @@ create_table_by_geo(data_filter, "Chicago", "workforce_development")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[1]]}
 create_treemap_by_geo(data_filter, "Cook County")
 ```
 
@@ -1485,7 +1696,7 @@ create_treemap_by_geo(data_filter, "Cook County")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook County")
 ```
 
@@ -1493,7 +1704,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Cook Count
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Cook County")
 ```
 
@@ -1503,7 +1714,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook County")
 ```
 
@@ -1511,7 +1722,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Cook Coun
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = cook_county_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Cook County")
 ```
 
@@ -1531,7 +1742,7 @@ create_table_by_geo(data_filter, "Cook County", "workforce_development")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[1]]}
 create_treemap_by_geo(data_filter, "Illinois")
 ```
 
@@ -1539,7 +1750,7 @@ create_treemap_by_geo(data_filter, "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[2]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 ```
 
@@ -1547,7 +1758,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA"), "Illinois")
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[3]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Local Fiscal Recovery Funds"), "Illinois")
 ```
 
@@ -1555,7 +1766,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "ARPA State and Loca
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[4]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois")
 ```
 
@@ -1563,7 +1774,7 @@ create_treemap_by_geo(data_filter %>% filter(legislation == "CARES"), "Illinois"
 
 *For specific program details, see Programs Description tab*
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt = il_alt[[5]]}
 create_treemap_by_geo(data_filter %>% filter(legislation == "CRRSAA"), "Illinois")
 ```
 
@@ -1592,7 +1803,7 @@ data_filter <- filter_to_policy_area(data, "State/Local Discretionary Funding")
 
 ### Funding Summary
 
-```{r, fig.width = 10, fig.height = 6}
+```{r, fig.width = 10, fig.height = 6, fig.alt= "Bar chart showing state and local discetionary funding allocations by jurisdiction and funding source where a more specific use is not known."}
 plot_funds_by_geo(data_filter, "legislation")
 ```
 
@@ -1783,8 +1994,6 @@ make_sum_table <- function(grant_program,
 }
 
 ```
-
-<br> <br>
 
 # Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
 
@@ -2040,10 +2249,112 @@ leaflet_grid <- tagList(list(
 leaflet_grid
 ```
 
+# About the Dashboard
+
+The inclusive recovery funds we track represent a subset of COVID-19 assistance provided by the federal government. The dashboard only reflects funds flowing directly from the federal government to the State of Illinois, Cook County, and the City of Chicago that can be used for inclusive recovery efforts that align with key priorities of The Chicago Community Trust: community investment, community safety, household investment, housing, and workforce development, which are all vital to narrowing the Chicago region's racial and ethnic wealth gap. It does not include funds provided by the federal government directly to public housing authorities, school districts, universities, or nongovernmental organizations, such as non-profits or private sector firms.
+
 [Download all the data used in the dashboard (.zip)](https://federal-funds-equity.s3.amazonaws.com/all_programs_total.zip)
 
 ```{r}
 
-data_out <- format_write_data_download(data, "total", "all_programs")
+data_out <- format_write_data_download(data_all, "total", "all_programs")
 
 ```
+
+This project is a collaboration between [The Chicago Community Trust](https://www.cct.org/) and the [Urban Institute](https://www.urban.org/). It is supported by a grant from the Kresge Foundation through the [Shared Prosperity Partnership](http://www.sharedprosperitypartnership.org/).
+
+For more information about the dashboard, please contact [Aimee Ramirez](mailto:aramirez@cct.org) (The Chicago Community Trust) and [Karolina Ramos](mailto:kramos@urban.org) (Urban Institute).
+
+<br>
+
+<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample1" role="button" aria-expanded="false" aria-controls="collapseExample1"> Click For Glossary of Terms </a></p>
+
+::: {#collapseExample1 .collapse}
+::: {.card .card-body}
+*This glossary provides the definition of key terms as used in the Dashboard.*
+
+- **Affordable Housing:** investments aimed at preserving or creating affordable housing units.
+- **Alternative Emergency** Response: services such as sobering centers, behavior health programs, and implementation of the 211 call line, a referral line for human and social services.
+- **American Rescue Plan Act (ARPA):** a \$1.9 trillion economic stimulus bill addressing economic recovery from the COVID-19 pandemic passed on March 11, 2021. ARPA includes the Coronavirus State and Local Fiscal Recovery Funds (SLFRF) program, which directed $350 billion of flexible funds to states, counties, tribal governments and localities.
+- **Appropriations:** the amount of funding committed by the federal government to the city, county, or state for a given program. 
+- **Assistance for Returning Residents/Justice Involved People:** services aimed at assisting people returning from incarceration or who are involved in the criminal justice system.
+- **Assistance for Specific Populations:** targeted programs for specific populations, such as older adults, veterans, people with disabilities, or people experiencing homelessness.
+- **Community Development:** investments aimed at developing or maintaining community vibrancy.
+- **Community Investment:** programs that address a community’s collective needs, and engage the community in developing sustainable solutions toward communal challenges. Programs include infrastructure support, small business and economic support, and education and health services.
+- **Community Safety:** programs and initiatives that seek to prevent or reduce violence, assist people in reintegrating into their community following incarceration or while they are involved in the criminal legal system, aid people who have been the victims of violence, and implement alternative emergency response services. 
+- **Consolidated Appropriations Act 2021:** A $2.3 trillion spending bill passed on December 21, 2020, that includes the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA), which provided additional stimulus relief for the COVID-19 pandemic. 
+- **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a $2.2 trillion economic stimulus bill addressing economic recovery from the COVID-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds.
+- **Criminal Justice Reform:** programs that address structural issues in criminal justice systems, such as youth diversion programs and revisions to budgets and case management.
+- **Direct Cash Assistance:** unrestricted cash flowing directly to individuals and families.
+- **Employment Opportunities:** funding allocations that will result in job creation.
+- **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program.
+- **General Fiscal Support:** flexible funds available for broad COVID-19 economic recovery efforts.
+- **Homeowners Assistance:** programs that support property owners in maintaining their homeowner status and that help non-homeowners to pursue ownership. 
+- **Homelessness Supports/Prevention:** programs and wraparound supports for people experiencing or at risk of experiencing homelessness.
+- **Household Investment:** programs that provide targeted support for households, such as direct cash assistance and legal services, and expanding awareness of and access to public services. 
+- **Household Supportive Services:** services aimed at addressing household stability, such as unemployment insurance, energy affordability assistance, and early education assistance.
+- **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
+- **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
+- **Job Training:** programs aimed at equipping people with necessary skills to obtain and maintain jobs in specific industries.
+- **Renter Assistance:** programs supporting people and households living in rental housing.
+- **Small Business:** programs that support small businesses in maintaining and expanding operations.
+- **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways.
+- **Utility Assistance:** assistance to households to cover utility costs, including water.
+- **Victim Support Services:** services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food.
+- **Violence Prevention/Reduction:** funding aimed at preventing or reducing violence, including for violence intervention programming and for community groups.
+- **Workforce Supportive Services:** programs which connect people to employment opportunities.
+- **Workforce Sustainability:** assistance to maintain existing workforce 
+:::
+:::
+
+<br>
+
+<p><a class="btn btn-primary btn-round-lg" data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample2"> Click For Frequently Asked Questions </a></p>
+
+::: {#collapseExample2 .collapse}
+::: {.card .card-body}
+**Who created this dashboard?**
+This dashboard was created by the Urban Institute in partnership with the Chicago Community Trust. This work is supported by the Kresge Foundation. 
+
+**Why was this dashboard created, and how can it be used?**
+This dashboard was created to track funds flowing through Chicago, Cook County, and Illinois governments for COVID-19 response, and to capture economic recovery programs relevant to the Chicago Community Trust’s institutional priority areas. The dashboard can be used by community stakeholders, policy researchers, and those interested in learning more about COVID-19 recovery to learn about funding allocations and spending priorities across different jurisdictions.
+
+**Where does the information in this dashboard come from?**
+Allocation and expenditure data are compiled from federal agency reports and public spending plans and budget reports from our three geographies of focus: Chicago, Cook County, and Illinois. For each program, the individual data source and source links are listed in the programs table.
+
+**What federal recovery dollars are reflected in this dashboard?**
+This dashboard reflects the subset of funds from the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES), and the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA) provided directly to Chicago, Cook County, and Illinois that align with the priority policy areas identified by the Chicago Community Trust. In the case of Chicago, the dashboard also reflects a local General Obligation Bond which the city paired with ARPA State and Local Fiscal Recovery Funds (SLFRF) in its Recovery Plan.
+
+**What federal recovery dollars are not reflected in this dashboard?**
+This dashboard does not include funds that flow directly from the federal government to public housing authorities, school districts or educational institutions, individuals and households, and nongovernmental organizations including nonprofit organizations and private sector businesses. The dashboard also does not include funds used for revenue replacement and operations. Additionally, some funds under SLFRF may fall under categories that do not reflect the Chicago Community Trust’s core priority policy areas of focus and are not captured in the dashboard. Finally, the current version of the dashboard does not include funds allocated to jurisdictions through the Infrastructure Investment and Jobs Act (IIJA), which will be included in future dashboard updates.
+
+**How did you select which funding programs to include?**
+Selected programs reflect a subset of major federal economic recovery funds flowing directly to states, counties, and localities. For ARPA SLFRF, the Chicago Community Trust reviewed funding allocations across jurisdictions and selected programs that align with their institutional priority policy areas in supporting economic recovery: community investment, community safety, household investment, housing, and workforce development. We also include total amounts of CARES state and local discretionary funding for which we do not have more specific information on how the funds were spent. While it’s possible that some of these funds were used for purposes that fall outside of our identified policy areas, we chose to err on the side of inclusion until we can identify more precise information. The dashboard does not include the full list of funding allocations across Chicago, Cook County, and Illinois, which can be found in each jurisdictions’ respective recovery plans.
+
+**What is the difference between ARPA and ARPA State and Local Fiscal Recovery Funds?**
+The State and Local Fiscal Recovery Funds (SLFRF) program is an allocation within ARPA of $350 billion to state, local, and tribal governments across the country. While some ARPA funds can only be used for specific purposes, such as emergency housing or small business assistance, SLFRF are flexible funds that state, county, and local governments can use for a wider range of programs to aid response to and recovery from COVID-19. A full list of applicable uses of SLFRF funds can be found on the U.S. Department of the Treasury website, and more information on each funding source in the dashboard can be found in the glossary.
+
+**How did you select topics and subtopics to categorize funds?**
+The dashboard categorizes funding allocations across five topics and twenty subtopics that map budget line items from local, county, and state recovery plans to the Chicago Community Trust’s priority policy areas and strategies in its work supporting inclusive recovery. See the glossary for a definition of each topic and subtopic included in the dashboard. The topics may change and may feature additional categories as new information on allocations and expenditures becomes available. 
+
+**Will the dashboard feature expenditure data?**
+The dashboard does not currently feature expenditure data, but will be updated with spending data for selected programs as information becomes available. Spending information can be pulled from public state, county, and local government expenditure reports, including legislative budget reports and mandatory recovery plan performance reports to the U.S. Treasury Department. Spending information for regional entities and tribal governments that received federal funding – which are not included in this dashboard – can be pulled in the same manner. Reporting requirements and deadlines vary by program.
+
+**Why are some funding amounts not exact?**
+The ARPA SLFRF-funded programs included in the dashboard are sourced from line item programs as listed by local, county, and state governments in public ARPA recovery plan reports. In some cases, these reports list multiple programs under one broad spending category, with one budget number for all programs—for instance, a public safety category may include three separate programs listed under one total budget number for all public safety initiatives, without allocations for each program. The “amount exact?” column indicates where we have split the total program budget evenly across multiple line items to generate an estimated average amount per program, and where we have pulled the exact budget number for one line item program.
+
+**Why do program names and funding amounts not appear for all projects in the programs chart?**
+The programs chart shows the subset of the total projects included in the dashboard matching the selected policy topic, jurisdiction, and/or legislation. The size of each project box in the chart is proportionate to the share of total funding shown in the chart represented by each project (e.g. if a project represents 10% of the total funding in the chart, the area of that project box will be 10% of the total chart area). For some combinations of policy topic, jurisdiction, and legislation, there are many projects displayed in the chart which forces the size of some projects with smaller funding amounts to be too small to display the project name and allocation. To view the name and allocation for those projects, you can either subset the project chart to a single law (ARPA, CARES, or CRRSAA) or you can view the programs description table.
+
+**How were the programs in the “Explore Spending for Selected Programs” section at the bottom of the dashboard chosen?**
+The dashboard features selected programs for which expenditure data at the zip code level is available. This section of the dashboard features a map and demographic information for zip codes receiving program funds, providing baseline information that users could apply towards their own analyses, such as equity assessments for specific programs. We are working to add more programs to this section as we identify more programs with zip code-level spending data available.
+
+**Will the dashboard be updated?**
+Yes. The dashboard will be updated on a continual basis as new information on fund allocations and expenditures becomes publicly available.
+
+:::
+:::
+
+<br>
+
+The code used to create this dashboard can be found on [GitHub](https://github.com/Chi-Trust/Recovery-Funds-Dashboard).
