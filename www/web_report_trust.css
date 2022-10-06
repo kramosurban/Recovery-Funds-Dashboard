@@ -136,6 +136,10 @@ p {
   font-family:'Merriweather', serif;
 }
 
+.tab-content{
+    margin-bottom: 50px;
+}
+
 /* Hyper-links */
 .a {
   color: #47C3D3;
