@@ -376,8 +376,6 @@ plot_funds_by_geo_topic(data_filter, "legislation")
 
 **Note:** The ARPA State and Local Fiscal Recovery Funds funding source captures the ARPA Fiscal Recovery Funds for Cook County, shown by their planned spending topics and subtopics according to the [Illinois ARPA Spending Plan](https://www2.illinois.gov/sites/budget/Documents/Budget%20Book/FY2022-Budget-Book/FY22_Enacted_ARPA_Summary_6.21.21.pdf). The state/local discretionary funding topic reflects CARES Coronavirus Relief Fund flexible funding for which more detailed spending is not known.
 
-<br> <br>
-
 ```{r, include=FALSE}
 
 plot_funds_by_geo <- function(data, fill_var){
@@ -655,8 +653,6 @@ make_treemap_alt_text <- function(data_filter, geo, leg_name){
   return(alt)
 }
 ```
-
-\
 
 # Explore Funding by Policy Area: {.tabset .tabset-dropdown}
 
@@ -1994,6 +1990,9 @@ make_sum_table <- function(grant_program,
 }
 
 ```
+
+<h1> </h1>
+
 
 # Explore Spending for Selected Programs: {.tabset .tabset-dropdown}
 
