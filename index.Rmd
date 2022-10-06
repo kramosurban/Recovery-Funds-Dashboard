@@ -27,7 +27,7 @@ knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.
 
 <center>
 
-<h1>DRAFT Recovery Funds Dashboard</h1>
+<h1>DRAFT Federal Recovery Funds Dashboard</h1>
 
 </center>
 
