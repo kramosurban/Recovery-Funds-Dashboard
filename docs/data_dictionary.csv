@@ -1,12 +1,15 @@
 ﻿Column Name,Definition
 Geography,"The jurisdiction receiving the funds. Either Chicago, Cook County, Illinois, or All. Only appears in the spreadsheet downloaded when the ""Total"" geography is selected on the dashboard. "
-Funding Source,"Name of the federal funding source for the program. Possible values include ARPA (American Rescue Plan Act), ARPA State and Local Fiscal Recovery Funds (ARPA flexible funds for states and localities), CARES (Coronavirus Aid, Relief, and Economic Security Act), and CRRSAA (Coronavirus Response and Relief Supplemental Appropriations Act).  "
+Funding Source,"Name of the federal funding source for the program. Possible values include ARPA (American Rescue Plan Act), ARPA State and Local Fiscal Recovery Funds (ARPA flexible funds for states and localities), CARES (Coronavirus Aid, Relief, and Economic Security Act), CRRSAA (Coronavirus Response and Relief Supplemental Appropriations Act), and Chicago General Obligation Bond.  "
 Program,"Name of the state or local program. The data is at the program level, so each row represents a unique jurisdiction-program combination. "
 Agency,"Name of agency administering the program. For the ARPA State and Local Fiscal Recovery Funds, will be the city, county, or state agency. Otherwise will be the federal agency. "
 Description,Short description of the program that appears on the dashboard.
 Detail Description,Longer description of the program that does not appear on the dashboard.
+Policy Topic,Name of policy topic associated with the program.
+Policy Subtopic,Name of policy subtopic associated with the program.
 Allocation (millions),Funding allocation to the program in millions of dollars. 
 Current As Of,The date that the program information was updated. Note that this is most often the publication date of the source that the information came from.
-Source,"Source for the allocation and description information. For example, the Cook County ARPA Recovery Plan. Note that this fielf is formatted as an HTML URL with the link URL and link name."
 Expiration,"Date that the funds expire, or must be spent by the receiving agency."
 is_expired,"Boolean variable that is equal to 0 if the expiration date is after the most recent dashboard update date, and is 1 if the expiration date is before the dashboard update date. "
+amount_exact,"Boolean variable that is equal to 1 if the allocation amount is the exact published amount, and is 0 if the allocation amount is estimated. This variable is equal to 0 in the case where no program-level allocation is available but a total allocation across multiple programs is published. In that case, we estimate the program allocation by dividing the total multi-program allocation by the number of associated programs. "
+Source,"Source for the allocation and description information. For example, the Cook County ARPA Recovery Plan. Note that this field is formatted as an HTML URL with the link URL and link name."

@@ -439,7 +439,7 @@ format_write_data_download <- function(data_filter, geo_format, policy_name){
   bucket_name <- Sys.getenv("s3_bucket")
   rename_data <- data_filter %>%
     select(geography, legislation, program, agency, summary_description, 
-           program_description, subtopic,
+           program_description, topic, subtopic,
            allocation, current_as_of, source, expiration, is_expired, amount_exact) %>%
     mutate(expiration = as.Date(expiration, format = "%Y-%m-%d"),
            allocation = round(allocation/1000000, 2)) %>%
@@ -450,10 +450,10 @@ format_write_data_download <- function(data_filter, geo_format, policy_name){
       "Agency" = "agency",
       "Description" = "summary_description",
       "Detail Description" = "program_description",
+      "Policy Topic" = "topic",
       "Policy Subtopic" = "subtopic",
       "Allocation (millions)" = "allocation", 
       "Expiration" = "expiration", 
-      #"% Spent" = "percent_spent",
       "Current As Of" = "current_as_of",
       "Source" = "source"
       )
@@ -488,7 +488,8 @@ create_table_by_geo <- function(data_filter, geo, policy_name) {
   
   geo_format <- str_replace_all(str_to_lower(geo), " ", "_")
   
-  rename_data <- format_write_data_download(data_filter, geo_format, policy_name)
+  rename_data <- format_write_data_download(data_filter, geo_format, policy_name) %>%
+    select(-c("Policy Topic"))
   
   if (geo != "Total") {
     rename_data <- rename_data %>%
