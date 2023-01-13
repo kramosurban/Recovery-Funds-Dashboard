@@ -1,0 +1,316 @@
+---
+title: ""
+output: 
+  html_document:
+    number_sections: FALSE
+    self_contained: TRUE
+    code_folding: none
+    toc: FALSE
+    toc_float: FALSE
+    css: !expr here::here("www", "web_report_trust.css")
+editor_options:
+  chunk_output_type: console
+  markdown: 
+    wrap: 72
+---
+```{=html}
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+</style>
+```
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Merriweather" />
+
+```{r, echo=FALSE, fig.align='center'}
+knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.jpg"), dpi = 500)
+```
+
+<center>
+
+<h1>Federal Infrastructure Funds Dashboard</h1>
+
+</center>
+
+
+<br>
+```{r, echo = FALSE}
+cur_date <- Sys.Date()
+```
+
+<center>**Last Updated:** `r cur_date`</center>
+
+<br>
+
+The Bipartisan Infrastructure Law (Infrastructure Investment and Jobs Act) will...
+
+**This dashboard tracks a subset of the federal infrastructure funds flowing into the City of Chicago, Cook County, and the State of Illinois** 
+
+[Placeholder for more intro text]
+
+```{r setup}
+#| echo: false
+#| include: false
+
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(fig.height = 4)
+knitr::opts_chunk$set(fig.width = 6)
+
+library(tidyverse)
+library(readxl)
+library(here)
+library(janitor)
+library(DT)
+library(urbnthemes)
+library(extrafont)
+library(treemapify)
+library(aws.s3)
+library(dotenv)
+library(treemap)
+library(plotly)
+library(lubridate)
+library(sf)
+library(tidycensus)
+library(gridExtra)
+library(patchwork)
+library(zip)
+library(leaflet)
+library(scales)
+
+set_urbn_defaults(style = "print", base_size = 12)
+
+pc_font_path <- "C:/Users/astern/AppData/Local/Microsoft/Windows/Fonts/"
+mac_font_path <- "~/Library/Fonts"
+
+font_import(paths = pc_font_path,
+            pattern = "Merriweather",
+            prompt = FALSE
+)
+
+
+data_programs <- read_excel(here("data", "IIJA Program List.xlsx"), 
+                   sheet = "Proposed programs for tracking") %>%
+  janitor::clean_names() %>%
+  select(-legislation_section_number_s_or_page_number) %>%
+  pivot_longer(cols = matches(".+[0-9]{4}"),
+               names_to = c("geography", "year"),
+               names_sep = "_fy_",
+               values_to = "allocation") %>%
+  mutate(
+    geography = str_to_title(str_replace(geography, "_", " ")),
+    recipient_name = if_else(geography == "Other Special_purpose",
+                                  special_purpose_recipient_type,
+                                  geography),
+    year = as.numeric(year)
+    )
+  
+
+data_projects <- read_excel(here("data", "IIJA Program List.xlsx"), 
+                   sheet = "Project-based funding") %>%
+  janitor::clean_names() %>%
+  mutate(recipient_name = case_when(
+    !is.na(other) ~ other,
+    !is.na(county) ~ "Cook County",
+    !is.na(city) ~ "Chicago",
+    TRUE ~ "Illinois"
+  )) %>%
+  filter(include == "Yes") %>%
+  select(-c("category", "program_name"))
+
+data <-data_programs %>% 
+  left_join(data_projects, 
+            by = c("program_name" = "matching_program_name",
+                   "recipient_name" = "recipient_name",
+                   "year" = "year")) %>%
+  # include safety category with Roads, Bridges, and Major Projects and Rail with
+  # tranist to reduce to six categories
+  mutate(final_allocation = if_else(is.na(include), allocation, announced_funding),
+         category = case_when(
+           category == "Safety" ~ "Roads, Bridges, and Major Projects", 
+           category == "Rail" ~ "Transit",
+           TRUE ~ category))
+```
+
+
+## Summary of Federal Infrastructure Funding
+
+```{r}
+data %>% 
+  group_by(recipient_name) %>%
+  summarise("Total Appropriations in Dashboard (millions)" = 
+              sum(final_allocation, na.rm = TRUE)/ 1000000) %>%
+  rename("Recipient" = "recipient_name") %>%
+  DT::datatable(
+    options = list(dom = 't'), 
+    rownames = FALSE) %>%
+    formatCurrency(c(2), 
+                 currency = "$",  
+                 interval = 3, 
+                 mark = ",")
+
+
+```
+
+
+## Infrastructure Funding by Recipient and Topic
+
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
+
+plot_funds_by_geo_var <- function(data, fill_var){
+  
+  data <- data %>%
+    mutate(final_allocation = final_allocation / 1000000)
+  
+  fill_var <- enquo(fill_var)
+  
+  recipient_levels <- data %>%
+   group_by(recipient_name) %>% 
+   summarise(total_allocation = sum(final_allocation, na.rm = TRUE)) %>%
+   arrange(total_allocation) %>% 
+   pull(recipient_name) %>% 
+   unique()
+ 
+ 
+  fill_breaks <- data %>%
+     pull(!!fill_var) %>%
+     unique()
+   
+   fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000", 
+                    "#387ECF", "#FDBB30")[1:length(fill_breaks)]
+   
+ 
+  
+  allocations_by_recipient_var <- data %>% 
+    select(recipient_name, funding_type, category, final_allocation) %>%
+    group_by(recipient_name, !!fill_var) %>%
+    summarise(final_allocation = sum(final_allocation, na.rm = TRUE)) %>%
+    mutate(recipient_name = factor(recipient_name, levels = recipient_levels),
+           allocation_str = scales::dollar(final_allocation),
+           label_height = cumsum(final_allocation)) %>% 
+    ggplot() +
+    geom_col(mapping = aes(x = recipient_name, 
+                                  y = final_allocation, 
+                                  fill = !!fill_var,
+                                  text = allocation_str)) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.01)), 
+                     labels = scales::dollar) +
+    scale_fill_manual(values = fill_values,
+                      breaks = fill_breaks)+
+    labs(x = "Recipient", 
+         y = "Total Allocation (millions)",
+         caption = "This graph shows selected projects funded through the Infrastructure Investment and Jobs Act. For more detail, see the FAQ.") +
+    coord_flip() +
+    theme(text = element_text(family = "Merriweather",
+                              face = "plain",
+                                 colour = "#000000",
+                                 size = 8.5,
+                                 hjust = 0.5,
+                                 vjust = 0.5,
+                                 angle = 0,
+                                 lineheight = 0.9,
+                                 margin = ggplot2::margin(),
+                                 debug = FALSE),
+          plot.caption.position = "plot",
+          plot.caption = element_text(hjust = 0))
+  
+  return(allocations_by_recipient_var)
+}
+
+plot_funds_by_geo_var(data, category)
+
+
+```
+
+## Infrastructure Funding by Recipient and Funding Type
+
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
+
+plot_funds_by_geo_var(data, funding_type)
+```
+
+```{r}
+create_treemap_by_topic <- function(data_filter, geo){
+  # function that creates treemap by jurisdiction
+  data_filter <- data_filter %>%
+    filter(allocation > 0, geography == geo) %>%
+    mutate(al_formatted =if_else(amount_exact == 1, 
+                                  paste0("$", 
+                                formatC(allocation, 
+                                        big.mark = ",", 
+                                        format = 'f', 
+                                        digits = 0)),
+                                paste0("$", 
+                                formatC(allocation, 
+                                        big.mark = ",", 
+                                        format = 'f', 
+                                        digits = 0),
+                                "*"))) 
+    if (nrow(data_filter) > 0){
+      treemap_by_geo <- data_filter %>%
+        ggplot(aes(area = allocation, 
+                   fill = legislation, 
+                   label = paste(program, "\n", al_formatted))) +
+        geom_treemap(color = "white", size = 2) +
+        geom_treemap_text(
+          aes(color = legislation), 
+                          place = "center", 
+                          grow = TRUE, 
+                          reflow = TRUE) +
+        scale_color_manual(values = c("white", "black", "white", "white", "white"),
+                           breaks = c("ARPA", 
+                                     "ARPA State and Local Fiscal Recovery Funds", 
+                                     "CARES", 
+                                     "CRRSAA",
+                                     "Chicago General Obligation Bond")) +
+        scale_fill_manual(values = c("#47c3d3", 
+                                     "#C1D82F", 
+                                     "#6C5893", 
+                                     "#000000",
+                                     "#4765BD"),
+                          breaks = c("ARPA", 
+                                     "ARPA State and Local Fiscal Recovery Funds", 
+                                     "CARES", 
+                                     "CRRSAA",
+                                     "Chicago General Obligation Bond")) +
+        labs(title = "Programs by Proportion of Total Policy Area Allocations",
+             caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and Economic Security Act (CARES),\nand the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA). Text may not appear for some projects with smaller allocation amounts\n when viewing all programs. For more detail, see the FAQ.",
+             alt = "test alt") +
+        theme(text = element_text(family = "Merriweather"),
+              plot.caption.position = "plot",
+              plot.caption = element_text(hjust = 0, size = 8.5))
+      
+      if (mean(data_filter$amount_exact, na.rm = TRUE) < 1){
+        treemap_by_geo <- treemap_by_geo +
+          labs(caption = "*Indicates allocation amount is approximate. This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief,\nand Economic Security Act (CARES),and the Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA).Text may not appear for some\nprojects with smaller allocation amounts when viewing all programs. For more detail, see the FAQ.") +
+          theme(plot.caption.position = "plot",
+                plot.caption = element_text(hjust = 0, size = 8.5))
+      }
+      
+      if ("Chicago General Obligation Bond" %in% data_filter$legislation){
+        treemap_by_geo <- treemap_by_geo +
+          labs(caption = "This graph shows selected projects funded through the American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief,and Economic Security Act (CARES),\nthe Coronavirus Response and Relief Supplemental Appropriations Act (CRRSAA), and - for Chicago only - Chicago Recovery Plan programs funded through\nthe General Obligaion Bond issued by the City. Text may not appear for some projects with smaller allocation amounts when viewing all programs.\nFor more detail, see the FAQ.") +
+          theme(plot.caption.position = "plot",
+                plot.caption = element_text(hjust = 0, size = 8.5))
+      }
+      
+      return(treemap_by_geo)
+    } else {
+      return("There are no programs with known allocations in this policy area.")
+    }
+}
+
+```
+
+
+## Explore Funding by Topic
+
+
