@@ -4,8 +4,10 @@ navbar:
   left:
   - text: Home
     href: index.html
-  - text: FAQ
+  - text: Recovery Funds
     href: recovery-funds.html
+  - text: Infrastructure Funds
+    href: infrastructure-funds.html
 output:
   html_document:
     output_dir: '.'
