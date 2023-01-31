@@ -36,3 +36,128 @@ Placeholder text that explains the two dashboards contained in the tracker.
 Summary statistics. 
 
 For more information, see our [Frequently Asked Questions](./FAQ.html) and [Glossary](./glossary.html).
+
+```{r}
+#| echo: false
+#| include: false
+
+knitr::opts_chunk$set(warning = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(cache = FALSE)
+knitr::opts_chunk$set(fig.height = 4)
+knitr::opts_chunk$set(fig.width = 6)
+
+library(tidyverse)
+library(here)
+library(urbnthemes)
+set_urbn_defaults(style = "print", base_size = 12)
+
+# read infrastructure data
+inf_data <- read_csv(here("data/intermediate_data", 
+                          "inf_data_clean.csv")) %>%
+  mutate(legislation = "IIJA") %>%
+  select(final_allocation, legislation, recipient_name)
+
+# read recovery data
+rec_data <- read_csv(here("data/intermediate_data",
+                          "clean_data_dashboard.csv")) %>%
+  rename("recipient_name" = "geography", 
+         "final_allocation" = "allocation") %>%
+  select(final_allocation, legislation, recipient_name)
+
+
+all_data <- rbind(inf_data, rec_data) %>%
+  mutate(legislation = case_when(
+    legislation == "ARPA State and Local Fiscal Recovery Funds" ~
+       "ARPA State and Local\nFiscal Recovery Funds",
+    legislation == "Chicago General Obligation Bond" ~
+      "Chicago General\nObligation Bond",
+    TRUE ~ legislation
+  ))
+
+```
+
+```{r}
+plot_funds_by_var <- function(data, fill_var, lab_text){
+  
+  data <- data %>%
+    mutate(final_allocation = final_allocation / 1000000)
+  
+  fill_var <- enquo(fill_var)
+  
+  var_levels <- data %>%
+    group_by(!!fill_var) %>% 
+    summarise(total_allocation = sum(final_allocation, na.rm = TRUE)) %>%
+    arrange(total_allocation) %>% 
+    pull(!!fill_var) %>% 
+    unique()
+ 
+ 
+  fill_breaks <- data %>%
+     pull(!!fill_var) %>%
+     unique()
+   
+   fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000", 
+                    "#387ECF", "#FDBB30")[1:length(fill_breaks)]
+   
+ 
+  
+  allocations_by_var <- data %>% 
+    group_by(!!fill_var) %>%
+    summarise(final_allocation = sum(final_allocation, na.rm = TRUE)) %>%
+    mutate(allocation_str = scales::dollar(final_allocation),
+           label_height = cumsum(final_allocation),
+           !!fill_var := factor(!!fill_var, levels = var_levels)) %>% 
+    ggplot() +
+    geom_col(mapping = aes(x = !!fill_var, 
+                                  y = final_allocation, 
+                                  fill = !!fill_var,
+                                  text = allocation_str)) +
+    scale_y_continuous(expand = expansion(mult = c(0, 0.01)), 
+                     labels = scales::dollar) +
+    scale_fill_manual(values = fill_values,
+                      breaks = fill_breaks)+
+    labs(x = lab_text, 
+         y = "Total Allocation (millions)",
+         caption = "This graph shows selected projects funded through ARPA, CARES, CRRSAA, and IIJA. For more detail, see the FAQ.") +
+    coord_flip() +
+    theme(text = element_text(family = "Merriweather",
+                              face = "plain",
+                                 colour = "#000000",
+                                 size = 8.5,
+                                 hjust = 0.5,
+                                 vjust = 0.5,
+                                 angle = 0,
+                                 lineheight = 0.9,
+                                 margin = ggplot2::margin(),
+                                 debug = FALSE),
+          plot.caption.position = "plot",
+          plot.caption = element_text(hjust = 0))
+  
+  return(allocations_by_var)
+}
+
+```
+
+# Total Dollars Tracked {.tabset .tabset-pills}
+
+## By Legislation
+
+```{r}
+#| fig-width: 9
+#| fig-height: 6
+#| fig-alt: "TBD"
+plot_funds_by_var(all_data, legislation, "Legislation")
+
+```
+
+## By Recipient
+
+```{r}
+#| fig-width: 9
+#| fig-height: 6
+#| fig-alt: "TBD"
+plot_funds_by_var(all_data, recipient_name, "Recipient")
+
+```
