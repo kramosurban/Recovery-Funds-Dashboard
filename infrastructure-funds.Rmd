@@ -2,11 +2,11 @@
 title: ""
 output: 
   html_document:
-    number_sections: FALSE
-    self_contained: TRUE
+    number_sections: false
+    self_contained: true
     code_folding: none
-    toc: FALSE
-    toc_float: FALSE
+    toc: false
+    toc_float: false
     css: !expr here::here("www", "web_report_trust.css")
 editor_options:
   chunk_output_type: console
@@ -99,9 +99,9 @@ data_programs <- read_excel(here("data", "IIJA Program List.xlsx"),
                values_to = "allocation") %>%
   mutate(
     geography = str_to_title(str_replace(geography, "_", " ")),
-    recipient_name = if_else(geography == "Other Special_purpose",
+    recipient_name = str_to_title(if_else(geography == "Other Special_purpose",
                                   special_purpose_recipient_type,
-                                  geography),
+                                  geography)),
     year = as.numeric(year)
     )
   
@@ -109,12 +109,12 @@ data_programs <- read_excel(here("data", "IIJA Program List.xlsx"),
 data_projects <- read_excel(here("data", "IIJA Program List.xlsx"), 
                    sheet = "Project-based funding") %>%
   janitor::clean_names() %>%
-  mutate(recipient_name = case_when(
+  mutate(recipient_name = str_to_title(case_when(
     !is.na(other) ~ other,
     !is.na(county) ~ "Cook County",
     !is.na(city) ~ "Chicago",
     TRUE ~ "Illinois"
-  )) %>%
+  ))) %>%
   filter(include == "Yes") %>%
   select(-c("category", "program_name"))
 
@@ -129,7 +129,10 @@ data <-data_programs %>%
          category = case_when(
            category == "Safety" ~ "Roads, Bridges, and Major Projects", 
            category == "Rail" ~ "Transit",
-           TRUE ~ category)) %>%
+           category == "EVs" ~ "Electric Vehicles",
+           TRUE ~ category),
+         category = factor(category),
+         funding_type = factor(funding_type))  %>%
   filter(!is.na(recipient_name) | final_allocation > 0) %>%
   filter(!is.na(final_allocation))
 ```
@@ -156,13 +159,10 @@ data %>%
 
 <br> <br>
 
-# Infrastructure Funding by Recipient and Topic
+# Infrastructure Funding by Recipient and Topic {.tabset .tabset-pills}
+
 
 ```{r}
-#| fig-width: 11.5
-#| fig-height: 6
-#| fig-alt: "TBD"
-
 
 plot_funds_by_geo_var <- function(data, fill_var){
   
@@ -181,7 +181,7 @@ plot_funds_by_geo_var <- function(data, fill_var){
  
   fill_breaks <- data %>%
      pull(!!fill_var) %>%
-     unique()
+     levels()
    
    fill_values <- c("#47c3d3", "#C1D82F", "#6C5893", "#000000", 
                     "#387ECF", "#FDBB30")[1:length(fill_breaks)]
@@ -224,14 +224,43 @@ plot_funds_by_geo_var <- function(data, fill_var){
   return(allocations_by_recipient_var)
 }
 
+```
+
+## All
+
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
 plot_funds_by_geo_var(data, category)
+```
 
+## FY2022
 
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
+plot_funds_by_geo_var(data %>% filter(year == 2022), category)
+```
+
+## FY2023
+
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
+plot_funds_by_geo_var(data %>% filter(year == 2023), category)
 ```
 
 <br> <br>
 
-# Infrastructure Funding by Recipient and Funding Type
+# Infrastructure Funding by Recipient and Funding Type {.tabset .tabset-pills}
+
+## All
 
 ```{r}
 #| fig-width: 11.5
@@ -240,6 +269,28 @@ plot_funds_by_geo_var(data, category)
 
 
 plot_funds_by_geo_var(data, funding_type)
+```
+
+## FY2022
+
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
+
+plot_funds_by_geo_var(data %>% filter(year == 2022), funding_type)
+```
+
+## FY2023
+
+```{r}
+#| fig-width: 11.5
+#| fig-height: 6
+#| fig-alt: "TBD"
+
+
+plot_funds_by_geo_var(data %>% filter(year == 2023), funding_type)
 ```
 
 ```{r}
@@ -272,7 +323,7 @@ create_treemap_by_topic <- function(data_filter){
                           reflow = TRUE) +
         scale_color_manual(values = c("white", "black", "white", "white", "white"),
                            breaks = c("Chicago", 
-                                     "Chicago airports", 
+                                     "Chicago Airports", 
                                      "Chicago Transit Authority", 
                                      "Cook County",
                                      "Illinois")) +
@@ -282,7 +333,7 @@ create_treemap_by_topic <- function(data_filter){
                                      "#000000",
                                      "#4765BD"),
                           breaks = c("Chicago", 
-                                     "Chicago airports", 
+                                     "Chicago Airports", 
                                      "Chicago Transit Authority", 
                                      "Cook County",
                                      "Illinois")) +
@@ -376,7 +427,7 @@ create_table_by_topic(data_filter)
 ## Electric Vehicles {.tabset}
 
 ```{r}
-data_filter <- data %>% filter(category == "EVs")
+data_filter <- data %>% filter(category == "Electric Vehicles")
 ```
 
 ### Program Chart

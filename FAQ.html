@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>FAQ.knit</title>
+
+<script src="site_libs/header-attrs-2.19/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+<link rel="stylesheet" href="C:/Users/astern/Documents/Recovery-Funds-Dashboard/www/web_report_trust.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Federal Funds Dashboard</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="recovery-funds.html">Recovery Funds</a>
+</li>
+<li>
+  <a href="infrastructure-funds.html">Infrastructure Funds</a>
+</li>
+<li>
+  <a href="FAQ.html">Frequently Asked Questions</a>
+</li>
+<li>
+  <a href="glossary.html">Glossary</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+
+</div>
+
+
+<div id="frequently-asked-questions" class="section level1">
+<h1>Frequently Asked Questions</h1>
+<center>
+<strong>Last Updated:</strong> 2023-01-31
+</center>
+<p><br><br></p>
+<p><strong>Who created this dashboard?</strong> This dashboard was
+created by the Urban Institute in partnership with the Chicago Community
+Trust. This work is supported by the Kresge Foundation.</p>
+<p><strong>Why was this dashboard created, and how can it be
+used?</strong> This dashboard was created to track funds flowing through
+Chicago, Cook County, and Illinois governments for COVID-19 response,
+and to capture economic recovery programs relevant to the Chicago
+Community Trust’s institutional priority areas. The dashboard can be
+used by community stakeholders, policy researchers, and those interested
+in learning more about COVID-19 recovery to learn about funding
+allocations and spending priorities across different jurisdictions.</p>
+<p><strong>Where does the information in this dashboard come
+from?</strong> Allocation and expenditure data are compiled from federal
+agency reports and public spending plans and budget reports from our
+three geographies of focus: Chicago, Cook County, and Illinois. For each
+program, the individual data source and source links are listed in the
+programs table.</p>
+<p><strong>What federal recovery dollars are reflected in this
+dashboard?</strong> This dashboard reflects the subset of funds from the
+American Rescue Plan Act (ARPA), the Coronavirus Aid, Relief, and
+Economic Security Act (CARES), and the Coronavirus Response and Relief
+Supplemental Appropriations Act (CRRSAA) provided directly to Chicago,
+Cook County, and Illinois that align with the priority policy areas
+identified by the Chicago Community Trust. In the case of Chicago, the
+dashboard also reflects a local General Obligation Bond which the city
+paired with ARPA State and Local Fiscal Recovery Funds (SLFRF) in its
+Recovery Plan.</p>
+<p><strong>What federal recovery dollars are not reflected in this
+dashboard?</strong> This dashboard does not include funds that flow
+directly from the federal government to public housing authorities,
+school districts or educational institutions, individuals and
+households, and nongovernmental organizations including nonprofit
+organizations and private sector businesses. The dashboard also does not
+include funds used for revenue replacement and operations. Additionally,
+some funds under SLFRF may fall under categories that do not reflect the
+Chicago Community Trust’s core priority policy areas of focus and are
+not captured in the dashboard. Finally, the current version of the
+dashboard does not include funds allocated to jurisdictions through the
+Infrastructure Investment and Jobs Act (IIJA), which will be included in
+future dashboard updates.</p>
+<p><strong>How did you select which funding programs to
+include?</strong> Selected programs reflect a subset of major federal
+economic recovery funds flowing directly to states, counties, and
+localities. For ARPA SLFRF, the Chicago Community Trust reviewed funding
+allocations across jurisdictions and selected programs that align with
+their institutional priority policy areas in supporting economic
+recovery: community investment, community safety, household investment,
+housing, and workforce development. We also include total amounts of
+CARES state and local discretionary funding for which we do not have
+more specific information on how the funds were spent. While it’s
+possible that some of these funds were used for purposes that fall
+outside of our identified policy areas, we chose to err on the side of
+inclusion until we can identify more precise information. The dashboard
+does not include the full list of funding allocations across Chicago,
+Cook County, and Illinois, which can be found in each jurisdictions’
+respective recovery plans.</p>
+<p><strong>What is the difference between ARPA and ARPA State and Local
+Fiscal Recovery Funds?</strong> The State and Local Fiscal Recovery
+Funds (SLFRF) program is an allocation within ARPA of $350 billion to
+state, local, and tribal governments across the country. While some ARPA
+funds can only be used for specific purposes, such as emergency housing
+or small business assistance, SLFRF are flexible funds that state,
+county, and local governments can use for a wider range of programs to
+aid response to and recovery from COVID-19. A full list of applicable
+uses of SLFRF funds can be found on the U.S. Department of the Treasury
+website, and more information on each funding source in the dashboard
+can be found in the glossary.</p>
+<p><strong>How did you select topics and subtopics to categorize
+funds?</strong> The dashboard categorizes funding allocations across
+five topics and twenty subtopics that map budget line items from local,
+county, and state recovery plans to the Chicago Community Trust’s
+priority policy areas and strategies in its work supporting inclusive
+recovery. See the glossary for a definition of each topic and subtopic
+included in the dashboard. The topics may change and may feature
+additional categories as new information on allocations and expenditures
+becomes available.</p>
+<p><strong>Will the dashboard feature expenditure data?</strong> The
+dashboard does not currently feature expenditure data, but will be
+updated with spending data for selected programs as information becomes
+available. Spending information can be pulled from public state, county,
+and local government expenditure reports, including legislative budget
+reports and mandatory recovery plan performance reports to the U.S.
+Treasury Department. Spending information for regional entities and
+tribal governments that received federal funding – which are not
+included in this dashboard – can be pulled in the same manner. Reporting
+requirements and deadlines vary by program.</p>
+<p><strong>Why are some funding amounts not exact?</strong> The ARPA
+SLFRF-funded programs included in the dashboard are sourced from line
+item programs as listed by local, county, and state governments in
+public ARPA recovery plan reports. In some cases, these reports list
+multiple programs under one broad spending category, with one budget
+number for all programs—for instance, a public safety category may
+include three separate programs listed under one total budget number for
+all public safety initiatives, without allocations for each program. The
+“amount exact?” column indicates where we have split the total program
+budget evenly across multiple line items to generate an estimated
+average amount per program, and where we have pulled the exact budget
+number for one line item program.</p>
+<p><strong>Why do program names and funding amounts not appear for all
+projects in the programs chart?</strong> The programs chart shows the
+subset of the total projects included in the dashboard matching the
+selected policy topic, jurisdiction, and/or legislation. The size of
+each project box in the chart is proportionate to the share of total
+funding shown in the chart represented by each project (e.g. if a
+project represents 10% of the total funding in the chart, the area of
+that project box will be 10% of the total chart area). For some
+combinations of policy topic, jurisdiction, and legislation, there are
+many projects displayed in the chart which forces the size of some
+projects with smaller funding amounts to be too small to display the
+project name and allocation. To view the name and allocation for those
+projects, you can either subset the project chart to a single law (ARPA,
+CARES, or CRRSAA) or you can view the programs description table.</p>
+<p><strong>How were the programs in the “Explore Spending for Selected
+Programs” section at the bottom of the dashboard chosen?</strong> The
+dashboard features selected programs for which expenditure data at the
+zip code level is available. This section of the dashboard features a
+map and demographic information for zip codes receiving program funds,
+providing baseline information that users could apply towards their own
+analyses, such as equity assessments for specific programs. We are
+working to add more programs to this section as we identify more
+programs with zip code-level spending data available.</p>
+<p><strong>Will the dashboard be updated?</strong> Yes. The dashboard
+will be updated on a continual basis as new information on fund
+allocations and expenditures becomes publicly available.</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

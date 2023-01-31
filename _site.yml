@@ -8,6 +8,10 @@ navbar:
     href: recovery-funds.html
   - text: Infrastructure Funds
     href: infrastructure-funds.html
+  - text: Frequently Asked Questions
+    href: FAQ.html
+  - text: Glossary
+    href: glossary.html
 output:
   html_document:
     output_dir: '.'

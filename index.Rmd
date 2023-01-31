@@ -34,3 +34,5 @@ knitr::include_graphics(here::here("www", "images", "CCT_logo_centered_blue-new.
 Placeholder text that explains the two dashboards contained in the tracker.
 
 Summary statistics. 
+
+For more information, see our [Frequently Asked Questions](./FAQ.html) and [Glossary](./glossary.html).
