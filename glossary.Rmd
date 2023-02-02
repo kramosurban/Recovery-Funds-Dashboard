@@ -29,6 +29,8 @@ cur_date <- Sys.Date()
 - **Coronavirus Aid, Relief, and Economic Security Act (CARES):** a $2.2 trillion economic stimulus bill addressing economic recovery from the COVID-19 pandemic passed on March 27, 2020. The CARES Act included direct cash payments to individuals, expanded unemployment benefits, and business assistance funds.
 - **Criminal Justice Reform:** programs that address structural issues in criminal justice systems, such as youth diversion programs and revisions to budgets and case management.
 - **Direct Cash Assistance:** unrestricted cash flowing directly to individuals and families.
+- **Earmarks:** funds provided by Congress for specific projects, not to be allocated by federal agencies through a competitive process. 
+- **Electric vehicle infrastructure:** equipment that supports the use of electric vehicles, such as battery charging stations and rapid charging stations. 
 - **Employment Opportunities:** funding allocations that will result in job creation.
 - **Expiration:** the date at which funds are no longer available for expenditure. Expiration dates vary by program.
 - **General Fiscal Support:** flexible funds available for broad COVID-19 economic recovery efforts.
@@ -39,11 +41,16 @@ cur_date <- Sys.Date()
 - **Housing:** programs addressing a range of needs for renters, homeowners, people experiencing homelessness, including affordability, stability, shelter solutions, and temporary and permanent supportive housing services.
 - **Infrastructure:** programs that support organizational structures and facilities, such as buildings, roads, highways, and bridges.
 - **Job Training:** programs aimed at equipping people with necessary skills to obtain and maintain jobs in specific industries.
+- **Rail:** rail infrastructure includes tracks, other infrastructure surrounding tracks, tunnels, bridges, stations and terminals, platforms, train control and signaling systems, and associated machinery and equipment. 
+- **Rebates:** funds paid by the federal government to pay eligible recipients back for allowable expenditures.  
 - **Renter Assistance:** programs supporting people and households living in rental housing.
+- **Revolving loan funds:** a pool of money that uses interest and principal payments on old loans to issue new loans. 
 - **Small Business:** programs that support small businesses in maintaining and expanding operations.
+- **Traffic safety:** programs that protect pedestrians, cyclists, motorists, vehicle passengers, and other passengers of on-road public transport.
 - **Transportation:** programs that support transit systems and the infrastructure which support them, including vehicles, busses, trains, bicycles, and pedestrian walkways.
 - **Utility Assistance:** assistance to households to cover utility costs, including water.
 - **Victim Support Services:** services and supports for victims of violent crime and their families, including mental health supports, crisis intervention, support with accessing crime victim compensation, housing, and food.
 - **Violence Prevention/Reduction:** funding aimed at preventing or reducing violence, including for violence intervention programming and for community groups.
+- **Water infrastructure:** all the man-made and natural features that move and treat water.
 - **Workforce Supportive Services:** programs which connect people to employment opportunities.
 - **Workforce Sustainability:** assistance to maintain existing workforce 

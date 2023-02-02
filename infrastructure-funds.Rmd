@@ -99,9 +99,10 @@ data_programs <- read_excel(here("data", "IIJA Program List.xlsx"),
                values_to = "allocation") %>%
   mutate(
     geography = str_to_title(str_replace(geography, "_", " ")),
-    recipient_name = str_to_title(if_else(geography == "Other Special_purpose",
-                                  special_purpose_recipient_type,
-                                  geography)),
+    recipient_name = str_to_title(case_when(
+      geography == "Other Special_purpose_1" ~ special_purpose_recipient_type_1,
+      geography == "Other Special_purpose_2" ~ special_purpose_recipient_type_2,
+      TRUE ~ geography)),
     year = as.numeric(year)
     )
   
@@ -132,9 +133,14 @@ data <-data_programs %>%
            category == "EVs" ~ "Electric Vehicles",
            TRUE ~ category),
          category = factor(category),
-         funding_type = factor(funding_type))  %>%
+         funding_type = factor(funding_type),
+         recipient_name = if_else(recipient_name == "Rta: Pace & Metra",
+                                  "RTA: Pace & Metra",
+                                  recipient_name))  %>%
   filter(!is.na(recipient_name) | final_allocation > 0) %>%
   filter(!is.na(final_allocation))
+
+write_csv(data, here("data/intermediate_data/inf_data_clean.csv"))
 ```
 
 
@@ -321,22 +327,25 @@ create_treemap_by_topic <- function(data_filter){
                           place = "center", 
                           grow = TRUE, 
                           reflow = TRUE) +
-        scale_color_manual(values = c("white", "black", "white", "white", "white"),
+        scale_color_manual(values = c("white", "black", "white", "white", "white", "white"),
                            breaks = c("Chicago", 
                                      "Chicago Airports", 
                                      "Chicago Transit Authority", 
                                      "Cook County",
-                                     "Illinois")) +
+                                     "Illinois",
+                                     "RTA: Pace & Metra")) +
         scale_fill_manual(values = c("#47c3d3", 
                                      "#C1D82F", 
                                      "#6C5893", 
                                      "#000000",
-                                     "#4765BD"),
+                                     "#4765BD",
+                                     "#FDBB30"),
                           breaks = c("Chicago", 
                                      "Chicago Airports", 
                                      "Chicago Transit Authority", 
                                      "Cook County",
-                                     "Illinois")) +
+                                     "Illinois",
+                                     "RTA: Pace & Metra")) +
         labs(title = "Programs by Proportion of Total Policy Area Allocations",
              caption = "This graph shows selected projects funded through the Infrastructure Investment and Jobs Act (IIJA). Text may not appear for some projects with smaller allocation amounts\n when viewing all programs. For more detail, see the FAQ.",
              alt = "test alt") +
